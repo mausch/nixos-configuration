@@ -1,0 +1,13 @@
+192.168.0.45    elevate.postgres.local
+192.168.0.45    elevate.db.local
+192.168.0.45    elevate.es.local
+192.168.0.45    elevate.rabbit.local
+192.168.0.45    elevate.redis.local
+192.168.0.45    elevate.kafka.local
+192.168.0.45    elevate.k8s.local
+192.168.0.45    elevate.consul.local
+192.168.0.45    kubernetes.default.svc.cluster.local
+192.168.0.45    metabase-local.elevatedirect.com
+192.168.0.45    minio-local.elevatedirect.com
+192.168.0.45    local.elevatedirect.com
+
