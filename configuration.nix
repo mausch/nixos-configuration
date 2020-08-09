@@ -151,6 +151,8 @@ fonts = {
      docker-compose
      gitFull 
      lazygit
+     jq
+     cpulimit
 
      # gui tools
      xorg.xhost
