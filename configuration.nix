@@ -153,6 +153,7 @@ fonts = {
      lazygit
      jq
      cpulimit
+     coreutils-full
 
      # gui tools
      xorg.xhost
@@ -214,7 +215,7 @@ fonts = {
        ];
      })
      pkgsPersonal.pianoteq.stage
-     pkgsPersonal.ilspy
+     # pkgsPersonal.ilspy
    ];
 
    environment.variables = {
