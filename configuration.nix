@@ -183,6 +183,7 @@ fonts = {
      synergy
      pkgsMaster.firefox
      meld
+     pkgsMaster.virtmanager
      spotify
      pkgsMaster.zoom-us
      # wireshark
@@ -380,6 +381,9 @@ fonts = {
   environment.etc."docker/config.json".text = ''
     {"experimental": "enabled"}
   '';
+
+  virtualisation.lxd.enable = true;
+  virtualisation.libvirtd.enable = true;
   
   # does not work, see https://gitlab.freedesktop.org/libfprint/libfprint/issues/89
 #  services.fprintd.enable = true;
