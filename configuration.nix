@@ -134,6 +134,7 @@ fonts = {
      powertop
      pciutils
      usbutils
+     lm_sensors
      wirelesstools
      pkgsUnstable.nmap-graphical
      pmutils
