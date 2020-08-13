@@ -5,6 +5,7 @@
 { config, pkgs, ... }:
 
 let 
+  private = import ./private.nix {};
   pkgsPersonal = import (builtins.fetchTarball {
     name = "nixpkgs-mausch";
     url = "https://github.com/mausch/nixpkgs/archive/28f663ccd188bb69d9dde4b748bc8e5356111499.tar.gz";
@@ -40,9 +41,7 @@ in
   imports =
     [
       ./hardware-configuration.nix
-      ./private.nix # contains nix.envVars and users
     ];
-
 
   boot.supportedFilesystems = [ "ntfs" ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
@@ -81,6 +80,18 @@ in
      ibus.engines = with pkgs.ibus-engines; [ table table-others ];
    };
  };
+
+ nix.envVars = private.nixEnvVars;
+
+  users = {
+    mutableUsers = false;
+    users.mauricio = {
+      hashedPassword = private.mauricioHashedPassword;
+      isNormalUser = true;
+      home = "/home/mauricio";
+      extraGroups = [ "wheel" "audio" "docker" "networkmanager" "libvirtd" ];
+    };
+  }; 
 
 fonts = {
   enableCoreFonts = true;
