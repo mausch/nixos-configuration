@@ -137,6 +137,7 @@ fonts = {
   environment.systemPackages = with pkgs; 
   [
     # cmdline tools
+     killall
      nix-du
      nix-prefetch-git
      tmux
