@@ -210,6 +210,7 @@ fonts = {
      vlc
      kdeApplications.kio-extras
      krusader
+     dolphin
      # pkgsUnstable.qt5ct
      peek
      shutter
