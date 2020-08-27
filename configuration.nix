@@ -152,6 +152,8 @@ fonts = {
      wirelesstools
      pkgsUnstable.nmap-graphical
      pmutils
+     glib
+     go-mtpfs
      udiskie
      gsmartcontrol
      smartmontools
