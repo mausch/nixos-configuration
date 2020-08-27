@@ -62,6 +62,7 @@ in
   '';
 
   networking.hostName = "RYOGA";
+  networking.enableIPv6 = false;
   networking.networkmanager.enable = true;
   networking.firewall.enable = false;
   networking.nameservers = ["8.8.8.8" "8.8.4.4"];
