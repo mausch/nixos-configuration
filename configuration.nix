@@ -18,8 +18,8 @@ let
   };
   pkgsMaster = import (builtins.fetchTarball {
     name = "nixpkgs-master";
-    url = "https://github.com/NixOS/nixpkgs/archive/c87c474b17af792e7984ef4f058291f7ce06f594.tar.gz";
-    sha256 = "1171bwg07dcaqgayacaqwk3gyq97hi261gr7a4pgbrkafqb5r3ds";
+    url = "https://github.com/NixOS/nixpkgs/archive/f9567594d5af2926a9d5b96ae3bada707280bec6.tar.gz";
+    sha256 = "0vr2di6z31c5ng73f0cxj7rj9vqvlvx3wpqdmzl0bx3yl3wr39y6";
   }) {
     config.allowUnfree = true;
     config.permittedInsecurePackages = [
