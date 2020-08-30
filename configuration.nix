@@ -91,7 +91,7 @@ in
       hashedPassword = private.mauricioHashedPassword;
       isNormalUser = true;
       home = "/home/mauricio";
-      extraGroups = [ "wheel" "audio" "docker" "networkmanager" "libvirtd" ];
+      extraGroups = [ "wheel" "audio" "docker" "networkmanager" "libvirtd" "vboxusers" ];
     };
   }; 
 
@@ -402,6 +402,10 @@ fonts = {
 
   virtualisation.lxd.enable = true;
   virtualisation.libvirtd.enable = true;
+  virtualisation.virtualbox.host = {
+    enable = true;
+    enableExtensionPack = true;
+  };
   
   # does not work, see https://gitlab.freedesktop.org/libfprint/libfprint/issues/89
 #  services.fprintd.enable = true;
