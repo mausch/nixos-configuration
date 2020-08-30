@@ -26,16 +26,6 @@ let
       "p7zip-16.02"
     ];
   }; 
-  pkgsUnstable = import (builtins.fetchTarball {
-    name = "nixpkgs-unstable";
-    url = "https://github.com/nixos/nixpkgs-channels/archive/0f5ce2fac0c726036ca69a5524c59a49e2973dd4.tar.gz";
-    sha256 = "0nkk492aa7pr0d30vv1aw192wc16wpa1j02925pldc09s9m9i0r3";
-  }) {
-    config.allowUnfree = true;
-    config.permittedInsecurePackages = [
-      "p7zip-16.02"
-    ];
-  }; 
 in
 {
   imports =
@@ -150,7 +140,7 @@ fonts = {
      usbutils
      lm_sensors
      wirelesstools
-     pkgsUnstable.nmap-graphical
+     pkgsMaster.nmap-graphical
      pmutils
      glib
      go-mtpfs
@@ -212,26 +202,26 @@ fonts = {
      kdeApplications.kio-extras
      krusader
      dolphin
-     # pkgsUnstable.qt5ct
+     # pkgsMaster.qt5ct
      peek
      shutter
      nomacs
      gimp
      pkgsMaster.kubernetes
      pkgsMaster.telepresence
-     (pkgsUnstable.dotnetCorePackages.combinePackages [
-        pkgsUnstable.dotnetCorePackages.sdk_2_1
-        pkgsUnstable.dotnetCorePackages.sdk_3_0 
-        pkgsUnstable.dotnetCorePackages.sdk_3_1 
+     (pkgsMaster.dotnetCorePackages.combinePackages [
+        pkgsMaster.dotnetCorePackages.sdk_2_1
+        pkgsMaster.dotnetCorePackages.sdk_3_0 
+        pkgsMaster.dotnetCorePackages.sdk_3_1 
      ])
      ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/b90dfdab83c196f479c2eb2209031585e7d961fc.tar.gz) {}).jetbrains.rider)
      pkgsMaster.jetbrains.webstorm
      # pkgsMaster.jetbrains.pycharm-community
      steam
-     pkgsUnstable.lutris
-     (pkgsUnstable.retroarch.override { 
+     pkgsMaster.lutris
+     (pkgsMaster.retroarch.override { 
        cores = [
-         pkgsUnstable.libretro.dosbox
+         pkgsMaster.libretro.dosbox
        ];
      })
      pkgsPersonal.pianoteq.stage
