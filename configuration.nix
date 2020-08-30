@@ -392,7 +392,6 @@ fonts = {
   # should.
   system.stateVersion = "19.03"; # Did you read the comment?
 
-  # virtualisation.vmware.guest.enable = true;
   virtualisation.docker = {
     enable = true;
     autoPrune.enable = true;
