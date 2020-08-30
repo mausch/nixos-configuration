@@ -199,6 +199,7 @@ fonts = {
      remmina
      synergy
      pkgsMaster.firefox
+     pkgsMaster.google-chrome
      meld
      pkgsMaster.virtmanager
      spotify
