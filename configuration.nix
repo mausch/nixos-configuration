@@ -350,6 +350,7 @@ fonts = {
         blueman-applet &
         udiskie -t &
         pasystray &
+        ibus-daemon -d &
       '';
       extraPackages = with pkgs; [
         dmenu #application launcher most people use
