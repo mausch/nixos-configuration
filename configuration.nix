@@ -391,8 +391,8 @@ fonts = {
     {"experimental": "enabled"}
   '';
 
-  virtualisation.lxd.enable = true;
-  virtualisation.libvirtd.enable = true;
+  virtualisation.lxd.enable = false;
+  virtualisation.libvirtd.enable = false;
   virtualisation.virtualbox.host = {
     enable = true;
     enableExtensionPack = true;
