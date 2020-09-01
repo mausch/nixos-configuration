@@ -421,15 +421,5 @@ fonts = {
       config /home/mauricio/elevate-vpn/aws.conf
     '';
   };
-
-
-  # does not work, see https://github.com/NixOS/nixpkgs/issues/59364
-#     services.kubernetes = {
-#        easyCerts = true;
-#        # addons.dashboard.enable = true;
-#        roles = ["master" "node"];
-#        masterAddress = "localhost";
-#        kubelet.extraOpts = "--fail-swap-on=false";
-#      };
 }
 
