@@ -157,7 +157,7 @@ fonts = {
      mc
      docker-compose
      gitFull 
-     lazygit
+     pkgsMaster.lazygit
      jq
      cpulimit
      coreutils-full
