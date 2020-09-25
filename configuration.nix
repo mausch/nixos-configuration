@@ -34,7 +34,6 @@ in
     ];
 
   boot.supportedFilesystems = [ "ntfs" ];
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = false;
