@@ -161,6 +161,7 @@ fonts = {
      jq
      cpulimit
      coreutils-full
+     nfs-utils
 
      # gui tools
      xorg.xhost
