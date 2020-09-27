@@ -6,26 +6,7 @@
 
 let 
   private = import ./private.nix {};
-  pkgsPersonal = import (builtins.fetchTarball {
-    name = "nixpkgs-mausch";
-    url = "https://github.com/mausch/nixpkgs/archive/28f663ccd188bb69d9dde4b748bc8e5356111499.tar.gz";
-    sha256 = "0kag7qrakkpghrll51xfznylnbwv4y9s5ilgn4wda0qdhq55c2g6";
-  }) {
-    config.allowUnfree = true;
-    config.permittedInsecurePackages = [
-      "p7zip-16.02"
-    ];
-  };
-  pkgsMaster = import (builtins.fetchTarball {
-    name = "nixpkgs-master";
-    url = "https://github.com/NixOS/nixpkgs/archive/f9567594d5af2926a9d5b96ae3bada707280bec6.tar.gz";
-    sha256 = "0vr2di6z31c5ng73f0cxj7rj9vqvlvx3wpqdmzl0bx3yl3wr39y6";
-  }) {
-    config.allowUnfree = true;
-    config.permittedInsecurePackages = [
-      "p7zip-16.02"
-    ];
-  }; 
+  common = import ./common.nix {};
 in
 {
   imports =
@@ -99,7 +80,7 @@ fonts = {
     dina-font
     proggyfonts
     ubuntu_font_family
-    pkgsMaster.jetbrains-mono
+    common.pkgsMaster.jetbrains-mono
     powerline-fonts
     unifont
     source-code-pro
@@ -124,44 +105,8 @@ fonts = {
   };
 
   # List packages installed in system profile. 
-  environment.systemPackages = with pkgs; 
+  environment.systemPackages = common.packages ++ (with pkgs; 
   [
-    # cmdline tools
-     killall
-     nix-du
-     nix-prefetch-git
-     tmux
-     wget 
-     iotop
-     linuxPackages.cpupower
-     powertop
-     pciutils
-     usbutils
-     lm_sensors
-     wirelesstools
-     pkgsMaster.nmap-graphical
-     pmutils
-     glib
-     go-mtpfs
-     udiskie
-     gsmartcontrol
-     smartmontools
-     mkpasswd
-     openssl
-     vim_configurable 
-     unzip
-     zip
-     p7zip
-     imagemagick
-     mc
-     docker-compose
-     gitFull 
-     pkgsMaster.lazygit
-     jq
-     cpulimit
-     coreutils-full
-     nfs-utils
-
      # gui tools
      xorg.xhost
      intel-gpu-tools
@@ -188,14 +133,14 @@ fonts = {
      # gui apps
      remmina
      synergy
-     pkgsMaster.firefox
-     pkgsMaster.google-chrome
+     common.pkgsMaster.firefox
+     common.pkgsMaster.google-chrome
      meld
-     pkgsMaster.virtmanager
+     common.pkgsMaster.virtmanager
      spotify
-     pkgsMaster.zoom-us
+     common.pkgsMaster.zoom-us
      # wireshark
-     pkgsMaster.dbeaver
+     common.pkgsMaster.dbeaver
      postman
      # (import ./kodi.nix)
      vlc
@@ -207,26 +152,26 @@ fonts = {
      shutter
      nomacs
      gimp
-     pkgsMaster.kubernetes
-     pkgsMaster.telepresence
-     (pkgsMaster.dotnetCorePackages.combinePackages [
-        pkgsMaster.dotnetCorePackages.sdk_2_1
-        pkgsMaster.dotnetCorePackages.sdk_3_0 
-        pkgsMaster.dotnetCorePackages.sdk_3_1 
+     common.pkgsMaster.kubernetes
+     common.pkgsMaster.telepresence
+     (common.pkgsMaster.dotnetCorePackages.combinePackages [
+        common.pkgsMaster.dotnetCorePackages.sdk_2_1
+        common.pkgsMaster.dotnetCorePackages.sdk_3_0 
+        common.pkgsMaster.dotnetCorePackages.sdk_3_1 
      ])
      ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/b90dfdab83c196f479c2eb2209031585e7d961fc.tar.gz) {}).jetbrains.rider)
-     pkgsMaster.jetbrains.webstorm
+     common.pkgsMaster.jetbrains.webstorm
      # pkgsMaster.jetbrains.pycharm-community
      steam
-     pkgsMaster.lutris
-     (pkgsMaster.retroarch.override { 
+     common.pkgsMaster.lutris
+     (common.pkgsMaster.retroarch.override { 
        cores = [
-         pkgsMaster.libretro.dosbox
+         common.pkgsMaster.libretro.dosbox
        ];
      })
-     pkgsPersonal.pianoteq.stage
+     common.pkgsPersonal.pianoteq.stage
      # pkgsPersonal.ilspy
-   ];
+   ]);
 
    environment.variables = {
      EDITOR = "gvim";
