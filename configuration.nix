@@ -197,7 +197,7 @@ fonts = {
   programs.ssh.extraConfig = ''
     Host pi
       HostName 192.168.0.25
-      User pi
+      User root
       StrictHostKeyChecking no
     Host pi-nixos
       HostName 192.168.0.25
