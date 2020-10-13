@@ -338,10 +338,6 @@ fonts = {
 
   virtualisation.lxd.enable = false;
   virtualisation.libvirtd.enable = false;
-  virtualisation.virtualbox.host = {
-    enable = true;
-    enableExtensionPack = true;
-  };
   
   # does not work, see https://gitlab.freedesktop.org/libfprint/libfprint/issues/89
 #  services.fprintd.enable = true;
