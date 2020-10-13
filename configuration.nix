@@ -256,10 +256,10 @@ fonts = {
   services.actkbd = {
     enable = true;
     bindings = [
-      { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -A 10"; }
-      { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -U 10"; }
-      { keys = [ 29 56 106 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/xrandr -o right"; }
-      { keys = [ 29 56 103 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/xrandr -o normal"; }
+      { keys = [ 225 ]; events = [ "key" ]; command = "${pkgs.light}/bin/light -A 10"; }
+      { keys = [ 224 ]; events = [ "key" ]; command = "${pkgs.light}/bin/light -U 10"; }
+      { keys = [ 29 56 106 ]; events = [ "key" ]; command = "${pkgs.xorg.xrandr}/bin/xrandr -o right"; }
+      { keys = [ 29 56 103 ]; events = [ "key" ]; command = "${pkgs.xorg.xrandr}/bin/xrandr -o normal"; }
     ];
   };
 
@@ -293,10 +293,10 @@ fonts = {
       enable = true;
       configFile = "/etc/i3.conf";
       extraSessionCommands = ''
-        blueman-applet &
-        udiskie -t &
-        pasystray &
-        ibus-daemon -d &
+        ${pkgs.blueman}/bin/blueman-applet &
+        ${pkgs.udiskie}/bin/udiskie -t &
+        ${pkgs.pasystray}/bin/pasystray &
+        ${pkgs.ibus}/bin/ibus-daemon -d &
       '';
       extraPackages = with pkgs; [
         dmenu #application launcher most people use
