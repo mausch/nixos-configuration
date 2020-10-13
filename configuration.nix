@@ -224,16 +224,16 @@ fonts = {
       RUN+="${pkgs.bash}/bin/sh -c '${pkgs.coreutils}/bin/echo 0 | ${pkgs.coreutils}/bin/tee /sys/module/hid_apple/parameters/fnmode'"
     # cable
     ACTION=="add", SUBSYSTEM=="input", ATTR{name}=="Keytron Keychron K2", \
-      RUN+="${pkgs.bash}/bin/sh -c 'DISPLAY=:0 ${pkgs.xorg.xinput}/bin/xinput float 10'"
+      RUN+="${pkgs.bash}/bin/sh -c 'DISPLAY=:0 ${pkgs.xorg.xinput}/bin/xinput float 12'"
     # bluetooth
     ACTION=="add", SUBSYSTEM=="input", ATTR{name}=="Keychron K2", \
-      RUN+="${pkgs.bash}/bin/sh -c 'DISPLAY=:0 ${pkgs.xorg.xinput}/bin/xinput float 10'"
+      RUN+="${pkgs.bash}/bin/sh -c 'DISPLAY=:0 ${pkgs.xorg.xinput}/bin/xinput float 12'"
     # cable
     ACTION=="remove", SUBSYSTEM=="input", ENV{ID_SERIAL}=="Keytron_Keychron_K2", \
-      RUN+="${pkgs.bash}/bin/sh -c 'DISPLAY=:0 ${pkgs.xorg.xinput}/bin/xinput reattach 10 3'"
+      RUN+="${pkgs.bash}/bin/sh -c 'DISPLAY=:0 ${pkgs.xorg.xinput}/bin/xinput reattach 12 3'"
     # bluetooth
     ACTION=="remove", SUBSYSTEM=="input", ATTR{name}=="Keychron K2", \
-      RUN+="${pkgs.bash}/bin/sh -c 'DISPLAY=:0 ${pkgs.xorg.xinput}/bin/xinput reattach 10 3'"
+      RUN+="${pkgs.bash}/bin/sh -c 'DISPLAY=:0 ${pkgs.xorg.xinput}/bin/xinput reattach 12 3'"
   '';
 
   # Enable CUPS to print documents.
