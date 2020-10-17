@@ -14,7 +14,7 @@ in
       ./hardware-configuration.nix
     ];
 
-  boot.kernelPackages = common.pkgsMaster.linuxPackages;
+  boot.kernelPackages = common.pkgs2003.linuxPackages;
   boot.supportedFilesystems = [ "ntfs" ];
 
   # Use the GRUB 2 boot loader.
@@ -81,7 +81,7 @@ fonts = {
     dina-font
     proggyfonts
     ubuntu_font_family
-    common.pkgsMaster.jetbrains-mono
+    common.pkgs2003.jetbrains-mono
     powerline-fonts
     unifont
     source-code-pro
@@ -135,40 +135,40 @@ fonts = {
      # gui apps
      remmina
      synergy
-     common.pkgsMaster.firefox
-     common.pkgsMaster.google-chrome
+     common.pkgs2003.firefox
+     common.pkgs2003.google-chrome
      meld
-     common.pkgsMaster.virtmanager
+     common.pkgs2003.virtmanager
      spotify
-     common.pkgsMaster.zoom-us
+     common.pkgs2003.zoom-us
      # wireshark
-     common.pkgsMaster.dbeaver
+     common.pkgs2003.dbeaver
      postman
      # (import ./kodi.nix)
      vlc
      kdeApplications.kio-extras
      krusader
      dolphin
-     # pkgsMaster.qt5ct
+     # pkgs2003.qt5ct
      peek
      shutter
      nomacs
      gimp
-     common.pkgsMaster.kubernetes
-     common.pkgsMaster.telepresence
-     (common.pkgsMaster.dotnetCorePackages.combinePackages [
-        common.pkgsMaster.dotnetCorePackages.sdk_2_1
-        common.pkgsMaster.dotnetCorePackages.sdk_3_0 
-        common.pkgsMaster.dotnetCorePackages.sdk_3_1 
+     common.pkgs2003.kubernetes
+     common.pkgs2003.telepresence
+     (common.pkgs2003.dotnetCorePackages.combinePackages [
+        common.pkgs2003.dotnetCorePackages.sdk_2_1
+        common.pkgs2003.dotnetCorePackages.sdk_3_0 
+        common.pkgs2003.dotnetCorePackages.sdk_3_1 
      ])
      ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/b90dfdab83c196f479c2eb2209031585e7d961fc.tar.gz) {}).jetbrains.rider)
-     common.pkgsMaster.jetbrains.webstorm
-     # pkgsMaster.jetbrains.pycharm-community
+     common.pkgs2003.jetbrains.webstorm
+     # pkgs2003.jetbrains.pycharm-community
      steam
-     common.pkgsMaster.lutris
-     (common.pkgsMaster.retroarch.override { 
+     common.pkgs2003.lutris
+     (common.pkgs2003.retroarch.override { 
        cores = [
-         common.pkgsMaster.libretro.dosbox
+         common.pkgs2003.libretro.dosbox
        ];
      })
      common.pkgsPersonal.pianoteq.stage
