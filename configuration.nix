@@ -109,6 +109,7 @@ fonts = {
   environment.systemPackages = common.packages ++ (with pkgs; 
   [
      # gui tools
+     gmtp
      xorg.xhost
      intel-gpu-tools
      pamixer
