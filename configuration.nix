@@ -67,10 +67,10 @@ in
   }; 
 
 fonts = {
-  enableCoreFonts = true;
   enableDefaultFonts = true;
 
   fonts = with pkgs; [
+    corefonts
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -278,19 +278,18 @@ fonts = {
     layout = "us";
     libinput.enable = true;
     libinput.naturalScrolling = true;
-    displayManager.sessionCommands = ''
-      ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
-        UXTerm*selectToClipboard: true
-        *background: black
-        *foreground: white
-        UXTerm*renderFont: true
-        UXTerm*faceName: DejaVu Sans Mono
-        UXTerm*faceSize: 10
-      EOF
-    '';
-    desktopManager = {
-      default = "none";
-      xterm.enable = false;
+    displayManager = {
+      defaultSession = "none+i3";
+      sessionCommands = ''
+        ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
+          UXTerm*selectToClipboard: true
+          *background: black
+          *foreground: white
+          UXTerm*renderFont: true
+          UXTerm*faceName: DejaVu Sans Mono
+          UXTerm*faceSize: 10
+        EOF
+      '';
     };
 
     windowManager.i3 = {
