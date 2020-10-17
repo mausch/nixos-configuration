@@ -43,16 +43,20 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+  };
+
+
   # Select internationalisation properties.
- i18n = {
-   consoleFont = "Lat2-Terminus16";
-   consoleKeyMap = "us";
-   defaultLocale = "en_US.UTF-8";
-   inputMethod = {
-     enabled = "ibus";
-     ibus.engines = with pkgs.ibus-engines; [ table table-others ];
-   };
- };
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    inputMethod = {
+      enabled = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [ table table-others ];
+    };
+  };
 
  nix.envVars = private.nixEnvVars;
 
