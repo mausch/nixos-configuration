@@ -268,17 +268,6 @@ fonts = {
     ];
   };
 
-  services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
-      UXTerm*selectToClipboard: true
-      *background: black
-      *foreground: white
-      UXTerm*renderFont: true
-      UXTerm*faceName: DejaVu Sans Mono
-      UXTerm*faceSize: 10
-    EOF
-  '';
-
   services.redshift = {
     enable = true;
   };
@@ -289,6 +278,16 @@ fonts = {
     layout = "us";
     libinput.enable = true;
     libinput.naturalScrolling = true;
+    displayManager.sessionCommands = ''
+      ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
+        UXTerm*selectToClipboard: true
+        *background: black
+        *foreground: white
+        UXTerm*renderFont: true
+        UXTerm*faceName: DejaVu Sans Mono
+        UXTerm*faceSize: 10
+      EOF
+    '';
     desktopManager = {
       default = "none";
       xterm.enable = false;
