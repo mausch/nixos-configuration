@@ -141,15 +141,12 @@ fonts = {
      virtmanager
      spotify
      zoom-us
-     # wireshark
      dbeaver
      postman
-     # (import ./kodi.nix)
      vlc
      kdeApplications.kio-extras
      krusader
      dolphin
-     # qt5ct
      peek
      shutter
      nomacs
@@ -162,8 +159,6 @@ fonts = {
         dotnetCorePackages.sdk_3_1 
      ])
      ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/b90dfdab83c196f479c2eb2209031585e7d961fc.tar.gz) {}).jetbrains.rider)
-     jetbrains.webstorm
-     # pkgs2003.jetbrains.pycharm-community
      steam
      lutris
      (retroarch.override { 
