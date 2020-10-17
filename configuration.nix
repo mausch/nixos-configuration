@@ -81,7 +81,7 @@ fonts = {
     dina-font
     proggyfonts
     ubuntu_font_family
-    common.pkgs2003.jetbrains-mono
+    jetbrains-mono
     powerline-fonts
     unifont
     source-code-pro
@@ -106,7 +106,7 @@ fonts = {
   };
 
   # List packages installed in system profile. 
-  environment.systemPackages = common.packages ++ (with pkgs; 
+  environment.systemPackages = common.packages ++ (with common.pkgs2003; 
   [
      # gui tools
      gmtp
@@ -135,40 +135,40 @@ fonts = {
      # gui apps
      remmina
      synergy
-     common.pkgs2003.firefox
-     common.pkgs2003.google-chrome
+     firefox
+     google-chrome
      meld
-     common.pkgs2003.virtmanager
+     virtmanager
      spotify
-     common.pkgs2003.zoom-us
+     zoom-us
      # wireshark
-     common.pkgs2003.dbeaver
+     dbeaver
      postman
      # (import ./kodi.nix)
      vlc
      kdeApplications.kio-extras
      krusader
      dolphin
-     # pkgs2003.qt5ct
+     # qt5ct
      peek
      shutter
      nomacs
      gimp
-     common.pkgs2003.kubernetes
-     common.pkgs2003.telepresence
-     (common.pkgs2003.dotnetCorePackages.combinePackages [
-        common.pkgs2003.dotnetCorePackages.sdk_2_1
-        common.pkgs2003.dotnetCorePackages.sdk_3_0 
-        common.pkgs2003.dotnetCorePackages.sdk_3_1 
+     kubernetes
+     telepresence
+     (dotnetCorePackages.combinePackages [
+        dotnetCorePackages.sdk_2_1
+        dotnetCorePackages.sdk_3_0 
+        dotnetCorePackages.sdk_3_1 
      ])
      ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/b90dfdab83c196f479c2eb2209031585e7d961fc.tar.gz) {}).jetbrains.rider)
-     common.pkgs2003.jetbrains.webstorm
+     jetbrains.webstorm
      # pkgs2003.jetbrains.pycharm-community
      steam
-     common.pkgs2003.lutris
-     (common.pkgs2003.retroarch.override { 
+     lutris
+     (retroarch.override { 
        cores = [
-         common.pkgs2003.libretro.dosbox
+         libretro.dosbox
        ];
      })
      common.pkgsPersonal.pianoteq.stage
