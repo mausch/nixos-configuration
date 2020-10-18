@@ -2,8 +2,8 @@
 rec {
   pkgsPersonal = import (builtins.fetchTarball {
     name = "nixpkgs-mausch";
-    url = "https://github.com/mausch/nixpkgs/archive/28f663ccd188bb69d9dde4b748bc8e5356111499.tar.gz";
-    sha256 = "0kag7qrakkpghrll51xfznylnbwv4y9s5ilgn4wda0qdhq55c2g6";
+    url = "https://github.com/mausch/nixpkgs/archive/c763214bcae4f5ac9f3eeaed678b49e769f415a2.tar.gz";
+    sha256 = "1qyilh8mf55qcdww28acy755a56nhjb8k3nqnwssfd697m9kk3k2";
   }) {
     config.allowUnfree = true;
     config.permittedInsecurePackages = [
