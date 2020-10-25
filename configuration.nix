@@ -165,6 +165,7 @@ fonts = {
      ])
      ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/b90dfdab83c196f479c2eb2209031585e7d961fc.tar.gz) {}).jetbrains.rider)
      common.packageVersions.exult."1.6"
+     (import (fetchTarball  https://github.com/freezeboy/nixpkgs/archive/a452695a27deaed18df66ce4c981195ef2ae2401.tar.gz) {}).scummvm
      steam
      lutris
      (retroarch.override { 
