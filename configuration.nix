@@ -161,6 +161,7 @@ fonts = {
         dotnetCorePackages.sdk_2_1
         dotnetCorePackages.sdk_3_0 
         dotnetCorePackages.sdk_3_1 
+        common.pkgsPersonal.dotnetCorePackages.sdk_5_0
      ])
      ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/b90dfdab83c196f479c2eb2209031585e7d961fc.tar.gz) {}).jetbrains.rider)
      common.packageVersions.exult."1.6"
