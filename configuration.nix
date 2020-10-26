@@ -167,7 +167,7 @@ fonts = {
      common.packageVersions.exult."1.6"
      (import (fetchTarball  https://github.com/freezeboy/nixpkgs/archive/a452695a27deaed18df66ce4c981195ef2ae2401.tar.gz) {}).scummvm
      steam
-     lutris
+     # lutris
      (retroarch.override { 
        cores = [
          libretro.dosbox
