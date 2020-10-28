@@ -14,7 +14,7 @@ in
       ./hardware-configuration.nix
     ];
 
-  boot.kernelPackages = common.pkgs2003.linuxPackages;
+  boot.kernelPackages = common.pkgs2009.linuxPackages;
   boot.supportedFilesystems = [ "ntfs" ];
 
   # Use the GRUB 2 boot loader.
@@ -92,7 +92,6 @@ fonts = {
   ];
 
   fontconfig = {
-    penultimate.enable = false;
     defaultFonts = {
       serif = [ "Ubuntu" ];
       sansSerif = [ "Ubuntu" ];
@@ -110,7 +109,7 @@ fonts = {
   };
 
   # List packages installed in system profile. 
-  environment.systemPackages = common.packages ++ (with common.pkgs2003; 
+  environment.systemPackages = common.packages ++ (with common.pkgs2009; 
   [
      # gui tools
      gmtp
@@ -148,7 +147,7 @@ fonts = {
      dbeaver
      postman
      vlc
-     kdeApplications.kio-extras
+     # kdeApplications.kio-extras
      krusader
      dolphin
      peek
@@ -168,11 +167,11 @@ fonts = {
      (import (fetchTarball  https://github.com/freezeboy/nixpkgs/archive/a452695a27deaed18df66ce4c981195ef2ae2401.tar.gz) {}).scummvm
      steam
      # lutris
-     (retroarch.override { 
-       cores = [
-         libretro.dosbox
-       ];
-     })
+#      (retroarch.override { 
+#        cores = [
+#          libretro.dosbox
+#        ];
+#      })
      common.pkgsPersonal.pianoteq.stage
      # pkgsPersonal.ilspy
    ]);

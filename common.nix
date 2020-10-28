@@ -11,10 +11,10 @@ rec {
     ];
   };
 
-  pkgs2003 = import (builtins.fetchTarball {
-    name = "nixpkgs-20.03";
-    url = "https://github.com/NixOS/nixpkgs/archive/a26e92a67d884db696792d25dcc44c466a1bc8b4.tar.gz";
-    sha256 = "0w4sp4cgncr62vgzknny76whlansab94dq2lx27if77ir3zpfiia";
+  pkgs2009 = import (builtins.fetchTarball {
+    name = "nixpkgs-20.09";
+    url = "https://github.com/NixOS/nixpkgs/archive/13d0c311e3ae923a00f734b43fd1d35b47d8943a.tar.gz";
+    sha256 = "0izp5y55whbdaf26w3zy2xvkjvlll39lib1ifvb61ps9gmvlqn39";
   }) {
     config.allowUnfree = true;
     config.permittedInsecurePackages = [
@@ -48,7 +48,7 @@ rec {
           (map (getPkg name) channels));
     }) attrs);
 
-  packages = with pkgs2003 ; [
+  packages = with pkgs2009 ; [
      killall
      nix-du
      nix-prefetch-git
