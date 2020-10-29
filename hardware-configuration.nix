@@ -67,6 +67,9 @@ in
     extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
   };
 
+  hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
+
   services.fstrim.enable = true;
 
   services.tlp = {
