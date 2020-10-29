@@ -3,15 +3,6 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, ... }:
 
-let 
-  pkgsDrivers = import (builtins.fetchTarball {
-    name = "nixpkgs-drivers";
-    url = "https://github.com/NixOS/nixpkgs/archive/6f519134da3f098f6d39ca5c35b8b1a5cf0d2042.tar.gz";
-    sha256 = "0h9v9ljcyw5jm8m21rmjzr7izi5rfbx5lgxrw939iw1hwmdkhg79";
-  }) {
-    config.allowUnfree = true;
-  };
-in
 {
   imports =
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
@@ -58,7 +49,7 @@ in
     package = (pkgs.mesa.override {
       galliumDrivers = [ "nouveau" "virgl" "swrast" "iris" ];
     }).drivers;
-    extraPackages = with pkgsDrivers; [
+    extraPackages = with pkgs; [
       vaapiIntel
       vaapiVdpau
       libvdpau-va-gl
