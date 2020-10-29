@@ -14,7 +14,7 @@ in
       ./hardware-configuration.nix
     ];
 
-  boot.kernelPackages = common.pkgs2009.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages;
   boot.supportedFilesystems = [ "ntfs" ];
 
   # Use the GRUB 2 boot loader.
