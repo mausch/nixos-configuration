@@ -218,7 +218,7 @@ fonts = {
       pkgs.gnome3.dconf
     ];
   };
-  services.ntp.enable = true;
+  services.openntpd.enable = true;
   services.udisks2.enable = true;
 
   services.udev.extraRules = ''
