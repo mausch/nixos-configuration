@@ -65,24 +65,23 @@
 
   services.tlp = {
     enable = true;
-    extraConfig = ''
-      CPU_SCALING_GOVERNOR_ON_AC=performance
-      CPU_SCALING_GOVERNOR_ON_BAT=powersave
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-      CPU_BOOST_ON_AC=1
-      CPU_BOOST_ON_BAT=1
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 1;
 
-      CPU_MIN_PERF_ON_AC=0
-      CPU_MAX_PERF_ON_AC=100
-      CPU_MIN_PERF_ON_BAT=0
-      CPU_MAX_PERF_ON_BAT=100
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 100;
 
-      CPU_SCALING_MIN_FREQ_ON_AC=0
-      CPU_SCALING_MAX_FREQ_ON_AC=3900000
-      CPU_SCALING_MIN_FREQ_ON_BAT=0
-      CPU_SCALING_MAX_FREQ_ON_BAT=3900000
-      
-    '';
+      CPU_SCALING_MIN_FREQ_ON_AC = 0;
+      CPU_SCALING_MAX_FREQ_ON_AC = 3900000;
+      CPU_SCALING_MIN_FREQ_ON_BAT = 0;
+      CPU_SCALING_MAX_FREQ_ON_BAT = 3900000;
+    };
   };
 
   hardware.bluetooth = {
