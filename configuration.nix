@@ -7,6 +7,7 @@
 let 
   private = import ./private.nix {};
   common = import ./common.nix {};
+  cpupower-gui = (import (fetchTarball https://github.com/unode/nixpkgs/archive/ff20ade260c177cc3a7d36f843899867c28f11e1.tar.gz) {}).cpupower-gui;
 in
 {
   imports =
@@ -48,6 +49,7 @@ in
     keyMap = "us";
   };
 
+  systemd.packages = [ cpupower-gui ];
 
   # Select internationalisation properties.
   i18n = {
@@ -122,6 +124,7 @@ fonts = {
      redshift
      qpdfview
      leafpad
+     cpupower-gui
      
      # https://www.reddit.com/r/NixOS/comments/6j9zlj/how_to_set_up_themes_in_nixos/djcvaco/
      arc-kde-theme
@@ -216,6 +219,7 @@ fonts = {
     enable = true;
     packages = [
       pkgs.gnome3.dconf
+      cpupower-gui
     ];
   };
   services.openntpd.enable = true;
