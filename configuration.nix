@@ -142,7 +142,7 @@ fonts = {
      remmina
      synergy
      firefox
-     google-chrome
+     (chromium.override { enableVaapi = true; })
      meld
      virtmanager
      spotify
