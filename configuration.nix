@@ -151,7 +151,7 @@ fonts = {
      postman
      vlc
      # kdeApplications.kio-extras
-     (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/8fb56a487fe57e420209d9f37a085fcc89a5d108.tar.gz) {}).krusader
+     krusader
      dolphin
      peek
      shutter
