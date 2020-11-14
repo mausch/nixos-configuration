@@ -60,7 +60,11 @@ in
     };
   };
 
- nix.envVars = private.nixEnvVars;
+  nix = {
+    envVars = private.nixEnvVars;
+    maxJobs = "auto";
+    buildCores = 0;
+  };
 
   users = {
     mutableUsers = false;
