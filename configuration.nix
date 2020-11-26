@@ -167,7 +167,7 @@ fonts = {
      (dotnetCorePackages.combinePackages [
         dotnetCorePackages.sdk_2_1
         dotnetCorePackages.sdk_3_1 
-        # common.pkgsPersonal.dotnetCorePackages.sdk_5_0
+        (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/a94cc8dc921112051cd477e4ded922acfd254fbe.tar.gz) {}).dotnetCorePackages.sdk_5_0
      ])
      ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/aeb6d3edabac649352ad8b163cecb66f71dcc055.tar.gz) {}).jetbrains.rider)
      exult
