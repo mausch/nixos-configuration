@@ -166,7 +166,6 @@ fonts = {
      telepresence
      (dotnetCorePackages.combinePackages [
         dotnetCorePackages.sdk_2_1
-        dotnetCorePackages.sdk_3_0 
         dotnetCorePackages.sdk_3_1 
         # common.pkgsPersonal.dotnetCorePackages.sdk_5_0
      ])
