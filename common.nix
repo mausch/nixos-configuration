@@ -84,5 +84,27 @@ rec {
      coreutils-full
      nfs-utils
 
+     remmina
+     synergy
+     (chromium.override { enableVaapi = true; })
+     meld
+     spotify
+     (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/d3521527b4ad2358ce2b4fe523c616e4857a3db3.tar.gz) {config.allowUnfree=true;}).zoom-us
+     dbeaver
+     postman
+     vlc
+     krusader
+     dolphin
+     peek
+     shutter
+     nomacs
+     
+     (dotnetCorePackages.combinePackages [
+        dotnetCorePackages.sdk_2_1
+        dotnetCorePackages.sdk_3_1 
+        (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/a94cc8dc921112051cd477e4ded922acfd254fbe.tar.gz) {}).dotnetCorePackages.sdk_5_0
+     ])
+     ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/aeb6d3edabac649352ad8b163cecb66f71dcc055.tar.gz) {}).jetbrains.rider)
+     
   ]; 
 }

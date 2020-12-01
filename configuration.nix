@@ -143,33 +143,13 @@ fonts = {
      lxappearance
 
      # gui apps
-     remmina
      synergy
      firefox
-     (chromium.override { enableVaapi = true; })
      meld
      virtmanager
-     spotify
-     # zoom-us
-     (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/d3521527b4ad2358ce2b4fe523c616e4857a3db3.tar.gz) {config.allowUnfree=true;}).zoom-us
-     dbeaver
-     postman
-     vlc
-     # kdeApplications.kio-extras
-     krusader
-     dolphin
-     peek
-     shutter
-     nomacs
      gimp
      kubernetes
      telepresence
-     (dotnetCorePackages.combinePackages [
-        dotnetCorePackages.sdk_2_1
-        dotnetCorePackages.sdk_3_1 
-        (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/a94cc8dc921112051cd477e4ded922acfd254fbe.tar.gz) {}).dotnetCorePackages.sdk_5_0
-     ])
-     ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/aeb6d3edabac649352ad8b163cecb66f71dcc055.tar.gz) {}).jetbrains.rider)
      exult
      (import (fetchTarball  https://github.com/freezeboy/nixpkgs/archive/a452695a27deaed18df66ce4c981195ef2ae2401.tar.gz) {}).scummvm
      steam
