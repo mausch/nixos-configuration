@@ -9,6 +9,12 @@ in
     enable = true;
   };
 
+  services.redshift = {
+    enable = true;
+    latitude = "51.52";
+    longitude = "-0.07";
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   # Let Home Manager install and manage itself.
