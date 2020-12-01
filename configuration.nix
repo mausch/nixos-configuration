@@ -323,7 +323,7 @@ fonts = {
 
   virtualisation.docker = {
     enable = true;
-    autoPrune.enable = true;
+    autoPrune.enable = false;
   };
   environment.etc."docker/config.json".text = ''
     {"experimental": "enabled"}
