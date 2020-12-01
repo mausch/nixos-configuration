@@ -84,6 +84,7 @@ rec {
      coreutils-full
      nfs-utils
      awscli2
+     telepresence
 
      remmina
      synergy
