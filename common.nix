@@ -83,6 +83,7 @@ rec {
      cpulimit
      coreutils-full
      nfs-utils
+     awscli2
 
      remmina
      synergy
