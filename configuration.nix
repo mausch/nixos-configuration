@@ -127,7 +127,6 @@ fonts = {
      arandr
      redshift
      qpdfview
-     leafpad
      cpupower-gui
      
      # https://www.reddit.com/r/NixOS/comments/6j9zlj/how_to_set_up_themes_in_nixos/djcvaco/
