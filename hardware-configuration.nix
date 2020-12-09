@@ -33,6 +33,7 @@
   zramSwap = {
     enable = true;
     algorithm = "zstd";
+    memoryPercent = 10;
   };
 
   nix.maxJobs = lib.mkDefault 8;
