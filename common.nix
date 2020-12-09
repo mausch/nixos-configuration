@@ -13,8 +13,8 @@ rec {
 
   pkgs2009 = import (builtins.fetchTarball {
     name = "nixpkgs-20.09";
-    url = "https://github.com/NixOS/nixpkgs/archive/ae47c79479a086e96e2977c61e538881913c0c08.tar.gz";
-    sha256 = "1yaa02zdbmd4j5lrhbynk5xdv6dkfhajlbsf5fkhx73hj9knmfgn";
+    url = "https://github.com/NixOS/nixpkgs/archive/65c9cc79f1d179713c227bf447fb0dac384cdcda.tar.gz";
+    sha256 = "0whxlm098vas4ngq6hm3xa4mdd2yblxcl5x5ny216zajp08yp1wf";
   }) {
     config.allowUnfree = true;
     config.permittedInsecurePackages = [
