@@ -15,29 +15,94 @@ in
     longitude = "-0.07";
   };
 
+
+  systemd.user.services = {
+    synergy-server = 
+      let config = pkgs.writeTextFile {
+        name = "synergy-server.config";
+        text = ''
+section: screens
+	RYOGA:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none 
+		switchCornerSize = 0
+	DESKTOP-GHILT6E:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none 
+		switchCornerSize = 0
+	mauricio-Precision-Tower-5810:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none 
+		switchCornerSize = 0
+end
+
+section: aliases
+end
+
+section: links
+	RYOGA:
+		right = DESKTOP-GHILT6E
+	DESKTOP-GHILT6E:
+		right = mauricio-Precision-Tower-5810
+		left = RYOGA
+	mauricio-Precision-Tower-5810:
+		left = DESKTOP-GHILT6E
+end
+
+section: options
+	relativeMouseMoves = false
+	screenSaverSync = true
+	win32KeepForeground = false
+	disableLockToScreen = false
+	clipboardSharing = true
+	clipboardSharingSize = 3072
+	switchCorners = none 
+	switchCornerSize = 0
+end        
+        '';
+      };
+      in
+      {
+        Unit.Description = "Synergy server";
+        Service = {
+          Type = "simple";
+          ExecStart = "${common.pkgs2009.synergy}/bin/synergys -c ${config} -a 0.0.0.0 -n mauricio-Precision-Tower-5810 -f";
+        };
+      };
+
   # Haven't figured out how to make home-manager manage system services yet,
   # so here's a workaround:
   # sudo ln -s /home/mauricio/.config/systemd/user/zram.service /etc/systemd/system/zram.service
   # sudo systemctl enable zram
 
-  systemd.user.services.zram = 
-    let script = pkgs.writeScript "start-zram" ''
+    zram = 
+      let script = pkgs.writeScript "start-zram" ''
 #!/usr/bin/env sh
 modprobe zram
 echo zstd > /sys/block/zram0/comp_algorithm
 echo 2G > /sys/block/zram0/disksize
 mkswap /dev/zram0
 swapon /dev/zram0
-    '';
-    in 
-    {
-      Unit.Description = "Enable zram swap";
-      Service = {
-        Type = "oneshot";
-        ExecStart = "${script}";
+      '';
+      in 
+      {
+        Unit.Description = "Enable zram swap";
+        Service = {
+          Type = "oneshot";
+          ExecStart = "${script}";
+        };
+        Install.WantedBy = ["multi-user.target"];
       };
-      Install.WantedBy = ["multi-user.target"];
-    };
+  };
 
   nixpkgs.config.allowUnfree = true;
 
