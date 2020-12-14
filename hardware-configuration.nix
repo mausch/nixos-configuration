@@ -13,6 +13,15 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = ["nvme_core.default_ps_max_latency_us=4000"];
+  boot.kernelPatches = [{
+    name = "ticks";
+    patch = null;
+    extraConfig = ''
+      NO_HZ_FULL y
+      HZ_1000 n
+      HZ_100 y
+    '';
+  }];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/1a39d765-7d7e-480b-bed5-16275298ad3d";
