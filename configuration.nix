@@ -270,8 +270,8 @@ fonts = {
       sessionCommands = ''
         ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
           UXTerm*selectToClipboard: true
-          *background: black
-          *foreground: white
+          UXTerm*background: black
+          UXTerm*foreground: white
           UXTerm*renderFont: true
           UXTerm*faceName: DejaVu Sans Mono
           UXTerm*faceSize: 10
