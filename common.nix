@@ -107,7 +107,7 @@ rec {
         dotnetCorePackages.sdk_3_1 
         (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/a94cc8dc921112051cd477e4ded922acfd254fbe.tar.gz) {}).dotnetCorePackages.sdk_5_0
      ])
-     ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/aeb6d3edabac649352ad8b163cecb66f71dcc055.tar.gz) {}).jetbrains.rider)
+     ((import (fetchTarball https://github.com/mausch/nixpkgs/archive/d9dfb8200e86d54aba8bd823dd993313c4108e7c.tar.gz) {}).jetbrains.rider)
      
   ]; 
 }
