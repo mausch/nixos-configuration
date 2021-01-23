@@ -64,6 +64,7 @@ rec {
      nmap-graphical
      pmutils
      glib
+     ripgrep
      go-mtpfs
      udiskie
      gsmartcontrol
