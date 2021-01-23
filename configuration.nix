@@ -158,6 +158,7 @@ fonts = {
 #        ];
 #      })
      common.pkgsPersonal.pianoteq.stage
+     OVMF-CSM
      # pkgsPersonal.ilspy
    ]);
 
@@ -328,7 +329,10 @@ fonts = {
   '';
 
   virtualisation.lxd.enable = false;
-  virtualisation.libvirtd.enable = false;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemuOvmf = true;
+  };
   
   # does not work, see https://gitlab.freedesktop.org/libfprint/libfprint/issues/89
 #  services.fprintd.enable = true;
