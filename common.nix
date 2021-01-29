@@ -85,6 +85,7 @@ rec {
      coreutils-full
      nfs-utils
      awscli2
+     kubernetes
      telepresence
 
      remmina
