@@ -105,7 +105,6 @@ rec {
      leafpad
      
      (dotnetCorePackages.combinePackages [
-        dotnetCorePackages.sdk_2_1
         dotnetCorePackages.sdk_3_1 
         (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/a94cc8dc921112051cd477e4ded922acfd254fbe.tar.gz) {}).dotnetCorePackages.sdk_5_0
      ])
