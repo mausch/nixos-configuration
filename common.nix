@@ -93,7 +93,7 @@ rec {
      (chromium.override { enableVaapi = true; })
      meld
      spotify
-     (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/d3521527b4ad2358ce2b4fe523c616e4857a3db3.tar.gz) {config.allowUnfree=true;}).zoom-us
+     (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/11daaf463ca9c938453869c860df7e5b7c81f015.tar.gz) {config.allowUnfree=true;}).zoom-us
      dbeaver
      postman
      vlc
