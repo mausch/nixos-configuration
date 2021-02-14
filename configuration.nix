@@ -15,7 +15,7 @@ in
       ./hardware-configuration.nix
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_5_10;
   boot.supportedFilesystems = [ "ntfs" ];
 
   # Use the GRUB 2 boot loader.
@@ -28,7 +28,6 @@ in
   # Define on which hard drive you want to install Grub.
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
-  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
   '';
