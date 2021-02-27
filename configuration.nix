@@ -346,7 +346,7 @@ fonts = {
   services.synergy.client = {
     enable = true;
     screenName = "RYOGA";
-    serverAddress = "192.168.0.45";
+    serverAddress = "192.168.0.46";
     autoStart = true;
   };
 

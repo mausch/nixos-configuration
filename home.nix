@@ -17,69 +17,16 @@ in
 
 
   systemd.user.services = {
-    synergy-server = 
-      let config = pkgs.writeTextFile {
-        name = "synergy-server.config";
-        text = ''
-section: screens
-	RYOGA:
-		halfDuplexCapsLock = false
-		halfDuplexNumLock = false
-		halfDuplexScrollLock = false
-		xtestIsXineramaUnaware = false
-		switchCorners = none 
-		switchCornerSize = 0
-	DESKTOP-GHILT6E:
-		halfDuplexCapsLock = false
-		halfDuplexNumLock = false
-		halfDuplexScrollLock = false
-		xtestIsXineramaUnaware = false
-		switchCorners = none 
-		switchCornerSize = 0
-	mauricio-Precision-Tower-5810:
-		halfDuplexCapsLock = false
-		halfDuplexNumLock = false
-		halfDuplexScrollLock = false
-		xtestIsXineramaUnaware = false
-		switchCorners = none 
-		switchCornerSize = 0
-end
-
-section: aliases
-end
-
-section: links
-	RYOGA:
-		right = DESKTOP-GHILT6E
-	DESKTOP-GHILT6E:
-		right = mauricio-Precision-Tower-5810
-		left = RYOGA
-	mauricio-Precision-Tower-5810:
-		left = DESKTOP-GHILT6E
-end
-
-section: options
-	relativeMouseMoves = false
-	screenSaverSync = true
-	win32KeepForeground = false
-	disableLockToScreen = false
-	clipboardSharing = true
-	clipboardSharingSize = 3072
-	switchCorners = none 
-	switchCornerSize = 0
-end        
-        '';
-      };
-      in
+    synergy-client = 
       {
-        Unit.Description = "Synergy server";
+        Unit.Description = "Synergy client";
         Service = {
           Type = "simple";
-          ExecStart = "${common.pkgs2009.synergy}/bin/synergys -c ${config} -a 0.0.0.0 -n mauricio-Precision-Tower-5810 -f";
+          ExecStart = "${common.pkgs2009.synergy}/bin/synergyc -f -n mauricio-Precision-Tower-5810 192.168.0.46";
         };
         Install.WantedBy = ["multi-user.target"];
       };
-
+      
   # Haven't figured out how to make home-manager manage system services yet,
   # so here's a workaround:
   # sudo ln -s /home/mauricio/.config/systemd/user/zram.service /etc/systemd/system/zram.service
