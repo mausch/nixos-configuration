@@ -77,6 +77,7 @@ end
           Type = "simple";
           ExecStart = "${common.pkgs2009.synergy}/bin/synergys -c ${config} -a 0.0.0.0 -n mauricio-Precision-Tower-5810 -f";
         };
+        Install.WantedBy = ["multi-user.target"];
       };
 
   # Haven't figured out how to make home-manager manage system services yet,
