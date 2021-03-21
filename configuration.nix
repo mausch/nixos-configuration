@@ -15,7 +15,7 @@ in
       ./hardware-configuration.nix
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages_5_10;
+  boot.kernelPackages = (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/9cbbba1d7c7cdc246380a535dac01b972bc0af27.tar.gz) {}).linuxPackages_5_10;
   boot.supportedFilesystems = [ "ntfs" ];
 
   # Use the GRUB 2 boot loader.
