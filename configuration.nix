@@ -207,7 +207,22 @@ fonts = {
   services.udisks2.enable = true;
 
   services.udev.extraRules = 
-    let keyboard = toString 6;
+  let 
+    xinput = "DISPLAY=:0 XAUTHORITY=/home/mauricio/.Xauthority ${pkgs.xorg.xinput}/bin/xinput";
+    getBuiltinKeyboard = pkgs.writeScript "get-builtin-keyboard" ''
+      #!/usr/bin/env ${pkgs.bash}/bin/sh
+      ${xinput} | ${pkgs.ripgrep}/bin/rg 'AT Translated' | ${pkgs.ripgrep}/bin/rg keyboard | ${pkgs.gawk}/bin/awk '{print $7}' | ${pkgs.coreutils}/bin/cut -d'=' -f2
+    '';
+    float = pkgs.writeScript "float" ''
+      #!/usr/bin/env ${pkgs.bash}/bin/sh
+      set -x
+      ${xinput} float $(${getBuiltinKeyboard})
+    '';
+    reattach = pkgs.writeScript "reattach" ''
+      #!/usr/bin/env ${pkgs.bash}/bin/sh
+      set -x
+      ${xinput} reattach $(${getBuiltinKeyboard}) 3
+    '';
     in
       ''
       # cable
@@ -217,20 +232,15 @@ fonts = {
       ACTION=="add", SUBSYSTEM=="input", ATTR{name}=="Keychron K2", \
         RUN+="${pkgs.bash}/bin/sh -c '${pkgs.coreutils}/bin/echo 0 | ${pkgs.coreutils}/bin/tee /sys/module/hid_apple/parameters/fnmode'"
       # cable
-      ACTION=="add", SUBSYSTEM=="input", ATTR{name}=="Keytron Keychron K2", \
-        RUN+="${pkgs.bash}/bin/sh -c 'DISPLAY=:0 XAUTHORITY=/home/mauricio/.Xauthority ${pkgs.xorg.xinput}/bin/xinput float ${keyboard}'"
+      ACTION=="add", SUBSYSTEM=="input", ATTR{name}=="Keytron Keychron K2", RUN+="${float}"
       # bluetooth
-      ACTION=="add", SUBSYSTEM=="input", ATTR{name}=="Keychron K2", \
-        RUN+="${pkgs.bash}/bin/sh -c 'DISPLAY=:0 XAUTHORITY=/home/mauricio/.Xauthority ${pkgs.xorg.xinput}/bin/xinput float ${keyboard}'"
+      ACTION=="add", SUBSYSTEM=="input", ATTR{name}=="Keychron K2", RUN+="${float}"
       # cable
-      ACTION=="remove", SUBSYSTEM=="input", ENV{ID_SERIAL}=="Keytron_Keychron_K2", \
-        RUN+="${pkgs.bash}/bin/sh -c 'DISPLAY=:0 XAUTHORITY=/home/mauricio/.Xauthority ${pkgs.xorg.xinput}/bin/xinput reattach ${keyboard} 3'"
+      ACTION=="remove", SUBSYSTEM=="input", ENV{ID_SERIAL}=="Keytron_Keychron_K2", RUN+="${reattach}"
       # bluetooth
-      ACTION=="remove", SUBSYSTEM=="input", ATTR{name}=="Keychron K2", \
-        RUN+="${pkgs.bash}/bin/sh -c 'DISPLAY=:0 XAUTHORITY=/home/mauricio/.Xauthority ${pkgs.xorg.xinput}/bin/xinput reattach ${keyboard} 3'"
-      # wakeup
-      ACTION=="add", SUBSYSTEM=="wakeup" \
-        RUN+="${pkgs.bash}/bin/sh -c 'DISPLAY=:0 XAUTHORITY=/home/mauricio/.Xauthority ${pkgs.xorg.xinput}/bin/xinput reattach ${keyboard} 3'"
+      ACTION=="remove", SUBSYSTEM=="input", ATTR{name}=="Keychron K2", RUN+="${reattach}"
+      # wakeup 
+      ACTION=="add", SUBSYSTEM=="msr", RUN+="${reattach}"
     '';
 
   # Enable CUPS to print documents.
