@@ -23,32 +23,6 @@ rec {
     ];
   }; 
 
-  # orig: https://gist.github.com/matthewbauer/7c57f8fb69705bb8da9741bf4b9a7e64
-  packageVersions = 
-    let
-
-      channels = [ "nixos-20.09" "nixos-20.03" "nixos-19.09" "nixpkgs-unstable" ];
-
-      getSet = channel: (import (builtins.fetchTarball "channel:${channel}") {inherit (builtins.currentSystem);}).pkgs;
-
-      getPkg = name: channel: let
-        pkgs = getSet channel;
-        pkg = pkgs.${name};
-        version = (builtins.parseDrvName pkg.name).version;
-      in if builtins.hasAttr name pkgs && pkg ? name then {
-        name = version;
-        value = pkg;
-      } else null;
-
-      attrs = builtins.attrNames (import <nixpkgs> {});
-
-    in builtins.listToAttrs (map (name: {
-      inherit name;
-      value = builtins.listToAttrs
-        (builtins.filter (x: x != null)
-          (map (getPkg name) channels));
-    }) attrs);
-
   packages = with pkgs2009 ; [
      killall
      nix-du
