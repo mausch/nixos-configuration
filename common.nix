@@ -69,7 +69,7 @@ rec {
      meld
      spotify
      (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/479c35d9563fecb73253bf63cf73c3875482807e.tar.gz) {config.allowUnfree=true;}).zoom-us
-     dbeaver
+     (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/3976626f1b7488291515927b58f49f82678b10d8.tar.gz) {}).dbeaver
      postman
      vlc
      krusader
