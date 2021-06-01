@@ -5,10 +5,6 @@ in
 
   home.packages = common.packages;
 
-  programs.vscode = {
-    enable = true;
-  };
-
   services.redshift = {
     enable = true;
     latitude = "51.52";

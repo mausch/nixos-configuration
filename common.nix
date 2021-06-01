@@ -84,6 +84,29 @@ rec {
         (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/e60fc2ca56ca3aad77d42818839529fe12fcbcf3.tar.gz) {}).dotnetCorePackages.sdk_5_0
      ])
      ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/6a2e7a6318379b67efa1efd721f16d3fe683a380.tar.gz) {}).jetbrains.rider)
+
+     (import (fetchTarball https://github.com/nix-community/rnix-lsp/archive/23df7ab20b71896ac47da8dab6d4bcc6e8f994d5.tar.gz))
      
+     (pkgs.vscode-with-extensions.override {
+       vscodeExtensions = (with pkgs.vscode-extensions; [
+         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+          meta = with lib; {
+            changelog = "https://marketplace.visualstudio.com/items/jnoortheen.nix-ide/changelog";
+            description = "Nix language support with formatting and error report";
+            downloadPage = "https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide";
+            homepage = "https://github.com/jnoortheen/vscode-nix-ide";
+            license = licenses.mit;
+            maintainers = with maintainers; [ superherointj ];
+          };
+          mktplcRef = {
+            name = "nix-ide";
+            publisher = "jnoortheen";
+            version = "0.1.12";
+            sha256 = "1wkc5mvxv7snrpd0py6x83aci05b9fb9v4w9pl9d1hyaszqbfnif";
+          };
+        })
+       ]);
+     })
+
   ]; 
 }
