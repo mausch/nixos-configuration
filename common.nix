@@ -11,11 +11,11 @@ rec {
     ];
   };
 
-  pkgs2009 = import (builtins.fetchTarball {
-    name = "nixpkgs-20.09";
-    # get git sha with `git ls-remote https://github.com/NixOS/nixpkgs nixos-20.09`
-    url = "https://github.com/NixOS/nixpkgs/archive/8f014925190a6dcc532230e6354f7d9232a7c598.tar.gz";
-    sha256 = "0q49yxp8z88g21gj9vfxdjxbr13ammbi38rcslwbr3yi7x3lgrll";
+  pkgs2105 = import (builtins.fetchTarball {
+    name = "nixpkgs-21.05";
+    # get git sha with `git ls-remote https://github.com/NixOS/nixpkgs nixos-21.05`
+    url = "https://github.com/NixOS/nixpkgs/archive/aa576357673d609e618d87db43210e49d4bb1789.tar.gz";
+    sha256 = "1868s3mp0lwg1jpxsgmgijzddr90bjkncf6k6zhdjqihf0i1n2np";
   }) {
     config.allowUnfree = true;
     config.permittedInsecurePackages = [
@@ -23,7 +23,7 @@ rec {
     ];
   }; 
 
-  packages = with pkgs2009 ; [
+  packages = with pkgs2105 ; [
      killall
      nix-du
      nix-prefetch-git
@@ -65,7 +65,7 @@ rec {
 
      remmina
      synergy
-     (chromium.override { enableVaapi = true; })
+     (chromium.override { commandLineArgs = "--enable-features=VaapiVideoDecoder"; })
      meld
      spotify
      (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/479c35d9563fecb73253bf63cf73c3875482807e.tar.gz) {config.allowUnfree=true;}).zoom-us

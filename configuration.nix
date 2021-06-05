@@ -94,6 +94,7 @@ fonts = {
     powerline-fonts
     unifont
     source-code-pro
+    # vistafonts
   ];
 
   fontconfig = {
@@ -114,7 +115,7 @@ fonts = {
   };
 
   # List packages installed in system profile. 
-  environment.systemPackages = common.packages ++ (with common.pkgs2009; 
+  environment.systemPackages = common.packages ++ (with common.pkgs2105; 
   [
      # gui tools
      gmtp
