@@ -148,7 +148,7 @@ fonts = {
      virtmanager
      gimp
      exult
-     (import (fetchTarball  https://github.com/freezeboy/nixpkgs/archive/a452695a27deaed18df66ce4c981195ef2ae2401.tar.gz) {}).scummvm
+     scummvm
      steam
      # lutris
 #      (retroarch.override { 

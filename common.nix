@@ -68,8 +68,8 @@ rec {
      (chromium.override { commandLineArgs = "--enable-features=VaapiVideoDecoder"; })
      meld
      spotify
-     (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/479c35d9563fecb73253bf63cf73c3875482807e.tar.gz) {config.allowUnfree=true;}).zoom-us
-     (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/3976626f1b7488291515927b58f49f82678b10d8.tar.gz) {}).dbeaver
+     zoom-us
+     dbeaver
      postman
      vlc
      krusader
@@ -81,7 +81,7 @@ rec {
      
      (dotnetCorePackages.combinePackages [
         dotnetCorePackages.sdk_3_1 
-        (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/e60fc2ca56ca3aad77d42818839529fe12fcbcf3.tar.gz) {}).dotnetCorePackages.sdk_5_0
+        dotnetCorePackages.sdk_5_0
      ])
      ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/6a2e7a6318379b67efa1efd721f16d3fe683a380.tar.gz) {}).jetbrains.rider)
 
