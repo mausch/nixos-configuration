@@ -80,6 +80,7 @@ fonts = {
 
   fonts = with pkgs; [
     corefonts
+    nerdfonts
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -94,6 +95,9 @@ fonts = {
     powerline-fonts
     unifont
     source-code-pro
+    opensans-ttf
+    dejavu_fonts
+    freefont_ttf
     # vistafonts
   ];
 
