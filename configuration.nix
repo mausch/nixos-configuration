@@ -156,11 +156,12 @@ fonts = {
      steam
      aws-workspaces
      # lutris
-#      (retroarch.override { 
-#        cores = [
-#          libretro.dosbox
-#        ];
-#      })
+     (retroarch.override { 
+       cores = [
+         libretro.dosbox
+         libretro.mesen
+       ];
+     })
      common.pkgsPersonal.pianoteq.stage
      OVMF-CSM
      # pkgsPersonal.ilspy
