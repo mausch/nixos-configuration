@@ -14,8 +14,8 @@ rec {
   pkgs2105 = import (builtins.fetchTarball {
     name = "nixpkgs-21.05";
     # get git sha with `git ls-remote https://github.com/NixOS/nixpkgs nixos-21.05`
-    url = "https://github.com/NixOS/nixpkgs/archive/1f4e50f03c549addf78d4dde77e897ccbdd21947.tar.gz";
-    sha256 = "0f3infyyw50bx56kap9lmx99lkrzrv92n57wxlkha5lqgwdmyilf";
+    url = "https://github.com/NixOS/nixpkgs/archive/11c662074e2ae3dddd7e157918b6981de4ce7857.tar.gz";
+    sha256 = "19ivbhilikci2c86b7i21ccwmjly6bf6r91iqxla2ibkja6hg79b";
   }) {
     config.allowUnfree = true;
     config.permittedInsecurePackages = [
