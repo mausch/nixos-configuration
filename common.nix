@@ -75,7 +75,7 @@ rec {
      krusader
      dolphin
      peek
-     shutter
+     # shutter
      nomacs
      leafpad
      
