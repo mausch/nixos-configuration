@@ -65,6 +65,13 @@ in
     buildCores = 0;
   };
 
+
+  documentation = {
+    enable = true;
+    man.enable = true;
+    dev.enable = true;
+  };
+
   users = {
     mutableUsers = false;
     users.mauricio = {
