@@ -105,6 +105,15 @@ rec {
             sha256 = "1wkc5mvxv7snrpd0py6x83aci05b9fb9v4w9pl9d1hyaszqbfnif";
           };
         })
+
+        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+          mktplcRef = {
+            name = "vscode-xml";
+            publisher = "redhat";
+            version = "0.17.0";
+            sha256 = "0r8bq8g5f9r97f1jhqlypz18r89v88yjhk9n6gx6cm4g4apfybv3";
+          };
+        })
        ]);
      })
 
