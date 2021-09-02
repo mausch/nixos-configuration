@@ -87,9 +87,9 @@ rec {
 
      (import (fetchTarball https://github.com/nix-community/rnix-lsp/archive/23df7ab20b71896ac47da8dab6d4bcc6e8f994d5.tar.gz))
      
-     (pkgs.vscode-with-extensions.override {
-       vscodeExtensions = (with pkgs.vscode-extensions; [
-         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+     (vscode-with-extensions.override {
+       vscodeExtensions = (with vscode-extensions; [
+         (vscode-utils.buildVscodeMarketplaceExtension {
           meta = with lib; {
             changelog = "https://marketplace.visualstudio.com/items/jnoortheen.nix-ide/changelog";
             description = "Nix language support with formatting and error report";
@@ -106,7 +106,7 @@ rec {
           };
         })
 
-        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+        (vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
             name = "vscode-xml";
             publisher = "redhat";
