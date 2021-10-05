@@ -30,6 +30,7 @@ in
 
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
+    options iwlwifi 11n_disable=1 swcrypto=1  # https://wiki.archlinux.org/title/Network_configuration/Wireless#iwlwifi
   '';
 
   networking.hostName = "RYOGA";
