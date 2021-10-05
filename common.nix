@@ -80,6 +80,7 @@ rec {
      leafpad
      
      (dotnetCorePackages.combinePackages [
+        dotnetCorePackages.sdk_2_1
         dotnetCorePackages.sdk_3_1 
         dotnetCorePackages.sdk_5_0
      ])
