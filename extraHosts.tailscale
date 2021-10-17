@@ -1,0 +1,13 @@
+100.93.148.16    elevate.postgres.local
+100.93.148.16    elevate.db.local
+100.93.148.16    elevate.es.local
+100.93.148.16    elevate.rabbit.local
+100.93.148.16    elevate.redis.local
+100.93.148.16    elevate.kafka.local
+100.93.148.16    elevate.k8s.local
+100.93.148.16    elevate.consul.local
+100.93.148.16    kubernetes.default.svc.cluster.local
+100.93.148.16    metabase-local.elevatedirect.com
+100.93.148.16    minio-local.elevatedirect.com
+100.93.148.16    local.elevatedirect.com
+
