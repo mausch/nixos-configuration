@@ -60,6 +60,10 @@ in
   };
 
   nix = {
+#    package = (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/f7a1df955530f4e190db017c242b96d4abddf0a6.tar.gz") {}).nix_2_4;
+#    extraOptions = ''
+#      experimental-features = nix-command flakes
+#    '';
     envVars = private.nixEnvVars;
     maxJobs = "auto";
     buildCores = 0;
