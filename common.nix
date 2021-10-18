@@ -1,16 +1,5 @@
 {}:
 rec {
-  pkgsPersonal = import (builtins.fetchTarball {
-    name = "nixpkgs-mausch";
-    url = "https://github.com/mausch/nixpkgs/archive/7f09266bada44ef3a204d868d98aaea7d8f2dad8.tar.gz";
-    sha256 = "1ks548b169cmc9wg71m1qdnxlvm6ivmcy4yz54vii100m5a27i1a";
-  }) {
-    config.allowUnfree = true;
-    config.permittedInsecurePackages = [
-      "p7zip-16.02"
-    ];
-  };
-
   pkgs2105 = import (builtins.fetchTarball {
     name = "nixpkgs-21.05";
     # get git sha with `git ls-remote https://github.com/NixOS/nixpkgs nixos-21.05`

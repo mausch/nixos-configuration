@@ -174,7 +174,9 @@ fonts = {
          libretro.mesen
        ];
      })
-     common.pkgsPersonal.pianoteq.stage
+
+     (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/c31f5ba08351905c96f3b264e3ea2d49c7930437.tar.gz") {config.allowUnfree = true;}).pianoteq.stage-6
+
      OVMF-CSM
      # pkgsPersonal.ilspy
    ]);
