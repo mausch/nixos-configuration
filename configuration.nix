@@ -13,6 +13,7 @@ in
     [
       ./hardware-configuration.nix
       # ./wifi-access-point.nix
+      # ./dhcp-server.nix
     ];
 
   boot.kernelPackages = (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/f77036342e2b690c61c97202bf48f2ce13acc022.tar.gz) {}).linuxPackages_5_10;
