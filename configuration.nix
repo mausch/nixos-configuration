@@ -251,7 +251,7 @@ fonts = {
       fi
 
       # otherwise authenticate with tailscale
-      ${common.pkgs2105.tailscale}/bin/tailscale up -authkey ${private.tailscaleKey}
+      ${common.pkgs2105.tailscale}/bin/tailscale up --accept-routes -authkey ${private.tailscaleKey}
     '';
   };
 
