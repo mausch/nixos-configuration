@@ -401,7 +401,7 @@ fonts = {
 
   virtualisation.lxd.enable = false;
   virtualisation.libvirtd = {
-    enable = true;
+    enable = false;
     qemuOvmf = true;
   };
   
