@@ -418,12 +418,12 @@ fonts = {
   networking.extraHosts = builtins.readFile ./extraHosts;
   security.pki.certificates = private.certificates;
 
-  services.openvpn.servers.elevate = {
-    autoStart = false;
-    updateResolvConf = true;
-    config = ''
-      config /home/mauricio/elevate-vpn/aws.conf
-    '';
-  };
+#  services.openvpn.servers.elevate = {
+#    autoStart = false;
+#    updateResolvConf = true;
+#    config = ''
+#      config /home/mauricio/elevate-vpn/aws.conf
+#    '';
+#  };
 }
 
