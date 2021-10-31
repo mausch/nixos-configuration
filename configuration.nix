@@ -23,7 +23,11 @@ in
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
-  boot.kernel.sysctl."kernel.sysrq" = 1;
+  boot.kernel.sysctl = {
+    "kernel.sysrq" = 1;
+    "net.ipv4.conf.forwarding" = true;
+    "net.ipv6.conf.forwarding" = true;
+  };
 
   # Define on which hard drive you want to install Grub.
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
