@@ -416,6 +416,7 @@ fonts = {
   services.autorandr.enable = true;
 
   networking.extraHosts = builtins.readFile ./extraHosts;
+  security.pki.certificates = private.certificates;
 
   services.openvpn.servers.elevate = {
     autoStart = false;
