@@ -13,6 +13,7 @@ rec {
   }; 
 
   packages = with pkgs2105 ; [
+     iptables
      killall
      nix-du
      nix-prefetch-git
