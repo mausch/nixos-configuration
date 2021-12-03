@@ -13,6 +13,7 @@ rec {
   }; 
 
   packages = with pkgs2105 ; [
+     rage
      iptables
      killall
      nix-du
