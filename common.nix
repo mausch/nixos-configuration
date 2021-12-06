@@ -3,8 +3,8 @@ rec {
   pkgs2105 = import (builtins.fetchTarball {
     name = "nixpkgs-21.05";
     # get git sha with `git ls-remote https://github.com/NixOS/nixpkgs nixos-21.05`
-    url = "https://github.com/NixOS/nixpkgs/archive/4f37689c8a219a9d756c5ff38525ad09349f422f.tar.gz";
-    sha256 = "1w8d2q2n0s8b3wjwvysrxcx3yr3dyna8144p64490a77r61d17y2";
+    url = "https://github.com/NixOS/nixpkgs/archive/e34c5379866833f41e2a36f309912fa675d687c7.tar.gz";
+    sha256 = "15shzr1wmc5770kblvlfwq5dsdlmvkpc3rhkn40nyi00fidqq96v";
   }) {
     config.allowUnfree = true;
     config.permittedInsecurePackages = [
@@ -71,7 +71,7 @@ rec {
      leafpad
      
      (dotnetCorePackages.combinePackages [
-        dotnetCorePackages.sdk_2_1
+        # dotnetCorePackages.sdk_2_1
         dotnetCorePackages.sdk_3_1 
         dotnetCorePackages.sdk_5_0
      ])
