@@ -1,18 +1,7 @@
-{}:
+{ pkgs }:
 rec {
-  pkgs2105 = import (builtins.fetchTarball {
-    name = "nixpkgs-21.05";
-    # get git sha with `git ls-remote https://github.com/NixOS/nixpkgs nixos-21.05`
-    url = "https://github.com/NixOS/nixpkgs/archive/e34c5379866833f41e2a36f309912fa675d687c7.tar.gz";
-    sha256 = "15shzr1wmc5770kblvlfwq5dsdlmvkpc3rhkn40nyi00fidqq96v";
-  }) {
-    config.allowUnfree = true;
-    config.permittedInsecurePackages = [
-      "p7zip-16.02"
-    ];
-  }; 
 
-  packages = with pkgs2105 ; [
+  packages = with pkgs; [
      rage
      iptables
      killall
@@ -76,7 +65,7 @@ rec {
         dotnetCorePackages.sdk_5_0
      ])
 
-     (import (fetchTarball https://github.com/nix-community/rnix-lsp/archive/23df7ab20b71896ac47da8dab6d4bcc6e8f994d5.tar.gz))
+     # (import (fetchTarball https://github.com/nix-community/rnix-lsp/archive/23df7ab20b71896ac47da8dab6d4bcc6e8f994d5.tar.gz))
      
      (vscode-with-extensions.override {
        vscodeExtensions = (with vscode-extensions; [

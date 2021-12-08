@@ -2,11 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, private, system, ... }:
 
 let 
-  private = import ./private.nix {};
-  common = import ./common.nix {};
+  common = import ./common.nix { inherit pkgs; };
 in
 {
   imports =
@@ -135,7 +134,7 @@ fonts = {
   };
 
   # List packages installed in system profile. 
-  environment.systemPackages = common.packages ++ (with common.pkgs2105; 
+  environment.systemPackages = common.packages ++ (with pkgs; 
   [
      tailscale
 
@@ -180,7 +179,7 @@ fonts = {
        ];
      })
 
-     (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/c31f5ba08351905c96f3b264e3ea2d49c7930437.tar.gz") {config.allowUnfree = true;}).pianoteq.stage-6
+     pianoteq.stage-6
 
      OVMFFull
      # pkgsPersonal.ilspy
@@ -250,13 +249,13 @@ fonts = {
       sleep 2
 
       # check if we are already authenticated to tailscale
-      status="$(${common.pkgs2105.tailscale}/bin/tailscale status -json | ${common.pkgs2105.jq}/bin/jq -r .BackendState)"
+      status="$(${pkgs.tailscale}/bin/tailscale status -json | ${pkgs.jq}/bin/jq -r .BackendState)"
       if [ $status = "Running" ]; then # if so, then do nothing
         exit 0
       fi
 
       # otherwise authenticate with tailscale
-      ${common.pkgs2105.tailscale}/bin/tailscale up --accept-routes -authkey ${private.tailscaleKey}
+      ${pkgs.tailscale}/bin/tailscale up --accept-routes -authkey ${private.tailscaleKey}
     '';
   };
 
