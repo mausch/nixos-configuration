@@ -75,7 +75,6 @@ rec {
         dotnetCorePackages.sdk_3_1 
         dotnetCorePackages.sdk_5_0
      ])
-     ((import (fetchTarball https://github.com/NixOS/nixpkgs/archive/6a2e7a6318379b67efa1efd721f16d3fe683a380.tar.gz) {}).jetbrains.rider)
 
      (import (fetchTarball https://github.com/nix-community/rnix-lsp/archive/23df7ab20b71896ac47da8dab6d4bcc6e8f994d5.tar.gz))
      
