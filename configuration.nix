@@ -16,7 +16,7 @@ in
       # ./dhcp-server.nix
     ];
 
-  boot.kernelPackages = (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/f77036342e2b690c61c97202bf48f2ce13acc022.tar.gz) {}).linuxPackages_5_10;
+  boot.kernelPackages = pkgs.linuxPackages_5_10;
   boot.supportedFilesystems = [ "ntfs" ];
 
   # Use the GRUB 2 boot loader.
@@ -65,7 +65,7 @@ in
   };
 
   nix = {
-    package = (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/6fe99723d3c23d64942e4de893ce5053198686bd.tar.gz") {}).nix_2_4;
+    package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
