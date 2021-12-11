@@ -5,7 +5,10 @@
 { config, pkgs, private, system, ... }:
 
 let 
-  common = import ./common.nix { inherit pkgs; };
+  common = import ./common.nix { 
+    inherit pkgs; 
+    inherit private;
+  };
 in
 {
   imports =
@@ -232,32 +235,7 @@ fonts = {
 
   services.tailscale.enable = true;
   # ref https://tailscale.com/blog/nixos-minecraft/
-  systemd.services.tailscale-autoconnect = {
-    description = "Automatic connection to Tailscale";
-
-    # make sure tailscale is running before trying to connect to tailscale
-    after = [ "network-pre.target" "tailscale.service" ];
-    wants = [ "network-pre.target" "tailscale.service" ];
-    wantedBy = [ "multi-user.target" ];
-
-    # set this service as a oneshot job
-    serviceConfig.Type = "oneshot";
-
-    # have the job run this shell script
-    script = with pkgs; ''
-      # wait for tailscaled to settle
-      sleep 2
-
-      # check if we are already authenticated to tailscale
-      status="$(${pkgs.tailscale}/bin/tailscale status -json | ${pkgs.jq}/bin/jq -r .BackendState)"
-      if [ $status = "Running" ]; then # if so, then do nothing
-        exit 0
-      fi
-
-      # otherwise authenticate with tailscale
-      ${pkgs.tailscale}/bin/tailscale up --accept-routes -authkey ${private.tailscaleKey}
-    '';
-  };
+  systemd.services.tailscale-autoconnect = common.tailscale-autoconnect;
 
   services.udev.extraRules = 
   let 

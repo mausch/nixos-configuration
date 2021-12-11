@@ -9,8 +9,7 @@
 
   outputs = { nixpkgs, private, self }: 
     let 
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
+      systemPkgs = system: import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
       };
@@ -22,13 +21,26 @@
           modules = [
             ./ryoga.nix
           ];
-          specialArgs = {
+          specialArgs = rec {
             inherit private;
-            inherit pkgs;
-            inherit system;
+            pkgs = systemPkgs system;
+            system = "x86_64-linux";
           };
-          inherit system;
+          system = "x86_64-linux";
         };
+
+        oracle = lib.nixosSystem {
+          modules = [
+            ./oracle.nix
+          ];
+          specialArgs = rec {
+            inherit private;
+            pkgs = systemPkgs system;
+            system = "aarch64-linux";
+          };
+          system = "aarch64-linux";
+        };
+
       };
     };
 }
