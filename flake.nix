@@ -20,7 +20,7 @@
       nixosConfigurations = {
         RYOGA = lib.nixosSystem {
           modules = [
-            ./configuration.nix
+            ./ryoga.nix
           ];
           specialArgs = {
             inherit private;
