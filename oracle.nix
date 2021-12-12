@@ -1,7 +1,7 @@
-{ modulesPath, pkgs, private, ... }: 
+{ modulesPath, pkgs, lib, private, ... }: 
 let common = import ./common.nix { 
   inherit pkgs; 
-  inherit private;
+  inherit lib;
 };
 in
 {
@@ -49,12 +49,12 @@ in
   nixpkgs.config.allowUnfree = true;
 
   services.tailscale.enable = true;
-  systemd.services.tailscale-autoconnect = common.tailscale-autoconnect;
+  systemd.services.tailscale-autoconnect = common.tailscale-autoconnect private.tailscaleKey;
 
   services.transmission = {
     enable = true;
     settings = {
-      download-dir = "/home/Downloads";
+#      download-dir = "/home/Downloads";
       rpc-bind-address = "0.0.0.0";
       rpc-host-whitelist-enabled = false;
       rpc-whitelist-enabled = false;
@@ -63,4 +63,7 @@ in
 
   services.sonarr.enable = true;
   services.radarr.enable = true;
+
+  services.nzbget.enable = true;
+  services.jackett.enable = true;
 }
