@@ -85,6 +85,20 @@ common.recursiveMerge [
   # hangs here (?)
   # systemd.services.tailscale-autoconnect = common.tailscale-autoconnect private.tailscaleKey;
 
+  systemd.services.ssh-tunnel = {
+    description = "SSH tunnel";
+    after = [ "tailscaled.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Restart = "always";
+    };
+    script = ''
+      ${pkgs.openssh}/bin/ssh -vNT \
+        -L 0.0.0.0:32400:localhost:32400 \
+        -i /home/nixos/ssh-oracle.key \
+        root@100.73.76.12
+    '';
+  };
 
   
   environment.systemPackages =
