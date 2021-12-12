@@ -1,7 +1,22 @@
-{ pkgs, private }:
+{ lib, pkgs }:
 rec {
 
-  tailscale-autoconnect = { 
+   # https://stackoverflow.com/a/54505212
+  recursiveMerge = attrList:
+    let f = attrPath:
+      lib.zipAttrsWith (n: values:
+        if builtins.tail values == []
+          then builtins.head values
+        else if builtins.all builtins.isList values
+          then lib.unique (builtins.concatLists values)
+        else if builtins.all builtins.isAttrs values
+          then f (attrPath ++ [n]) values
+        else builtins.last values
+      );
+    in f [] attrList;
+
+
+  tailscale-autoconnect = tailscaleKey: { 
     description = "Automatic connection to Tailscale";
 
     # make sure tailscale is running before trying to connect to tailscale
@@ -24,7 +39,7 @@ rec {
       fi
 
       # otherwise authenticate with tailscale
-      ${pkgs.tailscale}/bin/tailscale up --accept-routes -authkey ${private.tailscaleKey}
+      ${pkgs.tailscale}/bin/tailscale up --accept-routes -authkey ${tailscaleKey}
     '';
   };
 
