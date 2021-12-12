@@ -54,6 +54,7 @@ in
   services.transmission = {
     enable = true;
     settings = {
+      download-dir = "/home/Downloads";
       rpc-bind-address = "0.0.0.0";
       rpc-host-whitelist-enabled = false;
       rpc-whitelist-enabled = false;
