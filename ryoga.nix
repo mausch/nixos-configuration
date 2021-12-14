@@ -2,12 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, private, system, ... }:
+{ lib, config, pkgs, private, system, ... }:
 
 let 
   common = import ./common.nix { 
     inherit pkgs; 
-    inherit private;
+    inherit lib;
   };
 in
 {
