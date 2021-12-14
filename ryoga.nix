@@ -9,7 +9,12 @@ let
     inherit pkgs; 
     inherit lib;
   };
+  homeassistant = import ./home-assistant.nix {
+    inherit system;
+  }; 
 in
+common.recursiveMerge [
+  homeassistant
 {
   imports =
     [
@@ -235,7 +240,7 @@ fonts = {
 
   services.tailscale.enable = true;
   # ref https://tailscale.com/blog/nixos-minecraft/
-  systemd.services.tailscale-autoconnect = common.tailscale-autoconnect;
+  #systemd.services.tailscale-autoconnect = common.tailscale-autoconnect;
 
   services.udev.extraRules = 
   let 
@@ -408,4 +413,4 @@ fonts = {
 #    '';
 #  };
 }
-
+]
