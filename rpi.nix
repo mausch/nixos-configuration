@@ -30,14 +30,29 @@ common.recursiveMerge [
    "net.ipv4.conf.forwarding" = true;
   };
 
+  programs.ssh.extraConfig = ''
+    Host oracle
+      HostName 100.73.76.12
+      IdentityFile /home/nixos/ssh-oracle.key
+  '';
 
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
+      builders-use-substitutes = true
     '';
     maxJobs = 1;
     buildCores = 0;
+
+    distributedBuilds = true;
+    buildMachines = [
+      {
+        hostName = "oracle";
+        system = "aarch64-linux";
+        maxJobs = 100;
+      } 
+    ];
   };
 
   documentation = {
