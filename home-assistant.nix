@@ -19,8 +19,8 @@ in
   services.zigbee2mqtt = {
     enable = true;
     package = (import (fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/7cf600fb975de6ffede3fba34167015f7042737b.tar.gz";
-      sha256 = "01nlsmsa8m9ixxk3c25z03a3g1zhxqbdrw06v8mfna2zd62mhpvl";
+      url = "https://github.com/NixOS/nixpkgs/archive/b7907f7e19b1c3320c6bf5e41407fe2dab3d30d8.tar.gz";
+      sha256 = "0j9j3agdh0qhnyfw5clxwg5d59x6iifp3dnr6agl1l9ffpqz08gm";
     }) {
       inherit system;
     }).zigbee2mqtt;
@@ -45,8 +45,8 @@ in
 
         # Serial settings
         serial = {
-          port = "/dev/ttyACM0";
-          # port = "/dev/ttyUSB0";
+          # port = "/dev/ttyACM0";
+          port = "/dev/ttyUSB0";
           # disable LED of CC2531 USB sniffer
           #disable_led = true;
         };
@@ -58,6 +58,7 @@ in
         advanced.log_output = [ "console" ];
 
         # advanced.pan_id = 1337;
+        advanced.channel = 20;
 
         # add last seen information
         # advanced.last_seen = "ISO_8601_local";
