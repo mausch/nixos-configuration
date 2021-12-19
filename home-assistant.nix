@@ -46,6 +46,7 @@ in
         # Serial settings
         serial = {
           port = "/dev/ttyACM0";
+          # port = "/dev/ttyUSB0";
           # disable LED of CC2531 USB sniffer
           #disable_led = true;
         };
