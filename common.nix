@@ -75,6 +75,7 @@ rec {
      p7zip
      imagemagick
      mc
+     termscp
      docker-compose
      gitFull 
      lazygit
