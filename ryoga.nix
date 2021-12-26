@@ -14,7 +14,7 @@ let
   }; 
 in
 common.recursiveMerge [
-  homeassistant
+#  homeassistant
 {
   imports =
     [
