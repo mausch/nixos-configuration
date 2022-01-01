@@ -34,7 +34,8 @@ common.recursiveMerge [
 
   programs.ssh.extraConfig = ''
     Host oracle
-      HostName 100.73.76.12
+      HostName ${private.oracleIP}
+      User root
       IdentityFile /home/nixos/ssh-oracle.key
   '';
 
@@ -112,9 +113,9 @@ common.recursiveMerge [
     };
     script = ''
       ${pkgs.openssh}/bin/ssh -vNT \
-        -L 0.0.0.0:32400:localhost:32400 \
+        -L 0.0.0.0:32402:localhost:32400 \
         -i /home/nixos/ssh-oracle.key \
-        root@100.73.76.12
+        root@${private.oracleIP}
     '';
   };
 
