@@ -24,6 +24,8 @@ common.recursiveMerge [
 
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
+  boot.supportedFilesystems = [ "ntfs" ];
+
 
   boot.kernel.sysctl = {
    "kernel.sysrq" = 1;
