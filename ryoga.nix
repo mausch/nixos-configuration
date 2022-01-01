@@ -224,9 +224,10 @@ fonts = {
       HostName 192.168.0.12
       User nixos
       StrictHostKeyChecking no
-    Host pi-nixos
-      HostName 192.168.0.25
-      User mauricio 
+    Host oracle
+      HostName ${private.oracleIP}
+      User root
+      IdentityFile /home/mauricio/.ssh/ssh-key-2021-12-11.key
       StrictHostKeyChecking no
   '';
 

@@ -18,7 +18,7 @@
     },
     "private": {
       "locked": {
-        "narHash": "sha256-zY3OMqd4ryAAU5m2f86OGC3Y+w6m6xN2ZbtubtlbGnY=",
+        "narHash": "sha256-Qzufi7b3/GdatkIhRcvGcUBQYwsxvVuLoUSW/pf12ZI=",
         "path": "/etc/nixos/private",
         "type": "path"
       },
