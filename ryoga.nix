@@ -179,11 +179,12 @@ fonts = {
      scummvm
      steam
      aws-workspaces
-     # lutris
+     lutris
      (retroarch.override { 
        cores = [
          libretro.dosbox
          libretro.mesen
+         libretro.snes9x
        ];
      })
 
