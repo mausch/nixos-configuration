@@ -40,6 +40,21 @@ in
     buildCores = 0;
   };
 
+  systemd.services.goofys = {
+    description = "mount object storage";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Restart = "always";
+    };
+    script = ''
+      mkdir -p /run/mount/objects || true
+      ${pkgs.fuse}/bin/fusermount -uz /run/mount/objects || true
+      AWS_ACCESS_KEY_ID=${private.oracle.AWS_ACCESS_KEY_ID} \
+      AWS_SECRET_ACCESS_KEY='${private.oracle.AWS_SECRET_ACCESS_KEY}' \
+      ${pkgs.goofys}/bin/goofys -f --region eu-amsterdam-1 --endpoint https://${private.oracle.namespace}.compat.objectstorage.eu-amsterdam-1.oraclecloud.com/ filesystem /run/mount/objects      
+    '';
+  };
+
   
   environment.systemPackages = common.packages-cli ++ [
   ];
