@@ -125,5 +125,8 @@ common.recursiveMerge [
     [
       pkgs.iptables
     ];
+
+  services.plex.enable = true;
+
 }
 ]
