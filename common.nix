@@ -75,7 +75,15 @@ rec {
      p7zip
      imagemagick
      mc
-     termscp
+     (termscp.overrideAttrs (_: {
+       version = "2022-01-01-unstable";
+       src = fetchFromGitHub {
+        owner = "veeso";
+        repo = "termscp";
+        rev = "e53120f3c2623d631ef051d9747dd0adfcc28137";
+        sha256 = "sha256-mFy5Rd2A6+wbAgI3z6RMVRPrswCV2+1aVzCK7kuvaS0=";
+       };
+     }))
      docker-compose
      gitFull 
      lazygit
