@@ -119,6 +119,21 @@ common.recursiveMerge [
     '';
   };
 
+  systemd.services.sshfs = {
+    description = "SSHFS";
+    after = [ "tailscaled.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Restart = "always";
+    };
+    script = ''
+      mkdir -p /mnt/sshfs-oracle || true
+      ${pkgs.fuse}/bin/fusermount -uz /mnt/sshfs-oracle || true
+      ${pkgs.util-linux}/bin/umount -f /mnt/sshfs-oracle || true
+      ${pkgs.sshfs}/bin/sshfs -f -o allow_other oracle:/ /mnt/sshfs-oracle
+    '';
+  };
+
   
   environment.systemPackages =
     common.packages-cli ++
