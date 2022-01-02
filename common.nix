@@ -84,6 +84,7 @@ rec {
         sha256 = "sha256-mFy5Rd2A6+wbAgI3z6RMVRPrswCV2+1aVzCK7kuvaS0=";
        };
      }))
+     screen
      docker-compose
      gitFull 
      lazygit
