@@ -1,5 +1,6 @@
 {
   inputs = {
+    hosts.url = "github:StevenBlack/hosts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
     private = {
       url = "path:/etc/nixos/private";
@@ -7,7 +8,7 @@
     };
   };
 
-  outputs = { nixpkgs, private, self }: 
+  outputs = { hosts, nixpkgs, private, self }: 
     let 
       systemPkgs = system: import nixpkgs {
         inherit system;
@@ -20,6 +21,9 @@
         RYOGA = lib.nixosSystem {
           modules = [
             ./ryoga.nix
+            hosts.nixosModule {
+              networking.stevenBlackHosts.enable = true;
+            }
           ];
           specialArgs = rec {
             inherit private;
