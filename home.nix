@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
-let common = import ./common.nix {};
+{ config, pkgs, lib, ... }:
+let common = import ./common.nix {
+  inherit lib;
+  inherit pkgs;
+};
 in
 {
 
@@ -18,7 +21,7 @@ in
         Unit.Description = "Synergy client";
         Service = {
           Type = "simple";
-          ExecStart = "${common.pkgs2105.synergy}/bin/synergyc -f -n mauricio-Precision-Tower-5810 192.168.0.4";
+          ExecStart = "${pkgs.synergy}/bin/synergyc -f -n mauricio-Precision-Tower-5810 192.168.0.4";
         };
         Install.WantedBy = ["multi-user.target"];
       };
