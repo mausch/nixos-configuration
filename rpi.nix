@@ -30,6 +30,8 @@ common.recursiveMerge [
   boot.kernel.sysctl = {
    "kernel.sysrq" = 1;
    "net.ipv4.conf.forwarding" = true;
+   "vm.dirty_background_ratio" = 5;
+   "vm.dirty_ratio" = 10;
   };
 
   programs.ssh.extraConfig = ''
@@ -99,6 +101,10 @@ common.recursiveMerge [
    enable = true;
    permitRootLogin = "without-password";
   };
+
+  services.journald.extraConfig = ''
+    Storage=volatile
+  '';
 
   services.tailscale.enable = true;
   # hangs here (?)
