@@ -15,10 +15,28 @@
         "type": "github"
       }
     },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1641700429,
+        "narHash": "sha256-+Pd33S+4+VX6RYGJQ5Q4n46+iRLr9y9ilq9oC/bcnoc=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "a90ddcd62748e445bbbe01834595eda29dc28db9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "hosts": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1641569645,
@@ -36,6 +54,20 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1641671388,
+        "narHash": "sha256-aHoO6CpPLJK8hLkPJrpMnCRnj3YbfQZ7HNcXcnI83E0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "32356ce11b8cc5cc421b68138ae8c730cc8ad4a2",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1633267966,
         "narHash": "sha256-gFKvZ5AmV/dDTKXVxacPbXe4R0BsFpwtVaQxuIm2nnk=",
         "path": "/nix/store/k13ripsl4n2p6wf2ksy5m017ryykx4qc-source",
@@ -47,7 +79,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1641423937,
         "narHash": "sha256-iIBSDySeZ79FDFiI5but9EtOIRc5Ncu/gq27Hg/yXjo=",
@@ -65,7 +97,7 @@
     },
     "private": {
       "locked": {
-        "narHash": "sha256-Qzufi7b3/GdatkIhRcvGcUBQYwsxvVuLoUSW/pf12ZI=",
+        "narHash": "sha256-8heUy9luh0x2oQ3vZNrYy3yCW5Kd/UgQ6tbmgEE7Sjc=",
         "path": "/etc/nixos/private",
         "type": "path"
       },
@@ -76,8 +108,9 @@
     },
     "root": {
       "inputs": {
+        "home-manager": "home-manager",
         "hosts": "hosts",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "private": "private"
       }
     }
