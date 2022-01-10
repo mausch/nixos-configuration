@@ -106,6 +106,10 @@ common.recursiveMerge [
     Storage=volatile
   '';
 
+  services.udev.extraRules = ''
+    ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", RUN+="${pkgs.hdparm}/bin/hdparm -S0 -B255 /dev/%k"
+  '';
+
   services.tailscale.enable = true;
   # hangs here (?)
   # systemd.services.tailscale-autoconnect = common.tailscale-autoconnect private.tailscaleKey;
