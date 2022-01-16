@@ -46,6 +46,8 @@ rec {
 
   packages-cli = with pkgs; [
      rage
+     wol
+     cifs-utils
      iptables
      killall
      nix-du
