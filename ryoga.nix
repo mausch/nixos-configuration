@@ -187,6 +187,9 @@ fonts = {
          libretro.snes9x
        ];
      })
+     kodi
+     arduino
+     pcmanfm
 
      pianoteq.stage-6
 
