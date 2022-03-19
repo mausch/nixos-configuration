@@ -19,8 +19,8 @@ in
   services.zigbee2mqtt = {
     enable = true;
     package = (import (fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/f2cf229e670df32d05a58fa492b36f9cac38388a.tar.gz";
-      sha256 = "1qwfva0l3qng5qgdnbazpml4li4d5lhlchif6qj528nljdf0bp3p";
+      url = "https://github.com/NixOS/nixpkgs/archive/187efe0961b651084ab811c8ea6016916c536195.tar.gz";
+      sha256 = "1v1s8d00k7ws6v5al8cpgiqp5rycnil736d2jzdvm630pr34z213";
     }) {
       inherit system;
     }).zigbee2mqtt;
