@@ -66,6 +66,7 @@ rec {
      pmutils
      glib
      ripgrep
+     fd
      go-mtpfs
      udiskie
      gsmartcontrol
