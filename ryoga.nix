@@ -54,6 +54,8 @@ common.recursiveMerge [
   programs.nm-applet.enable = true;
   programs.xss-lock.enable = true;
 
+  programs.fuse.userAllowOther = true;
+
   nixpkgs.config.allowUnfree = true;
 
   console = {
