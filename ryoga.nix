@@ -112,7 +112,7 @@ fonts = {
     liberation_ttf
     fira-code
     fira-code-symbols
-    mplus-outline-fonts
+    # mplus-outline-fonts
     dina-font
     proggyfonts
     ubuntu_font_family
@@ -120,7 +120,7 @@ fonts = {
     powerline-fonts
     unifont
     source-code-pro
-    opensans-ttf
+    open-sans
     dejavu_fonts
     freefont_ttf
     # vistafonts
@@ -251,7 +251,7 @@ fonts = {
   services.dbus = {
     enable = true;
     packages = [
-      pkgs.gnome3.dconf
+      pkgs.dconf
     ];
   };
   services.openntpd.enable = true;
@@ -309,7 +309,7 @@ fonts = {
 #         load-module module-bluetooth-policy
 #         load-module module-bluetooth-discover
 #     '';
-    extraModules = [ pkgs.pulseaudio-modules-bt ];
+#    extraModules = [ pkgs.pulseaudio-modules-bt ];
     package = pkgs.pulseaudioFull;
   };
 
@@ -396,7 +396,7 @@ fonts = {
   virtualisation.docker = {
     enable = true;
     autoPrune.enable = false;
-    extraOptions = "--host tcp://0.0.0.0:2375";
+#    extraOptions = "--host tcp://0.0.0.0:2375";
 #    listenOptions = [
 #      "unix://var/run/docker.sock"
 #      "tcp://0.0.0.0:2375"

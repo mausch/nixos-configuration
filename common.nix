@@ -62,7 +62,7 @@ rec {
      usbutils
      lm_sensors
      wirelesstools
-     nmap-graphical
+     # nmap-graphical
      pmutils
      glib
      ripgrep

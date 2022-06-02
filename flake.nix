@@ -1,7 +1,7 @@
 {
   inputs = {
     hosts.url = "github:StevenBlack/hosts";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
     home-manager.url = "github:nix-community/home-manager";    
     private = {
       url = "path:/etc/nixos/private";
