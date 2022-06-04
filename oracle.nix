@@ -1,12 +1,24 @@
-{ modulesPath, pkgs, lib, private, ... }: 
-let common = import ./common.nix { 
-  inherit pkgs; 
-  inherit lib;
-};
+{ modulesPath, pkgs, lib, private, system, ... }: 
+let 
+  common = import ./common.nix { 
+    inherit pkgs; 
+    inherit lib;
+  };
+  radarr = fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/0c0be749646ce642bf50acfee75a484996556c0e.tar.gz";
+    sha256 = "1rybyb4r8x07bvk9znzb6cwhppffzssg8qlvc9cx54mhi8990wws";
+  };
+
 in
 {
-  imports = [ 
+  disabledModules = [
+    "services/misc/radarr.nix"
+  ];
+
+  imports = 
+  [ 
     (modulesPath + "/profiles/qemu-guest.nix") 
+    "${radarr}/nixos/modules/services/misc/radarr.nix"
   ];
 
   boot.loader.grub = {
@@ -74,10 +86,14 @@ in
       rpc-host-whitelist-enabled = false;
       rpc-whitelist-enabled = false;
     };
+    downloadDirPermissions = "777";
   };
 
   services.sonarr.enable = true;
-  services.radarr.enable = true;
+  services.radarr = {
+    enable = true;
+    package = (import radarr {inherit system;}).radarr;
+  };
 
   services.nzbget.enable = true;
   services.jackett.enable = true;
