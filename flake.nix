@@ -67,6 +67,14 @@
             ./home.nix
           ];
         };
+        mauricio = home-manager.lib.homeManagerConfiguration {
+          system = "x86_64-linux";
+          homeDirectory = "/home/mauricio";
+          username = "mauricio";
+          configuration.imports = [
+            ./home.nix
+          ];
+        };
       };
     };
 }
