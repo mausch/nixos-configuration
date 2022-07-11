@@ -192,6 +192,7 @@ fonts = {
      kodi
      arduino
      pcmanfm
+     zoom-us
 
      pianoteq.stage-6
 
