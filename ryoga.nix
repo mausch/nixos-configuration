@@ -225,7 +225,10 @@ fonts = {
   '';
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    passwordAuthentication = true;
+  };
 
   programs.ssh.extraConfig = ''
     Host pi
