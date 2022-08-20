@@ -153,5 +153,13 @@ common.recursiveMerge [
 
   services.plex.enable = true;
 
+  services.udisks2.enable = true;
+
+  security.polkit.extraConfig =
+  ''
+    polkit.addRule(function(action, subject) {
+      if (subject.user == "nixos") return "yes";
+    });
+  '';
 }
 ]
