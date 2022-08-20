@@ -8,12 +8,12 @@ in
 {
   disabledModules = [
     "services/networking/mosquitto.nix"
-    "services/misc/home-assistant.nix"
+#    "services/misc/home-assistant.nix"
   ];
 
   imports = [
     "${homeassistant}/nixos/modules/services/networking/mosquitto.nix"
-    "${homeassistant}/nixos/modules/services/misc/home-assistant.nix"
+#    "${homeassistant}/nixos/modules/services/misc/home-assistant.nix"
   ];
   
   services.zigbee2mqtt = {
