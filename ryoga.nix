@@ -193,6 +193,8 @@ fonts = {
      arduino
      pcmanfm
      zoom-us
+     scrcpy
+     android-tools
 
      pianoteq.stage-6
 
