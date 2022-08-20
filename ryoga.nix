@@ -347,6 +347,7 @@ fonts = {
     libinput.naturalScrolling = false;
     displayManager = {
       defaultSession = "none+i3";
+      # defaultSession = "plasma";
       sessionCommands = ''
         ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
           UXTerm*selectToClipboard: true
@@ -357,6 +358,11 @@ fonts = {
           UXTerm*faceSize: 10
         EOF
       '';
+    };
+
+    desktopManager = {
+      gnome.enable = false; # TLP conflicts (?)
+      plasma5.enable = true;
     };
 
     windowManager.i3 = {

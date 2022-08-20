@@ -105,6 +105,7 @@ rec {
      vlc
      krusader
      dolphin
+     plasma5Packages.kio-extras
      peek
      # shutter
      nomacs
