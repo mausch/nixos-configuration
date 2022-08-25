@@ -6,6 +6,7 @@
 192.168.0.3    elevate.kafka.local
 192.168.0.3    elevate.k8s.local
 192.168.0.3    elevate.consul.local
+192.168.0.3    elevate.milvus2.local
 192.168.0.3    kubernetes.default.svc.cluster.local
 192.168.0.3    metabase-local.elevatedirect.com
 192.168.0.3    minio-local.elevatedirect.com
