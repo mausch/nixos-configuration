@@ -15,40 +15,43 @@ in
   };
 
 
-  systemd.user.services = {
-    synergy-client = 
-      {
-        Unit.Description = "Synergy client";
-        Service = {
-          Type = "simple";
-          ExecStart = "${pkgs.synergy}/bin/synergyc -f -n mauricio-Precision-Tower-5810 192.168.0.4";
+  systemd.user = {
+    startServices = "legacy";
+    services = {
+      synergy-client = 
+        {
+          Unit.Description = "Synergy client";
+          Service = {
+            Type = "simple";
+            ExecStart = "${pkgs.synergy}/bin/synergyc -f -n mauricio-Precision-Tower-5810 192.168.0.4";
+          };
+          Install.WantedBy = ["multi-user.target"];
         };
-        Install.WantedBy = ["multi-user.target"];
-      };
-      
-  # Haven't figured out how to make home-manager manage system services yet,
-  # so here's a workaround:
-  # sudo ln -s /home/mauricio/.config/systemd/user/zram.service /etc/systemd/system/zram.service
-  # sudo systemctl enable zram
+        
+    # Haven't figured out how to make home-manager manage system services yet,
+    # so here's a workaround:
+    # sudo ln -s /home/mauricio/.config/systemd/user/zram.service /etc/systemd/system/zram.service
+    # sudo systemctl enable zram
 
-    zram = 
-      let script = pkgs.writeScript "start-zram" ''
-#!/usr/bin/env sh
-modprobe zram
-echo zstd > /sys/block/zram0/comp_algorithm
-echo 2G > /sys/block/zram0/disksize
-mkswap /dev/zram0
-swapon /dev/zram0
-      '';
-      in 
-      {
-        Unit.Description = "Enable zram swap";
-        Service = {
-          Type = "oneshot";
-          ExecStart = "${script}";
+      zram = 
+        let script = pkgs.writeScript "start-zram" ''
+  #!/usr/bin/env sh
+  modprobe zram
+  echo zstd > /sys/block/zram0/comp_algorithm
+  echo 8G > /sys/block/zram0/disksize
+  mkswap /dev/zram0
+  swapon /dev/zram0
+        '';
+        in 
+        {
+          Unit.Description = "Enable zram swap";
+          Service = {
+            Type = "oneshot";
+            ExecStart = "${script}";
+          };
+          Install.WantedBy = ["multi-user.target"];
         };
-        Install.WantedBy = ["multi-user.target"];
-      };
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
