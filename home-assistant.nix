@@ -1,29 +1,7 @@
 { system }:
-let
-  homeassistant = fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/0343045a92d2cff88ad861304f7a979f8e7dcd2d.tar.gz";
-    sha256 = "0yp1axgv1yvmhx9z68jjx70j1nfng3f8dax3y7sr4as9212p7msw";
-  };
-in  
 {
-  disabledModules = [
-    "services/networking/mosquitto.nix"
-#    "services/misc/home-assistant.nix"
-  ];
-
-  imports = [
-    "${homeassistant}/nixos/modules/services/networking/mosquitto.nix"
-#    "${homeassistant}/nixos/modules/services/misc/home-assistant.nix"
-  ];
-  
   services.zigbee2mqtt = {
     enable = true;
-    package = (import (fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/187efe0961b651084ab811c8ea6016916c536195.tar.gz";
-      sha256 = "1v1s8d00k7ws6v5al8cpgiqp5rycnil736d2jzdvm630pr34z213";
-    }) {
-      inherit system;
-    }).zigbee2mqtt;
     settings = {
 
        # Home Assistant integration (MQTT discovery)
@@ -55,10 +33,13 @@ in
         # 16 numbers between 0 and 255
         # see https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html
         # advanced.network_key = import <secrets/home-assistant/zigbee/networkKey>;
-        advanced.log_output = [ "console" ];
+        advanced = {
+          log_output = [ "console" ];
+          channel = 11;
+          transmit_power = 15;
+        };
 
         # advanced.pan_id = 1337;
-        advanced.channel = 20;
 
         # add last seen information
         # advanced.last_seen = "ISO_8601_local";
@@ -81,28 +62,6 @@ in
 
   services.home-assistant = {
     enable = true;
-#    package = 
-      # (import homeassistant {})
-#      common.pkgs2105
-#      .home-assistant
-#      .override {
-#        extraPackages = ps: [
-#          ps.pymetno
-#          ps.ambee
-#          ps.forecast-solar
-#          ps.pyfreedompro
-#          ps.hap-python
-#          ps.fnvhash
-#          ps.iotawattpy
-#        ];
-#      }
-#      .overrideAttrs (old: {
-#        doCheck = false;
-#        checkInputs = [];
-#        pytestCheckPhase = "";
-#        disabledTestPaths = [ "*" ];
-#      })
-#      ;
 
     config = {
       mqtt = {
@@ -133,6 +92,11 @@ in
             "light.0xf0d1b80000190447"
             "light.0xf0d1b80000191147"
           ];
+        }
+        {
+          platform = "group";
+          name = "panel";
+          entities = [ "light.0xf0d1b8000013d16f" ];
         }
       ];
 #      samsungtv = {
