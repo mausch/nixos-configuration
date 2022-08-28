@@ -476,12 +476,5 @@ fonts = {
     '';
   };
 
-#  services.openvpn.servers.elevate = {
-#    autoStart = false;
-#    updateResolvConf = true;
-#    config = ''
-#      config /home/mauricio/elevate-vpn/aws.conf
-#    '';
-#  };
 }
 ]
