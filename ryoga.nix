@@ -234,6 +234,13 @@ fonts = {
     Host pi
       HostName 192.168.0.12
       User nixos
+      IdentityFile /home/mauricio/.ssh/id_rsa
+      StrictHostKeyChecking no
+
+    Host pi-root
+      HostName 192.168.0.12
+      User root
+      IdentityFile /home/mauricio/.ssh/id_rsa
       StrictHostKeyChecking no
       
     Host pi-tailscale
@@ -440,6 +447,34 @@ fonts = {
 
   networking.extraHosts = builtins.readFile ./extraHosts;
   security.pki.certificates = private.certificates;
+
+  systemd.services.sshfs-pi = {
+    description = "SSHFS pi";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Restart = "always";
+    };
+    script = ''
+      mkdir -p /mnt/sshfs-pi || true
+      ${pkgs.fuse}/bin/fusermount -uz /mnt/sshfs-pi || true
+      ${pkgs.util-linux}/bin/umount -f /mnt/sshfs-pi || true
+      ${pkgs.sshfs}/bin/sshfs -f -o allow_other pi-root:/ /mnt/sshfs-pi
+    '';
+  };
+  
+  systemd.services.sshfs-oracle = {
+    description = "SSHFS oracle";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Restart = "always";
+    };
+    script = ''
+      mkdir -p /mnt/sshfs-oracle || true
+      ${pkgs.fuse}/bin/fusermount -uz /mnt/sshfs-oracle || true
+      ${pkgs.util-linux}/bin/umount -f /mnt/sshfs-oracle || true
+      ${pkgs.sshfs}/bin/sshfs -f -o allow_other oracle:/ /mnt/sshfs-oracle
+    '';
+  };
 
 #  services.openvpn.servers.elevate = {
 #    autoStart = false;
