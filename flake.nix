@@ -34,6 +34,18 @@
           system = "x86_64-linux";
         };
 
+        buchu = lib.nixosSystem {
+          modules = [
+            ./buchu.nix
+          ];
+          specialArgs = rec {
+            inherit private;
+            pkgs = systemPkgs system;
+            system = "x86_64-linux";
+          };
+          system = "x86_64-linux";
+        };
+
         oracle = lib.nixosSystem {
           modules = [
             ./oracle.nix
