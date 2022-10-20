@@ -54,6 +54,27 @@ common.recursiveMerge [
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  services.udisks2 = {
+    enable = true;
+#    settings = {
+#      "udisks2.conf" = {
+#        udisks2 = {
+#          modules = [ "*" ];
+#          modules_load_preference = "ondemand";
+#        };
+#        defaults = {
+#          encryption = "luks2";
+#        };
+#      };
+#      "mount_options.conf" = {
+#        defaults = {
+#          ntfs_defaults = "uid=$UID,gid=$GID";
+##          ntfs_allow = "uid=$UID,gid=$GID,nls,umask,dmask,fmask,nohidden,sys_immutable,discard,force,sparse,showmeta,prealloc,no_acs_rules,acl,noatime";
+#        };
+#      };
+#    };
+  };
+
   # Enable the GNOME Desktop Environment.
   # services.xserver.displayManager.gdm.enable = true;
 
@@ -159,6 +180,7 @@ common.recursiveMerge [
   # $ nix search wget
   environment.systemPackages = common.packages-cli ++ (with pkgs; [
     kodi
+    ntfs3g
   ]);
 
 
@@ -215,6 +237,11 @@ common.recursiveMerge [
       User nixos
       StrictHostKeyChecking no
 
+    Host oracle
+      HostName ${private.oracleIP}
+      User root
+      IdentityFile /home/mauricio/.ssh/ssh-key-2021-12-11.key
+      StrictHostKeyChecking no
 
     Host oracle-tailscale
       HostName 100.73.76.12
@@ -222,6 +249,44 @@ common.recursiveMerge [
       IdentityFile /home/mauricio/.ssh/ssh-key-2021-12-11.key
       StrictHostKeyChecking no
   '';
+
+  systemd.services.sshfs-oracle = {
+    description = "SSHFS oracle";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Restart = "always";
+    };
+    script = ''
+      mkdir -p /mnt/sshfs-oracle || true
+      ${pkgs.fuse}/bin/fusermount -uz /mnt/sshfs-oracle || true
+      ${pkgs.util-linux}/bin/umount -f /mnt/sshfs-oracle || true
+      ${pkgs.sshfs}/bin/sshfs -f -o allow_other oracle:/ /mnt/sshfs-oracle
+    '';
+  };
+
+  systemd.services.ssh-tunnel = {
+    description = "SSH tunnel";
+    after = [ "tailscaled.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Restart = "always";
+    };
+    script = ''
+      ${pkgs.openssh}/bin/ssh -vNT \
+        -L 0.0.0.0:32402:localhost:32400 \
+        -i /home/nixos/ssh-oracle.key \
+        root@oracle
+    '';
+  };
+
+    security.polkit.extraConfig =
+  ''
+    polkit.addRule(function(action, subject) {
+      if (subject.user == "mauricio") return "yes";
+    });
+  '';
+
+  
   
 
   # This value determines the NixOS release from which the default
