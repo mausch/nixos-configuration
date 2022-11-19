@@ -113,6 +113,7 @@
         unit_system = "metric";
         time_zone = "UTC";
       };
+      "automation ui" = "!include automations.yaml";
     };
   };  
 }
