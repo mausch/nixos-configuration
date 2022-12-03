@@ -352,6 +352,7 @@ fonts = {
     layout = "us";
     libinput.enable = true;
     libinput.naturalScrolling = false;
+    synaptics.minSpeed = "2.5";
     displayManager = {
       defaultSession = "none+i3";
       # defaultSession = "plasma";
