@@ -1,14 +1,14 @@
-192.168.0.3    elevate.postgres.local
-192.168.0.3    elevate.db.local
-192.168.0.3    elevate.es.local
-192.168.0.3    elevate.rabbit.local
-192.168.0.3    elevate.redis.local
-192.168.0.3    elevate.kafka.local
-192.168.0.3    elevate.k8s.local
-192.168.0.3    elevate.consul.local
-192.168.0.3    elevate.milvus2.local
-192.168.0.3    kubernetes.default.svc.cluster.local
-192.168.0.3    metabase-local.elevatedirect.com
-192.168.0.3    minio-local.elevatedirect.com
-192.168.0.3    local.elevatedirect.com
+192.168.1.128    elevate.postgres.local
+192.168.1.128    elevate.db.local
+192.168.1.128    elevate.es.local
+192.168.1.128    elevate.rabbit.local
+192.168.1.128    elevate.redis.local
+192.168.1.128    elevate.kafka.local
+192.168.1.128    elevate.k8s.local
+192.168.1.128    elevate.consul.local
+192.168.1.128    elevate.milvus2.local
+192.168.1.128    kubernetes.default.svc.cluster.local
+192.168.1.128    metabase-local.elevatedirect.com
+192.168.1.128    minio-local.elevatedirect.com
+192.168.1.128    local.elevatedirect.com
 
