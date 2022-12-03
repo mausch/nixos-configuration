@@ -196,7 +196,7 @@ fonts = {
      scrcpy
      android-tools
 
-     pianoteq.stage-6
+     # pianoteq.stage-6
 
      OVMFFull
      # pkgsPersonal.ilspy
