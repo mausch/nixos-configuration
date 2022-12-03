@@ -351,7 +351,7 @@ fonts = {
     enable = true;
     layout = "us";
     libinput.enable = true;
-    libinput.naturalScrolling = false;
+    libinput.touchpad.naturalScrolling = false;
     synaptics.minSpeed = "2.5";
     displayManager = {
       defaultSession = "none+i3";
@@ -429,7 +429,7 @@ fonts = {
   virtualisation.lxd.enable = false;
   virtualisation.libvirtd = {
     enable = false;
-    qemuOvmf = true;
+    qemu.ovmf.enable = true;
   };
   
   # does not work, see https://gitlab.freedesktop.org/libfprint/libfprint/issues/89
