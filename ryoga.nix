@@ -417,10 +417,10 @@ fonts = {
     enable = true;
     autoPrune.enable = false;
 #    extraOptions = "--host tcp://0.0.0.0:2375";
-#    listenOptions = [
-#      "unix://var/run/docker.sock"
-#      "tcp://0.0.0.0:2375"
-#    ];
+    listenOptions = [
+      "unix://var/run/docker.sock"
+      "tcp://0.0.0.0:2375"
+    ];
   };
   environment.etc."docker/config.json".text = ''
     {"experimental": "enabled"}
