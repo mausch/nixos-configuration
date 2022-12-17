@@ -6,7 +6,7 @@ let common = import ./common.nix {
 in
 {
 
-  home.packages = common.packages;
+  home.packages = common.packages ++ common.packages-gui;
 
   services.redshift = {
     enable = true;

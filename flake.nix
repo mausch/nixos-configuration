@@ -71,19 +71,21 @@
         };
       };
       homeConfigurations = {
-        wsl = home-manager.lib.homeManagerConfiguration {
+        wsl = home-manager.lib.homeManagerConfiguration rec {
           system = "x86_64-linux";
+          pkgs = systemPkgs system;
           homeDirectory = "/home/mauricio";
           username = "mauricio";
-          configuration.imports = [
+          modules = [
             ./home.nix
           ];
         };
-        mauricio = home-manager.lib.homeManagerConfiguration {
-          system = "x86_64-linux";
-          homeDirectory = "/home/mauricio";
-          username = "mauricio";
-          configuration.imports = [
+        mauricio = home-manager.lib.homeManagerConfiguration rec {
+          # system = "x86_64-linux";
+          pkgs = systemPkgs "x86_64-linux";
+          # homeDirectory = "/home/mauricio";
+          # username = "mauricio";
+          modules = [
             ./home.nix
           ];
         };
