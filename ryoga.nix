@@ -35,6 +35,7 @@ common.recursiveMerge [
     "kernel.sysrq" = 1;
     "net.ipv4.conf.forwarding" = true;
     "net.ipv6.conf.forwarding" = true;
+    "vm.max_map_count" = 262144;
   };
 
   # Define on which hard drive you want to install Grub.
