@@ -116,6 +116,7 @@ rec {
         # dotnetCorePackages.sdk_3_1 
         dotnetCorePackages.sdk_5_0
         dotnetCorePackages.sdk_6_0
+        dotnetCorePackages.sdk_7_0
      ])
 
      # (import (fetchTarball https://github.com/nix-community/rnix-lsp/archive/23df7ab20b71896ac47da8dab6d4bcc6e8f994d5.tar.gz))
