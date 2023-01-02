@@ -450,20 +450,6 @@ fonts = {
   networking.extraHosts = builtins.readFile ./extraHosts;
   security.pki.certificates = private.certificates;
 
-  systemd.services.sshfs-pi = {
-    description = "SSHFS pi";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Restart = "always";
-    };
-    script = ''
-      mkdir -p /mnt/sshfs-pi || true
-      ${pkgs.fuse}/bin/fusermount -uz /mnt/sshfs-pi || true
-      ${pkgs.util-linux}/bin/umount -f /mnt/sshfs-pi || true
-      ${pkgs.sshfs}/bin/sshfs -f -o allow_other pi-root:/ /mnt/sshfs-pi
-    '';
-  };
-  
   systemd.services.sshfs-oracle = {
     description = "SSHFS oracle";
     wantedBy = [ "multi-user.target" ];
