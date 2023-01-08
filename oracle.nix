@@ -8,17 +8,23 @@ let
     url = "https://github.com/NixOS/nixpkgs/archive/0c0be749646ce642bf50acfee75a484996556c0e.tar.gz";
     sha256 = "1rybyb4r8x07bvk9znzb6cwhppffzssg8qlvc9cx54mhi8990wws";
   };
+  plex = fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/0874168639713f547c05947c76124f78441ea46c.tar.gz";
+    sha256 = "0gw5l5bj3zcgxhp7ki1jafy6sl5nk4vr43hal94lhi15kg2vfmfy";
+  };
 
 in
 {
   disabledModules = [
     "services/misc/radarr.nix"
+    "services/misc/plex.nix"
   ];
 
   imports = 
   [ 
     (modulesPath + "/profiles/qemu-guest.nix") 
     "${radarr}/nixos/modules/services/misc/radarr.nix"
+    "${plex}/nixos/modules/services/misc/plex.nix"
   ];
 
   boot.loader.grub = {
@@ -77,7 +83,13 @@ in
   environment.systemPackages = common.packages-cli ++ [
   ];
 
-  services.plex.enable = true;
+  services.plex = {
+    enable = true;
+    package = (import plex {
+      inherit system;
+      config = { allowUnfree = true; };
+    }).plex;
+  };
 
   nixpkgs.config.allowUnfree = true;
 
