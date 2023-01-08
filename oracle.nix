@@ -59,11 +59,6 @@ in
   };
 
   systemd.services.goofys = 
-  let pkgsGoofys = import (fetchTarball {
-    url = "https://github.com/nixos/nixpkgs/archive/87909c704f8f9db54d642c7e2cedbbd9cad4724d.tar.gz";
-    sha256 = "19ajgy8cziw12bmwc594pfwdqifzz38386nl2kkv29pp5p3dinb7";
-  }) {inherit system;};
-  in
   {
     description = "mount object storage";
     wantedBy = [ "multi-user.target" ];
@@ -75,7 +70,7 @@ in
       ${pkgs.fuse}/bin/fusermount -uz /run/mount/objects || true
       AWS_ACCESS_KEY_ID=${private.oracle.AWS_ACCESS_KEY_ID} \
       AWS_SECRET_ACCESS_KEY='${private.oracle.AWS_SECRET_ACCESS_KEY}' \
-      ${pkgsGoofys.goofys}/bin/goofys -f --region eu-amsterdam-1 --endpoint https://${private.oracle.namespace}.compat.objectstorage.eu-amsterdam-1.oraclecloud.com/ filesystem /run/mount/objects      
+      ${pkgs.goofys}/bin/goofys -f --region eu-amsterdam-1 --endpoint https://${private.oracle.namespace}.compat.objectstorage.eu-amsterdam-1.oraclecloud.com/ filesystem /run/mount/objects      
     '';
   };
 
