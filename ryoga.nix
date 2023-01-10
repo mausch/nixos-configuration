@@ -197,7 +197,13 @@ fonts = {
      scrcpy
      android-tools
 
-     # pianoteq.stage-6
+     ((import (fetchTarball {
+       url = "https://github.com/NixOS/nixpkgs/archive/45c0f7ff3d721645f6b408752fd1d99e0b4b1cc3.tar.gz";
+       sha256 = "0sy3vgfdkydhadc4p12f576xxzssjlilwr8xkvhwf7k6050m2qya";
+     }) {
+       config.allowUnfree = true;
+       inherit system;
+     }).pianoteq.stage-6)
 
      OVMFFull
      # pkgsPersonal.ilspy
