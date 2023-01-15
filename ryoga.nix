@@ -215,9 +215,14 @@ fonts = {
    };
 
 
-   environment.etc."vimrc".text = ''
-     set guifont=Ubuntu\ Mono\ 11
-   '';
+   environment.etc = {
+     "vimrc".text = ''
+         set guifont=Ubuntu\ Mono\ 11
+     '';   
+
+
+     "i3status.conf".text = builtins.readFile ./i3status.conf;
+   };
 
 
   # Some programs need SUID wrappers, can be configured further or are
