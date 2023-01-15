@@ -221,7 +221,7 @@ fonts = {
      '';   
 
 
-     "i3status.conf".text = builtins.readFile ./i3status.conf;
+     "i3status-rs.toml".text = builtins.readFile ./i3status-rs.toml;
    };
 
 
@@ -396,7 +396,7 @@ fonts = {
       '';
       extraPackages = with pkgs; [
         dmenu 
-        i3status 
+        i3status-rust
         i3lock 
         i3blocks 
      ];

@@ -1,0 +1,56 @@
+# ref https://github.com/greshake/i3status-rust/blob/v0.22.0/doc/blocks.md
+
+theme = "solarized-dark"
+icons = "awesome"
+
+[[block]]
+block = "backlight"
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "/"
+info_type = "available"
+format = "{icon} {available}"
+unit = "GB"
+interval = 20
+warning = 20.0
+alert = 10.0
+
+[[block]]
+block = "cpu"
+interval = 1
+info=100
+warning=100
+critical=100
+
+[[block]]
+block = "temperature"
+collapsed = false
+chip = "coretemp-isa-0000"
+format = "{max}"
+good = 90
+idle = 90
+info = 90
+warning = 90
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{mem_avail}"
+format_swap = "{swap_used_percents}"
+
+[[block]]
+block = "net"
+format = "{ip}"
+
+[[block]]
+block = "battery"
+if_command = "test -e /sys/class/power_supply/BAT0"
+format = "{percentage} {time}"
+
+[[block]]
+block = "time"
+interval = 5
+format = "%a %F %T"
+
