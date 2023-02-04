@@ -77,6 +77,7 @@ rec {
      vim_configurable 
      unzip
      zip
+     unrar
      p7zip
      imagemagick
      mc
