@@ -255,6 +255,7 @@ common.recursiveMerge [
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Restart = "always";
+      StartLimitIntervalSec = 0;
     };
     script = ''
       mkdir -p /mnt/sshfs-oracle || true
@@ -270,6 +271,7 @@ common.recursiveMerge [
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Restart = "always";
+      StartLimitIntervalSec = 0;
     };
     script = ''
       ${pkgs.openssh}/bin/ssh -vNT \
