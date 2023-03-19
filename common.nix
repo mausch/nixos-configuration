@@ -176,11 +176,23 @@ rec {
         IdentityFile /home/mauricio/.ssh/ssh-key-2021-12-11.key
         StrictHostKeyChecking no
       '' else ""}
-      
+
       Host oracle-tailscale
         HostName 100.73.76.12
         User root
         IdentityFile /home/mauricio/.ssh/ssh-key-2021-12-11.key
+        StrictHostKeyChecking no
+
+      Host buchu
+        HostName 192.168.1.61
+        User mauricio
+        IdentityFile /home/mauricio/.ssh/id_rsa
+        StrictHostKeyChecking no
+
+      Host buchu-tailscale
+        HostName 100.70.118.82
+        User mauricio
+        IdentityFile /home/mauricio/.ssh/id_rsa
         StrictHostKeyChecking no
     '';
 }
