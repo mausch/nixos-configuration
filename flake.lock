@@ -152,12 +152,13 @@
     },
     "private": {
       "locked": {
+        "lastModified": 1679245891,
         "narHash": "sha256-NtOKqUnBWHyVEcGmA8YgytWNZpdIWkyQgrg/McxE9tQ=",
-        "path": "/etc/nixos/private",
+        "path": "/home/mauricio/nixos-configuration/private",
         "type": "path"
       },
       "original": {
-        "path": "/etc/nixos/private",
+        "path": "/home/mauricio/nixos-configuration/private",
         "type": "path"
       }
     },

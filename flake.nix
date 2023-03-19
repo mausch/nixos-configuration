@@ -5,8 +5,8 @@
     home-manager.url = "github:nix-community/home-manager";
     nix-lang-server.url = "github:oxalica/nil";
     private = {
-      url = "path:/etc/nixos/private";
-      #flake = false;
+      url = "path:/home/mauricio/nixos-configuration/private";
+      # flake = false;
     };
   };
 
