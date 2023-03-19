@@ -187,7 +187,9 @@ rec {
           experimental-features = nix-command flakes
         '';
         envVars = private.nixEnvVars or {};
-        maxJobs = "auto";
-        buildCores = 0;
+        settings = {
+          cores = 0;
+          max-jobs = "auto";
+        };
       };
 }
