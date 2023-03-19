@@ -58,16 +58,7 @@ in
     };
   };
 
-  nix = {
-    package = pkgs.nixStable;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-    envVars = private.nixEnvVars;
-    maxJobs = "auto";
-    buildCores = 0;
-  };
-
+  nix = common.nixConfig { inherit private; };
 
   documentation = {
     enable = true;

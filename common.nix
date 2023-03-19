@@ -178,4 +178,16 @@ rec {
         IdentityFile /home/mauricio/.ssh/id_rsa
         StrictHostKeyChecking no
     '';
+
+    nixConfig = 
+      { private ? {} }:
+      {
+        package = pkgs.nixStable;
+        extraOptions = ''
+          experimental-features = nix-command flakes
+        '';
+        envVars = private.nixEnvVars or {};
+        maxJobs = "auto";
+        buildCores = 0;
+      };
 }

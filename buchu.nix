@@ -131,16 +131,7 @@ common.recursiveMerge [
 
   nixpkgs.config.allowUnfree = true;
 
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-    # envVars = private.nixEnvVars;
-    maxJobs = "auto";
-    buildCores = 0;
-  };
-
+  nix = common.nixConfig { inherit private; };
 
   environment.systemPackages = common.packages-cli ++ (with pkgs; [
     kodi
