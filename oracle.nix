@@ -89,7 +89,6 @@ in
   nixpkgs.config.allowUnfree = true;
 
   services.tailscale.enable = true;
-  # systemd.services.tailscale-autoconnect = common.tailscale-autoconnect private.tailscaleKey;
 
   services.transmission = {
     enable = true;

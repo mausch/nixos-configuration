@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { lib, config, pkgs, private, system, ... }:
 
 let 
@@ -13,8 +9,6 @@ let
     inherit system;
   }; 
 in
-common.recursiveMerge [
-#  homeassistant
 {
   imports =
     [
@@ -28,7 +22,6 @@ common.recursiveMerge [
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = false;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
   boot.kernel.sysctl = {
@@ -38,20 +31,15 @@ common.recursiveMerge [
     "vm.max_map_count" = 262144;
   };
 
-  # Define on which hard drive you want to install Grub.
-  # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
-    # options iwlwifi 11n_disable=1 swcrypto=1  # https://wiki.archlinux.org/title/Network_configuration/Wireless#iwlwifi
   '';
 
   networking.hostName = "RYOGA";
   networking.enableIPv6 = false;
   networking.networkmanager.enable = true;
   networking.firewall.enable = false;
-  # networking.nameservers = ["8.8.8.8" "8.8.4.4"];
-  # programs.qt5ct.enable = true;
   programs.nm-applet.enable = true;
   programs.xss-lock.enable = true;
 
@@ -65,7 +53,6 @@ common.recursiveMerge [
   };
 
 
-  # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
@@ -136,7 +123,6 @@ fonts = {
   };
 };
 
-  # Set your time zone.
   time.timeZone = "Europe/London";
 
   location = {
@@ -144,7 +130,6 @@ fonts = {
     longitude = 0.0;
   };
 
-  # List packages installed in system profile. 
   environment.systemPackages = common.packages ++ (with pkgs; 
   [
      tailscale
@@ -225,18 +210,10 @@ fonts = {
    };
 
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
-
-  # List services that you want to enable:
-
   services.journald.extraConfig = ''
       SystemMaxUse=1G
   '';
 
-  # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
     passwordAuthentication = true;
@@ -283,8 +260,6 @@ fonts = {
   services.udisks2.enable = true;
 
   services.tailscale.enable = true;
-  # ref https://tailscale.com/blog/nixos-minecraft/
-  #systemd.services.tailscale-autoconnect = common.tailscale-autoconnect;
 
   services.udev.extraRules = 
   let 
@@ -326,7 +301,6 @@ fonts = {
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
   hardware.pulseaudio = {
     enable = true;
     support32Bit = true;
@@ -484,4 +458,3 @@ fonts = {
     };
   };
 }
-]
