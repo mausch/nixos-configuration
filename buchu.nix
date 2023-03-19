@@ -1,13 +1,13 @@
 { lib, config, pkgs, private, system, ... }:
 
-let 
-  common = import ./common.nix { 
-    inherit pkgs; 
+let
+  common = import ./common.nix {
+    inherit pkgs;
     inherit lib;
   };
   homeassistant = import ./home-assistant.nix {
     inherit system;
-  }; 
+  };
 in
 common.recursiveMerge [
   homeassistant
@@ -28,7 +28,7 @@ common.recursiveMerge [
    algorithm = "zstd";
    memoryPercent = 40;
   };
-  
+
 
   networking.hostName = "buchu"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -71,7 +71,7 @@ common.recursiveMerge [
           UXTerm*faceName: DejaVu Sans Mono
           UXTerm*faceSize: 10
         EOF
-      '';    
+      '';
   };
 
   services.xserver.desktopManager.gnome.enable = true;
@@ -85,10 +85,10 @@ common.recursiveMerge [
         ${pkgs.ibus}/bin/ibus-daemon -d &
       '';
       extraPackages = with pkgs; [
-        dmenu 
-        i3status 
-        i3lock 
-        i3blocks 
+        dmenu
+        i3status
+        i3lock
+        i3blocks
      ];
 
    };
@@ -101,7 +101,7 @@ common.recursiveMerge [
       Defaults:mauricio      !authenticate
     '';
   };
-   
+
   services.xserver = {
     layout = "us";
     xkbVariant = "";
@@ -156,7 +156,7 @@ common.recursiveMerge [
   services.plex.enable = true;
 
   services.tailscale.enable = true;
-  
+
   networking.firewall.enable = false;
 
 
@@ -179,7 +179,7 @@ common.recursiveMerge [
       User root
       IdentityFile /home/mauricio/.ssh/id_rsa
       StrictHostKeyChecking no
-      
+
     Host pi-tailscale
       HostName 100.101.75.65
       User nixos

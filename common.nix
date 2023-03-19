@@ -26,7 +26,7 @@ rec {
      nix-du
      nix-prefetch-git
      tmux
-     wget 
+     wget
      iotop
      linuxPackages.cpupower
      powertop
@@ -46,7 +46,7 @@ rec {
      smartmontools
      mkpasswd
      openssl
-     vim_configurable 
+     vim_configurable
      unzip
      zip
      unrar
@@ -55,7 +55,7 @@ rec {
      mc
      screen
      docker-compose
-     gitFull 
+     gitFull
      lazygit
      jq
      cpulimit
@@ -83,7 +83,7 @@ rec {
      # shutter
      nomacs
      leafpad
-     
+
      (dotnetCorePackages.combinePackages [
         dotnetCorePackages.sdk_5_0
         dotnetCorePackages.sdk_6_0
@@ -91,7 +91,7 @@ rec {
      ])
 
      # (import (fetchTarball https://github.com/nix-community/rnix-lsp/archive/23df7ab20b71896ac47da8dab6d4bcc6e8f994d5.tar.gz))
-     
+
      (vscode-with-extensions.override {
        vscodeExtensions = (with vscode-extensions; [
          (vscode-utils.buildVscodeMarketplaceExtension {
@@ -144,7 +144,7 @@ rec {
        ]);
      })
 
-  ]; 
+  ];
 
   packages = packages-cli ++ packages-gui;
 }

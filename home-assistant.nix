@@ -47,7 +47,7 @@
         # configure web ui
         frontend.port = 9666;
         frontend.host = "0.0.0.0";
-        # experimental.new_api = true;    
+        # experimental.new_api = true;
     };
   };
 
@@ -115,5 +115,5 @@
       };
       "automation ui" = "!include automations.yaml";
     };
-  };  
+  };
 }

@@ -1,5 +1,5 @@
 { pkgs, ... }:
-let 
+let
   interface-src = "enp0s20f0u3";
   interface-dst = "enp0s20f0u2u4";
 in

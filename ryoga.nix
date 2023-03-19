@@ -1,13 +1,13 @@
 { lib, config, pkgs, private, system, ... }:
 
-let 
-  common = import ./common.nix { 
-    inherit pkgs; 
+let
+  common = import ./common.nix {
+    inherit pkgs;
     inherit lib;
   };
   homeassistant = import ./home-assistant.nix {
     inherit system;
-  }; 
+  };
 in
 {
   imports =
@@ -86,7 +86,7 @@ in
       home = "/home/mauricio";
       extraGroups = [ "wheel" "audio" "docker" "networkmanager" "libvirtd" "vboxusers" ];
     };
-  }; 
+  };
 
 fonts = {
   enableDefaultFonts = true;
@@ -130,7 +130,7 @@ fonts = {
     longitude = 0.0;
   };
 
-  environment.systemPackages = common.packages ++ (with pkgs; 
+  environment.systemPackages = common.packages ++ (with pkgs;
   [
      tailscale
 
@@ -144,7 +144,7 @@ fonts = {
      arandr
      redshift
      qpdfview
-     
+
      # https://www.reddit.com/r/NixOS/comments/6j9zlj/how_to_set_up_themes_in_nixos/djcvaco/
      arc-kde-theme
      adwaita-qt
@@ -168,7 +168,7 @@ fonts = {
      steam
      aws-workspaces
      lutris
-     (retroarch.override { 
+     (retroarch.override {
        cores = [
          libretro.dosbox
          libretro.mesen
@@ -203,7 +203,7 @@ fonts = {
    environment.etc = {
      "vimrc".text = ''
          set guifont=Ubuntu\ Mono\ 11
-     '';   
+     '';
 
 
      "i3status-rs.toml".text = builtins.readFile ./i3status-rs.toml;
@@ -231,7 +231,7 @@ fonts = {
       User root
       IdentityFile /home/mauricio/.ssh/id_rsa
       StrictHostKeyChecking no
-      
+
     Host pi-tailscale
       HostName 100.101.75.65
       User nixos
@@ -261,8 +261,8 @@ fonts = {
 
   services.tailscale.enable = true;
 
-  services.udev.extraRules = 
-  let 
+  services.udev.extraRules =
+  let
     xinput = "DISPLAY=:0 XAUTHORITY=/home/mauricio/.Xauthority ${pkgs.xorg.xinput}/bin/xinput";
     getBuiltinKeyboard = pkgs.writeScript "get-builtin-keyboard" ''
       #!/usr/bin/env ${pkgs.bash}/bin/sh
@@ -294,7 +294,7 @@ fonts = {
       ACTION=="remove", SUBSYSTEM=="input", ENV{ID_SERIAL}=="Keytron_Keychron_K2", RUN+="${reattach}"
       # bluetooth
       ACTION=="remove", SUBSYSTEM=="input", ATTR{name}=="Keychron K2", RUN+="${reattach}"
-      # wakeup 
+      # wakeup
       ACTION=="add", SUBSYSTEM=="msr", RUN+="${reattach}"
     '';
 
@@ -330,8 +330,8 @@ fonts = {
 
   services.flatpak.enable = true;
   xdg.portal.enable = true;
-  # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];  
-  
+  # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
 
   services.xserver = {
     enable = true;
@@ -369,10 +369,10 @@ fonts = {
         ${pkgs.ibus}/bin/ibus-daemon -d &
       '';
       extraPackages = with pkgs; [
-        dmenu 
+        dmenu
         i3status-rust
-        i3lock 
-        i3blocks 
+        i3lock
+        i3blocks
      ];
     };
   };
@@ -417,12 +417,12 @@ fonts = {
     enable = false;
     qemu.ovmf.enable = true;
   };
-  
+
   # does not work, see https://gitlab.freedesktop.org/libfprint/libfprint/issues/89
 #  services.fprintd.enable = true;
 #  security.pam.services.login.fprintAuth = true;
-#  security.pam.services.xscreensaver.fprintAuth = true; 
-  
+#  security.pam.services.xscreensaver.fprintAuth = true;
+
   services.synergy.client = {
     enable = true;
     screenName = "RYOGA";

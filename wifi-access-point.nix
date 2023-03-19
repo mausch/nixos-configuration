@@ -1,5 +1,5 @@
 { pkgs, ... }:
-let 
+let
   private = import ./private.nix {};
   interface = "wlan-ap0";
   device = "wlp0s20f3";

@@ -2,15 +2,15 @@
   inputs = {
     hosts.url = "github:StevenBlack/hosts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
-    home-manager.url = "github:nix-community/home-manager";    
+    home-manager.url = "github:nix-community/home-manager";
     private = {
       url = "path:/etc/nixos/private";
       #flake = false;
     };
   };
 
-  outputs = { hosts, nixpkgs, home-manager, private, self }: 
-    let 
+  outputs = { hosts, nixpkgs, home-manager, private, self }:
+    let
       systemPkgs = system: import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };

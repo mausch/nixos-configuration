@@ -18,7 +18,7 @@ in
   systemd.user = {
     startServices = "legacy";
     services = {
-      synergy-client = 
+      synergy-client =
         {
           Unit.Description = "Synergy client";
           Service = {
@@ -27,13 +27,13 @@ in
           };
           Install.WantedBy = ["multi-user.target"];
         };
-        
+
     # Haven't figured out how to make home-manager manage system services yet,
     # so here's a workaround:
     # sudo ln -s /home/mauricio/.config/systemd/user/zram.service /etc/systemd/system/zram.service
     # sudo systemctl enable zram
 
-      zram = 
+      zram =
         let script = pkgs.writeScript "start-zram" ''
   #!/usr/bin/env sh
   modprobe zram
@@ -42,7 +42,7 @@ in
   mkswap /dev/zram0
   swapon /dev/zram0
         '';
-        in 
+        in
         {
           Unit.Description = "Enable zram swap";
           Service = {

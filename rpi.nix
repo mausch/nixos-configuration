@@ -1,12 +1,12 @@
 { system, config, pkgs, lib, private, ... }:
 let
-  common = import ./common.nix { 
+  common = import ./common.nix {
     inherit pkgs;
     inherit lib;
   };
   homeassistant = import ./home-assistant.nix {
     inherit system;
-  }; 
+  };
 in
 common.recursiveMerge [
   homeassistant
@@ -56,7 +56,7 @@ common.recursiveMerge [
         hostName = "oracle";
         system = "aarch64-linux";
         maxJobs = 100;
-      } 
+      }
     ];
   };
 
@@ -84,7 +84,7 @@ common.recursiveMerge [
     enable = true;
     wheelNeedsPassword = false;
   };
-  
+
   services.getty.autologinUser = "nixos";
 
   users.mutableUsers = false;
@@ -152,7 +152,7 @@ common.recursiveMerge [
     '';
   };
 
-  
+
   environment.systemPackages =
     common.packages-cli ++
     [
