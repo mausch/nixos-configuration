@@ -3,13 +3,14 @@
     hosts.url = "github:StevenBlack/hosts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
     home-manager.url = "github:nix-community/home-manager";
+    nix-lang-server.url = "github:oxalica/nil";
     private = {
       url = "path:/etc/nixos/private";
       #flake = false;
     };
   };
 
-  outputs = { hosts, nixpkgs, home-manager, private, self }:
+  outputs = { hosts, nixpkgs, home-manager, nix-lang-server, private, self }:
     let
       systemPkgs = system: import nixpkgs {
         inherit system;
@@ -28,7 +29,7 @@
           ];
           specialArgs = rec {
             inherit private;
-            pkgs = systemPkgs system;
+            pkgs = systemPkgs system // nix-lang-server.packages;
             system = "x86_64-linux";
           };
           system = "x86_64-linux";

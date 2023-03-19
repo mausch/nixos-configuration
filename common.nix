@@ -64,6 +64,7 @@ rec {
      awscli2
      kubernetes
      telepresence
+     nil
   ];
 
   packages-gui = with pkgs; [
