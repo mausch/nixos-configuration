@@ -58,18 +58,6 @@
           };
           system = "aarch64-linux";
         };
-
-        rpi = lib.nixosSystem {
-          modules = [
-            ./rpi.nix
-          ];
-          specialArgs = rec {
-            inherit private;
-            pkgs = systemPkgs system;
-            system = "aarch64-linux";
-          };
-          system = "aarch64-linux";
-        };
       };
       homeConfigurations = {
         wsl = home-manager.lib.homeManagerConfiguration rec {
