@@ -148,4 +148,39 @@ rec {
   ];
 
   packages = packages-cli ++ packages-gui;
+
+  sshExtraConfig = 
+    { private ? {} }:
+    ''
+      Host pi
+        HostName 192.168.0.12
+        User nixos
+        IdentityFile /home/mauricio/.ssh/id_rsa
+        StrictHostKeyChecking no
+
+      Host pi-root
+        HostName 192.168.0.12
+        User root
+        IdentityFile /home/mauricio/.ssh/id_rsa
+        StrictHostKeyChecking no
+
+      Host pi-tailscale
+        HostName 100.101.75.65
+        User nixos
+        StrictHostKeyChecking no
+
+      ${if (builtins.hasAttr "oracleIP" private) then ''
+      Host oracle
+        HostName ${private.oracleIP}
+        User root
+        IdentityFile /home/mauricio/.ssh/ssh-key-2021-12-11.key
+        StrictHostKeyChecking no
+      '' else ""}
+      
+      Host oracle-tailscale
+        HostName 100.73.76.12
+        User root
+        IdentityFile /home/mauricio/.ssh/ssh-key-2021-12-11.key
+        StrictHostKeyChecking no
+    '';
 }
