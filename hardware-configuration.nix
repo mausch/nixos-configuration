@@ -36,8 +36,6 @@
     memoryPercent = 10;
   };
 
-  nix.maxJobs = lib.mkDefault 8;
-
   hardware.opengl = {
     enable = true;
     driSupport32Bit = true;
