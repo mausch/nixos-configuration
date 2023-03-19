@@ -5,9 +5,6 @@ let
     inherit pkgs;
     inherit lib;
   };
-  homeassistant = import ./home-assistant.nix {
-    inherit system;
-  };
 in
 {
   imports =
