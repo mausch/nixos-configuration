@@ -408,6 +408,20 @@ fonts = {
     '';
   };
 
+  systemd.services.sshfs-buchu = {
+    description = "SSHFS buchu";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Restart = "always";
+    };
+    script = ''
+      mkdir -p /mnt/sshfs-buchu || true
+      ${pkgs.fuse}/bin/fusermount -uz /mnt/sshfs-buchu || true
+      ${pkgs.util-linux}/bin/umount -f /mnt/sshfs-buchu || true
+      ${pkgs.sshfs}/bin/sshfs -f -o allow_other root@buchu:/ /mnt/sshfs-buchu
+    '';
+  };
+
   services.avahi = {
     enable = true;
     publish = {

@@ -143,6 +143,10 @@ common.recursiveMerge [
     enable = true;
     passwordAuthentication = true;
   };
+  
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVvOkc+NEhOyoU//URICId3mqN4XfqPaGieyMvS9WP2I6Gv+is6g3wQ+Bvrs/yCjfh+1kgISLcHgoHmkW2b5vwe845/ULHG1+FSDu9MIW5s3fQiQ/HaOiGUnGhXidZRlc3T0hScMYgR2koU9QEmXthxGgRxlUdIBPveX/FbeVOjOAjC3LIXJxrV4O+dnZS9kQgwr5kOB0tMMOUAxPLnXNYQ+L4FaRoo63LpqCaLWviMpNe3y2zHxWp2D57V+KZFzgg/8TziVRXCdXON6qjx6h9h7w1BSq6aQXlqrTNTFkczpLQ9Qc3HOm8pxUx4W86ZmyGH3mMu2AXjCvUqsnABrxfeGg1G4QOsl1d68g6uKhvyrbL+4LIqwCFbaaA/g+GE9HZk3VfYdxwmGhsSNtxEqBgZt8y4bYdGOl5pG2XYhYciARDOzwj4pqsyCYhJ6mfLyHWtuXeHoipk04lVxCVj5o9B9DOkT4QECBhXmrXfKS6qjFGce7VruVbXI7GL8kNNrLwP88+/bKyw/30iU7W3Y7pbHnO1BV9pBsQmTR6N5yVRYlBjKrfm35Qvj5MI1V0kBaClKI12HsC2dDBugH7TuD8IxZ2+PiXQrvac/2D6ZpDVQFxb78TVPX999u0qW7k3vWsEBEh8N3sYUwcbyboDatkUxssD/nEuY6wCMp7IUxgRQ== mauricioscheffer@gmail.com"
+  ];
 
   services.plex.enable = true;
 
