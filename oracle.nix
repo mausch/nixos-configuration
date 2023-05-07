@@ -98,7 +98,9 @@ in
     enable = true;
     package = (import radarr {inherit system;}).radarr;
   };
+  services.prowlarr.enable = true;
+  
 
-  services.nzbget.enable = true;
-  services.jackett.enable = true;
+  # services.nzbget.enable = true;
+  # services.jackett.enable = true;
 }
