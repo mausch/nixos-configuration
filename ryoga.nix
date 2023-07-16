@@ -154,7 +154,7 @@ fonts = {
      exult
      scummvm
      steam
-     aws-workspaces
+     # aws-workspaces
      lutris
      (retroarch.override {
        cores = [
