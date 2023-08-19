@@ -4,21 +4,15 @@ let
     inherit pkgs; 
     inherit lib;
   };
-  plex = fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/0874168639713f547c05947c76124f78441ea46c.tar.gz";
-    sha256 = "0gw5l5bj3zcgxhp7ki1jafy6sl5nk4vr43hal94lhi15kg2vfmfy";
-  };
 
 in
 {
   disabledModules = [
-    "services/misc/plex.nix"
   ];
 
   imports = 
   [ 
     (modulesPath + "/profiles/qemu-guest.nix") 
-    "${plex}/nixos/modules/services/misc/plex.nix"
   ];
 
   boot.loader.grub = {
@@ -66,10 +60,6 @@ in
 
   services.plex = {
     enable = true;
-    package = (import plex {
-      inherit system;
-      config = { allowUnfree = true; };
-    }).plex;
   };
 
   nixpkgs.config.allowUnfree = true;
