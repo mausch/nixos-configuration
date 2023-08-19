@@ -86,7 +86,6 @@ rec {
      leafpad
 
      (dotnetCorePackages.combinePackages [
-        # dotnetCorePackages.sdk_5_0
         dotnetCorePackages.sdk_6_0
         dotnetCorePackages.sdk_7_0
      ])
