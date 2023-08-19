@@ -94,53 +94,7 @@ rec {
 
      (vscode-with-extensions.override {
        vscodeExtensions = (with vscode-extensions; [
-        #  (vscode-utils.buildVscodeMarketplaceExtension {
-        #   meta = with lib; {
-        #     changelog = "https://marketplace.visualstudio.com/items/jnoortheen.nix-ide/changelog";
-        #     description = "Nix language support with formatting and error report";
-        #     downloadPage = "https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide";
-        #     homepage = "https://github.com/jnoortheen/vscode-nix-ide";
-        #     license = licenses.mit;
-        #     maintainers = with maintainers; [ superherointj ];
-        #   };
-        #   mktplcRef = {
-        #     name = "nix-ide";
-        #     publisher = "jnoortheen";
-        #     version = "0.2.1";
-        #     sha256 = "sha256-yC4ybThMFA2ncGhp8BYD7IrwYiDU3226hewsRvJYKy4=";
-        #   };
-        # })
-
-        eamodio.gitlens
-
-        # (vscode-utils.buildVscodeMarketplaceExtension {
-        #   mktplcRef = {
-        #     name = "vscode-xml";
-        #     publisher = "redhat";
-        #     version = "0.17.0";
-        #     sha256 = "0r8bq8g5f9r97f1jhqlypz18r89v88yjhk9n6gx6cm4g4apfybv3";
-        #   };
-        # })
-
-        # I get a 404 (?)
-        # (vscode-utils.buildVscodeMarketplaceExtension {
-        #   mktplcRef = {
-        #     name = "ms-azuretools";
-        #     publisher = "vscode-docker";
-        #     version = "1.23.3";
-        #     sha256 = lib.fakeSha256;
-        #   };
-        # })
-
-        # (vscode-utils.extensionsFromVscodeMarketplace [
-        #   {
-        #     name = "remote-containers";
-        #     publisher = "ms-vscode-remote";
-        #     version = "0.283.0";
-        #     sha256 = "sha256-LaZzDLfQHFaOnkvKzq0vmUvAi+Q6sJrJPlAhWX0fY40=";
-        #   }
-        # ])
-
+        jnoortheen.nix-ide
        ]);
      })
 
