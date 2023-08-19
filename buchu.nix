@@ -158,7 +158,7 @@ common.recursiveMerge [
   services.synergy.client = {
     enable = true;
     screenName = "BUCHU";
-    serverAddress = "192.168.1.89";
+    serverAddress = common.synergy-server;
     autoStart = true;
   };
 

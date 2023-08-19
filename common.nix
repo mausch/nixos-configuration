@@ -193,4 +193,6 @@ rec {
           trusted-users = [ "mauricio" ];
         };
       };
+
+    synergy-server = "192.168.1.90";
 }

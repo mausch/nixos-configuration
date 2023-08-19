@@ -23,7 +23,7 @@ in
           Unit.Description = "Synergy client";
           Service = {
             Type = "simple";
-            ExecStart = "${pkgs.synergy}/bin/synergyc -f -n mauricio-Precision-Tower-5810 192.168.1.89";
+            ExecStart = "${pkgs.synergy}/bin/synergyc -f -n mauricio-Precision-Tower-5810 ${common.synergy-server}";
           };
           Install.WantedBy = ["multi-user.target"];
         };
