@@ -21,7 +21,6 @@ rec {
      wol
      cifs-utils
      iptables
-     wol
      killall
      nix-du
      nix-prefetch-git
