@@ -64,6 +64,7 @@ rec {
      kubernetes
      telepresence
      nil
+     rclone
   ];
 
   packages-gui = with pkgs; [

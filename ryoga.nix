@@ -422,6 +422,60 @@ fonts = {
     '';
   };
 
+  systemd.services.rclone-gdrive = {
+    description = "rclone google drive";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Environment = [ "PATH=/run/wrappers/bin:$PATH"];
+      Type = "notify";
+      Restart = "always";
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /mnt/gdrive || true";
+      ExecStart = ''
+        ${pkgs.rclone}/bin/rclone mount \
+          --config /root/.config/rclone/rclone.conf \
+          --allow-other \
+          gdrive:/ /mnt/gdrive
+      '';
+      ExecStop = "${pkgs.fuse}/bin/fusermount -uz /mnt/gdrive || true";
+    };
+  };
+
+  systemd.services.dropbox = {
+    description = "rclone dropbox";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Environment = [ "PATH=/run/wrappers/bin:$PATH"];
+      Type = "notify";
+      Restart = "always";
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /mnt/dropbox || true";
+      ExecStart = ''
+        ${pkgs.rclone}/bin/rclone mount \
+          --config /root/.config/rclone/rclone.conf \
+          --allow-other \
+          dropbox:/ /mnt/dropbox
+      '';
+      ExecStop = "${pkgs.fuse}/bin/fusermount -uz /mnt/dropbox || true";
+    };
+  };
+
+  systemd.services.onedrive = {
+    description = "rclone onedrive";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Environment = [ "PATH=/run/wrappers/bin:$PATH"];
+      Type = "notify";
+      Restart = "always";
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /mnt/onedrive || true";
+      ExecStart = ''
+        ${pkgs.rclone}/bin/rclone mount \
+          --config /root/.config/rclone/rclone.conf \
+          --allow-other \
+          onedrive:/ /mnt/onedrive
+      '';
+      ExecStop = "${pkgs.fuse}/bin/fusermount -uz /mnt/onedrive || true";
+    };
+  };
+
   services.avahi = {
     enable = true;
     publish = {
