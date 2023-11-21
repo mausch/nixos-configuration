@@ -1,8 +1,9 @@
-{ lib, config, pkgs, private, system, ... }:
+{ lib, config, pkgs, pkgs-unstable, private, system, ... }:
 
 let
   common = import ./common.nix {
     inherit pkgs;
+    inherit pkgs-unstable;
     inherit lib;
   };
 in
@@ -360,6 +361,7 @@ fonts = {
 
   virtualisation.docker = {
     enable = true;
+    package = pkgs-unstable.docker_24;
     autoPrune.enable = false;
 #    extraOptions = "--host tcp://0.0.0.0:2375";
     listenOptions = [

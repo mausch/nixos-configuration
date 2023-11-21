@@ -2,6 +2,7 @@
   inputs = {
     hosts.url = "github:StevenBlack/hosts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
     nix-lang-server.url = "github:oxalica/nil";
     private = {
@@ -10,9 +11,13 @@
     };
   };
 
-  outputs = { hosts, nixpkgs, home-manager, nix-lang-server, private, self }:
+  outputs = { hosts, nixpkgs, nixpkgs-unstable, home-manager, nix-lang-server, private, self }:
     let
       systemPkgs = system: import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      systemPkgsUnstable = system: import nixpkgs-unstable {
         inherit system;
         config = { allowUnfree = true; };
       };
@@ -30,6 +35,7 @@
           specialArgs = rec {
             inherit private;
             pkgs = systemPkgs system // nix-lang-server.packages;
+            pkgs-unstable = systemPkgsUnstable system;
             system = "x86_64-linux";
           };
           system = "x86_64-linux";
