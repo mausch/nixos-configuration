@@ -65,7 +65,8 @@
 
     config = {
       mqtt = {
-        broker = "localhost";
+        # https://community.home-assistant.io/t/mqtt-after-upgrading-to-home-assistant-version-2023-4-3-mosquito-broker-stopped-working/559664/7
+        # broker = "localhost";
         # username = "homeassistant";
         # password = private.mqttPassword;
       };
@@ -82,6 +83,8 @@
             "light.0x7cb03eaa00af44b5"
             "light.0x7cb03eaa00af7b86"
             "light.0x7cb03eaa0a00cb82"
+            "light.0xec1bbdfffeb1847f"
+            "light.0xec1bbdfffeb198c2"
           ];
         }
         {
