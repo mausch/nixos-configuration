@@ -170,11 +170,11 @@
       "locked": {
         "lastModified": 1679245891,
         "narHash": "sha256-NtOKqUnBWHyVEcGmA8YgytWNZpdIWkyQgrg/McxE9tQ=",
-        "path": "/home/mauricio/nixos-configuration/private",
+        "path": "/home/mauricio/private",
         "type": "path"
       },
       "original": {
-        "path": "/home/mauricio/nixos-configuration/private",
+        "path": "/home/mauricio/private",
         "type": "path"
       }
     },

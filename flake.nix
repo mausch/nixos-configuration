@@ -6,7 +6,7 @@
     home-manager.url = "github:nix-community/home-manager";
     nix-lang-server.url = "github:oxalica/nil";
     private = {
-      url = "path:/home/mauricio/nixos-configuration/private";
+      url = "path:/home/mauricio/private";
       # flake = false;
     };
   };
