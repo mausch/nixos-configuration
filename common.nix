@@ -111,6 +111,7 @@ rec {
         User root
         IdentityFile /home/mauricio/.ssh/ssh-key-2021-12-11.key
         StrictHostKeyChecking no
+        ServerAliveInterval 240
       '' else ""}
 
       Host oracle-tailscale
