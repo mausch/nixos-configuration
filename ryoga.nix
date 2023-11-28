@@ -3,7 +3,7 @@
 let
   common = import ./common.nix {
     inherit pkgs;
-    inherit pkgs-unstable;
+    # inherit pkgs-unstable;
     inherit lib;
   };
 in
