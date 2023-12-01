@@ -162,6 +162,7 @@ fonts = {
          libretro.dosbox
          libretro.mesen
          libretro.snes9x
+         libretro.mupen64plus
        ];
      })
      kodi
