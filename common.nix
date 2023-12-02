@@ -75,9 +75,9 @@ rec {
             --prefix PATH : "${lib.makeBinPath [
               (coreutils.overrideAttrs (oldAttrs: rec {
                 advcpmv-patch = fetchpatch {
-                  url = "https://raw.githubusercontent.com/jarun/advcpmv/master/advcpmv-0.9-9.1.patch";
+                  url = "https://raw.githubusercontent.com/jarun/advcpmv/master/advcpmv-0.9-9.3.patch";
                   # sha256 = lib.fakeSha256;
-                  hash = "sha256-d+SRT/R4xmfHLAdOr7m4R3WFiW64P5ZH6iqDvErYCyg=";
+                  hash = "sha256-I25F7uHESUsMDZFYTv8/56eR8QwelIPpABRXTgvszQI=";
                 };
 
                 patches = (oldAttrs.patches or [ ]) ++ [ advcpmv-patch ];
@@ -97,7 +97,7 @@ rec {
      meld
      spotify
      dbeaver
-     postman
+     # postman
      vlc
      krusader
      dolphin

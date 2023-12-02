@@ -78,9 +78,9 @@ in
   };
 
 fonts = {
-  enableDefaultFonts = true;
+  enableDefaultPackages = true;
 
-  fonts = with pkgs; [
+  packages = with pkgs; [
     corefonts
     nerdfonts
     noto-fonts
@@ -150,7 +150,7 @@ fonts = {
      synergy
      firefox
      meld
-     virtmanager
+     virt-manager
      gimp
      exult
      scummvm
