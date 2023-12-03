@@ -220,6 +220,7 @@ fonts = {
     ];
   };
   services.openntpd.enable = true;
+  services.fwupd.enable = true;
   services.udisks2.enable = true;
 
   services.tailscale.enable = true;
