@@ -163,6 +163,8 @@ common.recursiveMerge [
     autoStart = true;
   };
 
+  programs.nix-ld.enable = true;
+
   programs.ssh.extraConfig = common.sshExtraConfig { inherit private; };
 
   systemd.services.sshfs-oracle = {

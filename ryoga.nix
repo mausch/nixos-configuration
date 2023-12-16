@@ -43,6 +43,8 @@ in
 
   programs.fuse.userAllowOther = true;
 
+  programs.nix-ld.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   console = {

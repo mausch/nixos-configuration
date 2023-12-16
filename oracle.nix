@@ -83,6 +83,7 @@ in
   };
   services.prowlarr.enable = true;
   
+  programs.nix-ld.enable = true;
 
   # services.nzbget.enable = true;
   # services.jackett.enable = true;
