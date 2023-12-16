@@ -123,7 +123,7 @@ common.recursiveMerge [
   users.users.mauricio = {
     isNormalUser = true;
     description = "mauricio";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       firefox
     ];
@@ -196,6 +196,39 @@ common.recursiveMerge [
         -i /home/nixos/ssh-oracle.key \
         root@oracle
     '';
+  };
+
+  virtualisation.docker = {
+    enable = true;
+    # package = pkgs-unstable.docker_24;
+    autoPrune.enable = false;
+#    extraOptions = "--host tcp://0.0.0.0:2375";
+    listenOptions = [
+      "unix://var/run/docker.sock"
+      "tcp://0.0.0.0:2375"
+    ];
+  };
+
+  virtualisation.lxd.enable = false;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu.ovmf.enable = true;
+  };
+
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = {
+      upsnap = {
+        image = "ghcr.io/seriousm4x/upsnap:4.1.4";
+        ports = ["8090:8090"];
+        volumes = [
+          "upsnap-data:/app/pb_data"
+        ];
+        extraOptions = [
+          "--network=host"
+        ];
+      };
+    };
   };
 
     security.polkit.extraConfig =
