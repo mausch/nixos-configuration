@@ -152,7 +152,6 @@ fonts = {
      synergy
      firefox
      meld
-     virt-manager
      gimp
      exult
      scummvm
@@ -383,9 +382,11 @@ fonts = {
 
   virtualisation.lxd.enable = false;
   virtualisation.libvirtd = {
-    enable = false;
+    enable = true;
     qemu.ovmf.enable = true;
   };
+
+  programs.virt-manager.enable = true;
 
   # does not work, see https://gitlab.freedesktop.org/libfprint/libfprint/issues/89
 #  services.fprintd.enable = true;
