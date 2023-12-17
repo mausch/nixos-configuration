@@ -433,6 +433,40 @@ fonts = {
     '';
   };
 
+  systemd.services.ssh-oracle = {
+    description = "SSH oracle";
+    requires = [ "tailscaled.service" ];
+    after = [ "tailscaled.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Restart = "always";
+      StartLimitIntervalSec = 0;
+    };
+    script = ''
+      ${pkgs.openssh}/bin/ssh -vNT \
+        -L 0.0.0.0:32402:localhost:32400 \
+        -i /home/nixos/ssh-oracle.key \
+        root@oracle
+    '';
+  };
+
+  systemd.services.ssh-buchu = {
+    description = "SSH buchu";
+    requires = [ "tailscaled.service" ];
+    after = [ "tailscaled.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Restart = "always";
+      StartLimitIntervalSec = 0;
+    };
+    script = ''
+      ${pkgs.openssh}/bin/ssh -vNT \
+        -L 0.0.0.0:32400:localhost:32400 \
+        -i /home/mauricio/.ssh/id_rsa \
+        root@buchu
+    '';
+  };
+
   systemd.services.rclone-gdrive = {
     description = "rclone google drive";
     wantedBy = [ "multi-user.target" ];
