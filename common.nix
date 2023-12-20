@@ -176,5 +176,5 @@ rec {
         };
       };
 
-    synergy-server = "192.168.1.90";
+    synergy-server = "192.168.1.93";
 }
