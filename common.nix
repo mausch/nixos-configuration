@@ -147,7 +147,7 @@ rec {
         ServerAliveInterval 240
 
       Host buchu
-        HostName 192.168.1.61
+        HostName 192.168.1.190
         User mauricio
         IdentityFile /home/mauricio/.ssh/id_rsa
         StrictHostKeyChecking no
