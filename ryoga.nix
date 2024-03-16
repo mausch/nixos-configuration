@@ -75,7 +75,7 @@ in
       hashedPassword = private.mauricioHashedPassword;
       isNormalUser = true;
       home = "/home/mauricio";
-      extraGroups = [ "wheel" "audio" "docker" "networkmanager" "libvirtd" "vboxusers" ];
+      extraGroups = [ "wheel" "audio" "docker" "networkmanager" "libvirtd" "vboxusers" "video" "i2c" ];
     };
   };
 

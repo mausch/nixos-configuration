@@ -54,6 +54,8 @@
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
 
+  hardware.i2c.enable = true;
+
   services.fstrim.enable = true;
 
   services.tlp = {
