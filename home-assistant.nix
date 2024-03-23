@@ -64,6 +64,7 @@
     enable = true;
 
     config = {
+      # discovery = {};
       mqtt = {
         # https://community.home-assistant.io/t/mqtt-after-upgrading-to-home-assistant-version-2023-4-3-mosquito-broker-stopped-working/559664/7
         # broker = "localhost";
