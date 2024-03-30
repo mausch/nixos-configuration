@@ -17,6 +17,7 @@ in
 
   boot.kernelPackages = pkgs.linuxPackages_5_10;
   boot.supportedFilesystems = [ "ntfs" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = false;
