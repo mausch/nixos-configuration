@@ -174,6 +174,14 @@ rec {
           max-jobs = "auto";
           trusted-users = [ "mauricio" ];
         };
+        distributedBuilds = true;
+        # buildMachines = [
+        #   {
+        #     hostName = "oracle";
+        #     system = "aarch64-linux";
+        #     maxJobs = 100;
+        #   }
+        # ];
       };
 
     synergy-server = "192.168.1.93";
