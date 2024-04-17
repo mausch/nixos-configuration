@@ -233,7 +233,24 @@ common.recursiveMerge [
     };
   };
 
-    security.polkit.extraConfig =
+  services.transmission = {
+    enable = true;
+    settings = {
+      download-dir = "/run/media/mauricio/12TB/downloads";
+      rpc-bind-address = "0.0.0.0";
+      rpc-host-whitelist-enabled = false;
+      rpc-whitelist-enabled = false;
+    };
+    downloadDirPermissions = "777";
+  };
+
+  services.sonarr.enable = true;
+  services.radarr = {
+    enable = true;
+  };
+  services.prowlarr.enable = true;
+
+  security.polkit.extraConfig =
   ''
     polkit.addRule(function(action, subject) {
       if (subject.user == "mauricio") return "yes";
