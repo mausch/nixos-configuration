@@ -115,8 +115,6 @@ fonts = {
   };
 };
 
-  time.timeZone = "Europe/London";
-
   location = {
     latitude = 51.5;
     longitude = 0.0;
@@ -405,6 +403,8 @@ fonts = {
 
   networking.extraHosts = builtins.readFile ./extraHosts;
   security.pki.certificates = private.certificates;
+
+  services.automatic-timezoned.enable = true;
 
   systemd.services.sshfs-oracle = {
     description = "SSHFS oracle";
