@@ -48,6 +48,7 @@
           specialArgs = rec {
             inherit private;
             pkgs = systemPkgs system;
+            pkgs-unstable = systemPkgsUnstable system;
             system = "x86_64-linux";
           };
           system = "x86_64-linux";

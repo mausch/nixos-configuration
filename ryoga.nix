@@ -9,7 +9,12 @@ let
     pkgs = pkgs-unstable;
     inherit lib;
   };
+  ollama = import ./ollama.nix {
+    pkgs = pkgs-unstable;
+  };
 in
+common.recursiveMerge [
+  ollama
 {
   imports =
     [
@@ -126,6 +131,7 @@ fonts = {
   environment.systemPackages = common-unstable.packages ++ (with pkgs;
   [
      tailscale
+     pkgs-unstable.ollama
 
      # gui tools
      gmtp
@@ -388,6 +394,8 @@ fonts = {
     qemu.ovmf.enable = true;
   };
 
+  virtualisation.oci-containers.backend = "docker";
+
   programs.virt-manager.enable = true;
 
   # does not work, see https://gitlab.freedesktop.org/libfprint/libfprint/issues/89
@@ -535,3 +543,4 @@ fonts = {
     };
   };
 }
+]
