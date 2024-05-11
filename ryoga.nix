@@ -3,7 +3,10 @@
 let
   common = import ./common.nix {
     inherit pkgs;
-    # inherit pkgs-unstable;
+    inherit lib;
+  };
+  common-unstable = import ./common.nix {
+    pkgs = pkgs-unstable;
     inherit lib;
   };
 in
@@ -120,7 +123,7 @@ fonts = {
     longitude = 0.0;
   };
 
-  environment.systemPackages = common.packages ++ (with pkgs;
+  environment.systemPackages = common-unstable.packages ++ (with pkgs;
   [
      tailscale
 
