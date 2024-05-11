@@ -120,6 +120,7 @@ rec {
         jnoortheen.nix-ide
         ms-vscode-remote.remote-containers
         ms-vscode-remote.remote-ssh
+        vscode-extensions.ms-dotnettools.csdevkit
         # thenuprojectcontributors.vscode-nushell-lang
        ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
