@@ -75,9 +75,9 @@ rec {
             --prefix PATH : "${lib.makeBinPath [
               (coreutils.overrideAttrs (oldAttrs: rec {
                 advcpmv-patch = fetchpatch {
-                  url = "https://raw.githubusercontent.com/jarun/advcpmv/master/advcpmv-0.9-9.3.patch";
+                  url = "https://raw.githubusercontent.com/jarun/advcpmv/master/advcpmv-0.9-9.5.patch";
                   # sha256 = lib.fakeSha256;
-                  hash = "sha256-I25F7uHESUsMDZFYTv8/56eR8QwelIPpABRXTgvszQI=";
+                  hash = "sha256-LRfb4heZlAUKiXl/hC/HgoqeGMxCt8ruBYZUrbzSH+Y=";
                 };
 
                 patches = (oldAttrs.patches or [ ]) ++ [ advcpmv-patch ];
