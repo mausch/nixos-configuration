@@ -407,7 +407,8 @@ fonts = {
   networking.extraHosts = builtins.readFile ./extraHosts;
   security.pki.certificates = private.certificates;
 
-  services.automatic-timezoned.enable = true;
+  # services.automatic-timezoned.enable = true;
+  time.timeZone = "Europe/London";
 
   systemd.services.sshfs-oracle = {
     description = "SSHFS oracle";
