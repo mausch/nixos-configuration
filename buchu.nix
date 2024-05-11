@@ -178,36 +178,36 @@ common.recursiveMerge [
 
   programs.ssh.extraConfig = common.sshExtraConfig { inherit private; };
 
-  systemd.services.sshfs-oracle = {
-    description = "SSHFS oracle";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Restart = "always";
-      StartLimitIntervalSec = 0;
-    };
-    script = ''
-      mkdir -p /mnt/sshfs-oracle || true
-      ${pkgs.fuse}/bin/fusermount -uz /mnt/sshfs-oracle || true
-      ${pkgs.util-linux}/bin/umount -f /mnt/sshfs-oracle || true
-      ${pkgs.sshfs}/bin/sshfs -f -o allow_other oracle:/ /mnt/sshfs-oracle
-    '';
-  };
+#  systemd.services.sshfs-oracle = {
+#    description = "SSHFS oracle";
+#    wantedBy = [ "multi-user.target" ];
+#    serviceConfig = {
+#      Restart = "always";
+#      StartLimitIntervalSec = 0;
+#    };
+#    script = ''
+#      mkdir -p /mnt/sshfs-oracle || true
+#      ${pkgs.fuse}/bin/fusermount -uz /mnt/sshfs-oracle || true
+#      ${pkgs.util-linux}/bin/umount -f /mnt/sshfs-oracle || true
+#      ${pkgs.sshfs}/bin/sshfs -f -o allow_other oracle:/ /mnt/sshfs-oracle
+#    '';
+#  };
 
-  systemd.services.ssh-tunnel = {
-    description = "SSH tunnel";
-    after = [ "tailscaled.service" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Restart = "always";
-      StartLimitIntervalSec = 0;
-    };
-    script = ''
-      ${pkgs.openssh}/bin/ssh -vNT \
-        -L 0.0.0.0:32402:localhost:32400 \
-        -i /home/nixos/ssh-oracle.key \
-        root@oracle
-    '';
-  };
+#  systemd.services.ssh-tunnel = {
+#    description = "SSH tunnel";
+#    after = [ "tailscaled.service" ];
+#    wantedBy = [ "multi-user.target" ];
+#    serviceConfig = {
+#      Restart = "always";
+#      StartLimitIntervalSec = 0;
+#    };
+#    script = ''
+#      ${pkgs.openssh}/bin/ssh -vNT \
+#        -L 0.0.0.0:32402:localhost:32400 \
+#        -i /home/nixos/ssh-oracle.key \
+#        root@oracle
+#    '';
+#  };
 
   virtualisation.docker = {
     enable = true;
