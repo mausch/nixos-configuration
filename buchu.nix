@@ -5,6 +5,10 @@ let
     inherit pkgs;
     inherit lib;
   };
+  common-unstable = import ./common.nix {
+    inherit lib;
+    pkgs = pkgs-unstable;
+  };
   homeassistant = import ./home-assistant.nix {
     inherit system;
   };
@@ -138,7 +142,7 @@ common.recursiveMerge [
 
   nix = common.nixConfig { inherit private; };
 
-  environment.systemPackages = common.packages-cli ++ (with pkgs; [
+  environment.systemPackages = common-unstable.packages-cli ++ (with pkgs; [
     kodi
     ntfs3g
   ]);
