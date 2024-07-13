@@ -23,7 +23,7 @@ common.recursiveMerge [
       # ./dhcp-server.nix
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages_5_10;
+  # boot.kernelPackages = pkgs.linuxPackages_5_10;
   boot.supportedFilesystems = [ "ntfs" ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
