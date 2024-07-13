@@ -40,7 +40,7 @@
     enable = true;
     driSupport32Bit = true;
     package = (pkgs.mesa.override {
-      galliumDrivers = [ "nouveau" "virgl" "swrast" "iris" ];
+      galliumDrivers = [ "i915" "virgl" "swrast" "iris" ];
     }).drivers;
     extraPackages = with pkgs; [
       vaapiIntel
