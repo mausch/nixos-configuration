@@ -96,7 +96,7 @@ rec {
      (chromium.override { commandLineArgs = "--enable-features=VaapiVideoDecoder"; })
      meld
      spotify
-     dbeaver
+     dbeaver-bin
      # postman
      vlc
      krusader
