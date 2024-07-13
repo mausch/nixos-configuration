@@ -62,7 +62,7 @@ rec {
      nfs-utils
      awscli2
      kubernetes
-     telepresence
+     # telepresence
      nil
      rclone
 
