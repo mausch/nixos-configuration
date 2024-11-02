@@ -376,7 +376,7 @@ fonts = {
 
   virtualisation.docker = {
     enable = true;
-    package = pkgs-unstable.docker_24;
+    package = pkgs-unstable.docker;
     autoPrune.enable = false;
 #    extraOptions = "--host tcp://0.0.0.0:2375";
     listenOptions = [
