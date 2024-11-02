@@ -131,7 +131,7 @@ fonts = {
   environment.systemPackages = common-unstable.packages ++ (with pkgs;
   [
      tailscale
-     pkgs-unstable.ollama
+     # pkgs-unstable.ollama
 
      # gui tools
      gmtp

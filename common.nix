@@ -22,7 +22,7 @@ rec {
      cifs-utils
      iptables
      killall
-     nix-du
+     # nix-du
      nix-prefetch-git
      tmux
      wget
@@ -60,7 +60,7 @@ rec {
      cpulimit
      coreutils-full
      nfs-utils
-     awscli2
+     # awscli2
      kubernetes
      # telepresence
      nil
