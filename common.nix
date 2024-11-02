@@ -105,7 +105,6 @@ rec {
      peek
      # shutter
      nomacs
-     leafpad
 
      (dotnetCorePackages.combinePackages [
         dotnetCorePackages.sdk_6_0
