@@ -33,7 +33,7 @@
   zramSwap = {
     enable = true;
     algorithm = "zstd";
-    memoryPercent = 10;
+    memoryPercent = 50;
   };
 
   hardware.opengl = {
