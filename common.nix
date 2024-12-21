@@ -107,8 +107,6 @@ rec {
      nomacs
 
      (dotnetCorePackages.combinePackages [
-        dotnetCorePackages.sdk_6_0
-        dotnetCorePackages.sdk_7_0
         dotnetCorePackages.sdk_8_0
      ])
 
