@@ -156,8 +156,9 @@ rec {
 
       Host buchu
         HostName 192.168.1.190
-        User mauricio
-        IdentityFile /home/mauricio/.ssh/id_rsa
+        User root
+        # IdentityFile /home/mauricio/.ssh/id_rsa
+        IdentityFile /home/mauricio/.ssh/id_ed25519
         StrictHostKeyChecking no
         ServerAliveInterval 240
 
