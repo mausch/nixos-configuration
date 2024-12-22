@@ -187,6 +187,7 @@ fonts = {
      OVMFFull
      # pkgsPersonal.ilspy
      moonlight-qt
+     keepassxc
    ]);
 
    environment.variables = {
