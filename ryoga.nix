@@ -302,16 +302,23 @@ fonts = {
   xdg.portal.enable = true;
   # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
+  services.libinput = {
+    enable = true;
+    touchpad.naturalScrolling = false;
+  };
+
+  services.displayManager = {
+    defaultSession = "none+i3";
+    # defaultSession = "plasma";
+  };
+
 
   services.xserver = {
     enable = true;
-    layout = "us";
-    libinput.enable = true;
-    libinput.touchpad.naturalScrolling = false;
+    xkb.layout = "us";
     synaptics.minSpeed = "2.5";
+
     displayManager = {
-      defaultSession = "none+i3";
-      # defaultSession = "plasma";
       sessionCommands = ''
         ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
           UXTerm*selectToClipboard: true
