@@ -18,7 +18,7 @@ rec {
 
   packages-cli = with pkgs; [
      rage
-     wol
+     # wol
      cifs-utils
      iptables
      killall
