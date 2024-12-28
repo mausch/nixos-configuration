@@ -5,9 +5,9 @@
 {
   services.ollama = {
     enable = true;
-    listenAddress = "0.0.0.0:11111";
+    host = "0.0.0.0";
+    port = 11111;
     package = pkgs.ollama;
-    sandbox = false;
     models = models-path;
   };
 

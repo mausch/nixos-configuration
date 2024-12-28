@@ -95,7 +95,7 @@ fonts = {
     corefonts
     nerdfonts
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
     fira-code
@@ -134,7 +134,7 @@ fonts = {
      # pkgs-unstable.ollama
 
      # gui tools
-     gmtp
+     # gmtp
      xorg.xhost
      intel-gpu-tools
      pamixer
@@ -271,15 +271,13 @@ fonts = {
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  hardware.pulseaudio = {
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
     enable = true;
-    support32Bit = true;
-#     configFile = pkgs.writeText "default.pa" ''
-#         load-module module-bluetooth-policy
-#         load-module module-bluetooth-discover
-#     '';
-#    extraModules = [ pkgs.pulseaudio-modules-bt ];
-    package = pkgs.pulseaudioFull;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
 
 
