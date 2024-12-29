@@ -124,8 +124,8 @@ rec {
           {
             name = "vscode-nushell-lang";
             publisher = "TheNuProjectContributors";
-            version = "1.9.0";
-            sha256 = "sha256-E9CK/GChd/yZT+P3ttROjL2jHtKPJ0KZzc32/nbuE4w=";
+            version = "1.10.0";
+            sha256 = "sha256-AfClskNZwQIC67VrM8XKxF6nIbXPp576CRmls0WCKwU=";
           }
         ]
       );
