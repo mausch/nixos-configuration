@@ -66,27 +66,29 @@ rec {
      nil
      rclone
 
-     ((nnn.override { withNerdIcons = true; }).overrideAttrs(oldAttrs: {
-        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.makeWrapper ];
-        postInstall = ''
-          ${oldAttrs.postInstall or ""}
+     nnn
+     # patch is broken
+    #  ((nnn.override { withNerdIcons = true; }).overrideAttrs(oldAttrs: {
+    #     nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.makeWrapper ];
+    #     postInstall = ''
+    #       ${oldAttrs.postInstall or ""}
 
-          wrapProgram $out/bin/nnn \
-            --prefix PATH : "${lib.makeBinPath [
-              (coreutils.overrideAttrs (oldAttrs: rec {
-                advcpmv-patch = fetchpatch {
-                  url = "https://raw.githubusercontent.com/jarun/advcpmv/master/advcpmv-0.9-9.5.patch";
-                  # sha256 = lib.fakeSha256;
-                  hash = "sha256-LRfb4heZlAUKiXl/hC/HgoqeGMxCt8ruBYZUrbzSH+Y=";
-                };
+    #       wrapProgram $out/bin/nnn \
+    #         --prefix PATH : "${lib.makeBinPath [
+    #           (coreutils.overrideAttrs (oldAttrs: rec {
+    #             advcpmv-patch = fetchpatch {
+    #               url = "https://raw.githubusercontent.com/jarun/advcpmv/master/advcpmv-0.9-9.6.patch";
+    #               sha256 = lib.fakeSha256;
+    #               # hash = "sha256-LRfb4heZlAUKiXl/hC/HgoqeGMxCt8ruBYZUrbzSH+Y=";
+    #             };
 
-                patches = (oldAttrs.patches or [ ]) ++ [ advcpmv-patch ];
-              }))
-            ]}" \
-            --prefix NNN_COLORS : "1234" \
-            --add-flags "-d -Q"
-        '';
-     }))
+    #             patches = (oldAttrs.patches or [ ]) ++ [ advcpmv-patch ];
+    #           }))
+    #         ]}" \
+    #         --prefix NNN_COLORS : "1234" \
+    #         --add-flags "-d -Q"
+    #     '';
+    #  }))
      aichat
      code-cursor
   ];
