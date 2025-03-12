@@ -36,9 +36,9 @@
     memoryPercent = 50;
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
     package = (pkgs.mesa.override {
       galliumDrivers = [ "i915" "virgl" "swrast" "iris" ];
     }).drivers;
