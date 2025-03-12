@@ -87,6 +87,8 @@ rec {
             --add-flags "-d -Q"
         '';
      }))
+     aichat
+     code-cursor
   ];
 
   packages-gui = with pkgs; [
@@ -118,6 +120,9 @@ rec {
         ms-vscode-remote.remote-containers
         ms-vscode-remote.remote-ssh
         vscode-extensions.ms-dotnettools.csdevkit
+        # continue.continue
+        saoudrizwan.claude-dev
+        github.copilot
         # thenuprojectcontributors.vscode-nushell-lang
        ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
