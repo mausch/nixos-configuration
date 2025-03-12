@@ -102,7 +102,7 @@ rec {
      # postman
      vlc
      krusader
-     dolphin
+     kdePackages.dolphin
      plasma5Packages.kio-extras
      peek
      # shutter
