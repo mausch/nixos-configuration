@@ -123,7 +123,7 @@ rec {
         ms-vscode-remote.remote-ssh
         vscode-extensions.ms-dotnettools.csdevkit
         # continue.continue
-        saoudrizwan.claude-dev
+        # saoudrizwan.claude-dev
         github.copilot
         # rooveterinaryinc.roo-cline
         # thenuprojectcontributors.vscode-nushell-lang
@@ -138,9 +138,15 @@ rec {
           {
             publisher = "RooVeterinaryInc";
             name = "roo-cline";
-            version = "3.8.6";
-            hash = "sha256-t3QUqe0qYizrJQcsEmYYmNYS/cpYiHQXJHtzHk9MGS8=";
-          }          
+            version = "3.10.5";
+            hash = "sha256-7A8BQHUu7CYA28fHv68Zvf6zhlJwwXZaNVLb+/cBAIg=";
+          }
+          {
+            name = "claude-dev";
+            publisher = "saoudrizwan";
+            version = "3.8.4";
+            hash = "sha256-Ona7JntYaHbh7/1Q3Y+7UxmI+X0H93Y/cIW73DXxA1M=";
+          }
         ]
       );
      })
