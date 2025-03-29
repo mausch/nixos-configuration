@@ -125,6 +125,7 @@ rec {
         # continue.continue
         saoudrizwan.claude-dev
         github.copilot
+        # rooveterinaryinc.roo-cline
         # thenuprojectcontributors.vscode-nushell-lang
        ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
@@ -134,6 +135,12 @@ rec {
             version = "1.10.0";
             sha256 = "sha256-AfClskNZwQIC67VrM8XKxF6nIbXPp576CRmls0WCKwU=";
           }
+          {
+            publisher = "RooVeterinaryInc";
+            name = "roo-cline";
+            version = "3.8.6";
+            hash = "sha256-t3QUqe0qYizrJQcsEmYYmNYS/cpYiHQXJHtzHk9MGS8=";
+          }          
         ]
       );
      })
