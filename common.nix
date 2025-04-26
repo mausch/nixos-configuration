@@ -145,8 +145,8 @@ rec {
           {
             name = "claude-dev";
             publisher = "saoudrizwan";
-            version = "3.12.0";
-            hash = "sha256-1O46MGp8MG+zBYNt6doKflR9lhjJ6lDuJqUpEDb3Lmo=";
+            version = "3.13.1";
+            hash = "sha256-uN7TfvupqMsYg5hXEvTQ2HhD+uZU4b4fVsEf6biR2Ms=";
           }
         ]
       );
