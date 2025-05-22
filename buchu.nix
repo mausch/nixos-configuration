@@ -220,7 +220,7 @@ common.recursiveMerge [
   virtualisation.oci-containers.backend = "docker";
 
   virtualisation.oci-containers.containers.filebrowser = {
-    image = "filebrowser/filebrowser:v2.31.2-s6";
+    image = "filebrowser/filebrowser:v2.32.0-s6";
     volumes = [
       "/:/srv"
       "/var/run/filebrowser.db:/database.db"
