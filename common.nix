@@ -139,14 +139,14 @@ rec {
           {
             publisher = "RooVeterinaryInc";
             name = "roo-cline";
-            version = "3.10.5";
-            hash = "sha256-7A8BQHUu7CYA28fHv68Zvf6zhlJwwXZaNVLb+/cBAIg=";
+            version = "3.19.3";
+            hash = "sha256-7GZD7oCrkGcG7B/pgXK92hL0QyyodmqyxOcRhTt5LMs=";
           }
           {
             name = "claude-dev";
             publisher = "saoudrizwan";
-            version = "3.13.1";
-            hash = "sha256-uN7TfvupqMsYg5hXEvTQ2HhD+uZU4b4fVsEf6biR2Ms=";
+            version = "3.17.9";
+            hash = "sha256-y3bFtMe5vZrO3DFb31KDvkzjD2jM76wK89mKhgJXC70=";
           }
         ]
       );
@@ -217,5 +217,5 @@ rec {
         # ];
       };
 
-    synergy-server = "192.168.1.93";
+    synergy-server = "192.168.1.89";
 }
