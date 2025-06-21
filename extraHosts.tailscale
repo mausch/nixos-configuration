@@ -9,5 +9,5 @@
 100.93.148.16    kubernetes.default.svc.cluster.local
 100.93.148.16    metabase-local.elevatedirect.com
 100.93.148.16    minio-local.elevatedirect.com
-100.93.148.16    local.elevatedirect.com
+# 100.93.148.16    local.elevatedirect.com
 
