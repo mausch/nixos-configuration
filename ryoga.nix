@@ -439,6 +439,8 @@ fonts = {
 
   systemd.services.sshfs-buchu = {
     description = "SSHFS buchu";
+    requires = [ "wpa_supplicant.service" ];
+    after = [ "wpa_supplicant.service" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Restart = "always";
