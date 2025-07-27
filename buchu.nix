@@ -246,6 +246,7 @@ common.recursiveMerge [
     enable = true;
     settings = {
       download-dir = "/run/media/mauricio/12TB/downloads";
+      incomplete-dir = "/run/media/mauricio/12TB/incomplete";
       rpc-bind-address = "0.0.0.0";
       rpc-host-whitelist-enabled = false;
       rpc-whitelist-enabled = false;
