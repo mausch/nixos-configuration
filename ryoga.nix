@@ -496,7 +496,7 @@ fonts = {
       Restart = "always";
       ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /mnt/gdrive || true";
       ExecStart = ''
-        ${pkgs.rclone}/bin/rclone mount \
+        ${pkgs-unstable.rclone}/bin/rclone mount \
           --config /root/.config/rclone/rclone.conf \
           --allow-other \
           gdrive:/ /mnt/gdrive
@@ -514,7 +514,7 @@ fonts = {
       Restart = "always";
       ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /mnt/dropbox || true";
       ExecStart = ''
-        ${pkgs.rclone}/bin/rclone mount \
+        ${pkgs-unstable.rclone}/bin/rclone mount \
           --config /root/.config/rclone/rclone.conf \
           --allow-other \
           dropbox:/ /mnt/dropbox
@@ -532,7 +532,7 @@ fonts = {
       Restart = "always";
       ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /mnt/onedrive || true";
       ExecStart = ''
-        ${pkgs.rclone}/bin/rclone mount \
+        ${pkgs-unstable.rclone}/bin/rclone mount \
           --config /root/.config/rclone/rclone.conf \
           --allow-other \
           onedrive:/ /mnt/onedrive
