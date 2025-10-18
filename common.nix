@@ -97,7 +97,7 @@ rec {
   packages-gui = with pkgs; [
 
      remmina
-     synergy
+     # synergy
      (chromium.override { commandLineArgs = "--enable-features=VaapiVideoDecoder"; })
      meld
      spotify
