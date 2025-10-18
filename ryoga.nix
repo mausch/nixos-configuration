@@ -67,7 +67,7 @@ common.recursiveMerge [
     inputMethod = {
       type = "ibus";
       enable = true;
-      ibus.engines = with pkgs.ibus-engines; [ table table-others ];
+      ibus.engines = with pkgs.ibus-engines; [ table table-others ]; # https://github.com/NixOS/nixpkgs/issues/408662
     };
   };
 
@@ -94,7 +94,6 @@ fonts = {
 
   packages = with pkgs; [
     corefonts
-    nerdfonts
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
@@ -113,7 +112,7 @@ fonts = {
     dejavu_fonts
     freefont_ttf
     # vistafonts
-  ];
+  ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   fontconfig = {
     defaultFonts = {
@@ -152,9 +151,8 @@ fonts = {
      arc-icon-theme
      gtk-engine-murrine
      gtk_engines
-     kde-gtk-config
-     breeze-gtk
-     breeze-qt5
+     kdePackages.kde-gtk-config
+     kdePackages.breeze-gtk
      lxappearance
 
      # gui apps
@@ -167,15 +165,15 @@ fonts = {
      steam
      # aws-workspaces
      lutris
-     (retroarch.override {
-       cores = [
-         libretro.dosbox
-         libretro.mesen
-         libretro.snes9x
-         libretro.mupen64plus
-         libretro.mame2003
-       ];
-     })
+    #  (retroarch.override {
+    #    cores = [
+    #      libretro.dosbox
+    #      libretro.mesen
+    #      libretro.snes9x
+    #      libretro.mupen64plus
+    #      libretro.mame2003
+    #    ];
+    #  })
      kodi
      arduino
      pcmanfm
@@ -183,7 +181,7 @@ fonts = {
      scrcpy
      android-tools
 
-     pianoteq.stage-6
+     # pianoteq.stage_6
 
      OVMFFull
      # pkgsPersonal.ilspy
@@ -221,7 +219,7 @@ fonts = {
   programs.ssh.extraConfig = common.sshExtraConfig { inherit private; };
 
   services.dbus = {
-    enable = true;
+    enable = true; # https://github.com/NixOS/nixpkgs/issues/408662
     packages = [
       pkgs.dconf
     ];
@@ -342,7 +340,7 @@ fonts = {
         ${pkgs.blueman}/bin/blueman-applet &
         ${pkgs.udiskie}/bin/udiskie -t &
         ${pkgs.pasystray}/bin/pasystray &
-        ${pkgs.ibus}/bin/ibus-daemon -d &
+        ${pkgs.ibus}/bin/ibus-daemon -d & # https://github.com/NixOS/nixpkgs/issues/408662
       '';
       extraPackages = with pkgs; [
         dmenu

@@ -194,7 +194,7 @@ rec {
     nixConfig = 
       { private ? {} }:
       {
-        package = pkgs.nixVersions.nix_2_22;
+        package = pkgs.nixVersions.nix_2_28;
         extraOptions = ''
           experimental-features = nix-command flakes
         '';
