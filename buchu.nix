@@ -151,7 +151,10 @@ common.recursiveMerge [
 
   services.openssh = {
     enable = true;
-    passwordAuthentication = true;
+    settings = {
+      PasswordAuthentication = true;
+      PermitRootLogin = "yes";
+    };
   };
   
   users.users.root.openssh.authorizedKeys.keys = [
