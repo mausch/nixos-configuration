@@ -133,20 +133,20 @@ rec {
           {
             name = "vscode-nushell-lang";
             publisher = "TheNuProjectContributors";
-            version = "1.10.0";
-            sha256 = "sha256-AfClskNZwQIC67VrM8XKxF6nIbXPp576CRmls0WCKwU=";
+            version = "2.0.4";
+            sha256 = "sha256-se39Zcy7WsTafe3m5QcWJkfRPXresNPLNiI8Oyx0G5I=";
           }
           {
             publisher = "RooVeterinaryInc";
             name = "roo-cline";
-            version = "3.19.3";
-            hash = "sha256-7GZD7oCrkGcG7B/pgXK92hL0QyyodmqyxOcRhTt5LMs=";
+            version = "3.34.1";
+            hash = "sha256-s3ZdCKBJuBxDHvhITfaIeywHroeuvWrJTPZBCGLAPWw=";
           }
           {
             name = "claude-dev";
             publisher = "saoudrizwan";
-            version = "3.32.6";
-            hash = "sha256-t075wSy6jyLvwPk2p0E33JkPTtt6Vy0plnlC5yHJw8k=";
+            version = "3.38.1";
+            hash = "sha256-j3hRW7l+PEq7DJbXENO5Plbg3SePZm1lX60Y4B5RvYs=";
           }
         ]
       );
