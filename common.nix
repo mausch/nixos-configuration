@@ -45,7 +45,7 @@ rec {
      smartmontools
      mkpasswd
      openssl
-     vim_configurable
+     vim-full
      unzip
      zip
      unrar
