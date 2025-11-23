@@ -148,6 +148,12 @@ rec {
             version = "3.38.1";
             hash = "sha256-j3hRW7l+PEq7DJbXENO5Plbg3SePZm1lX60Y4B5RvYs=";
           }
+          {
+            name = "Kilo-Code";
+            publisher = "kilocode";
+            version = "4.121.2";
+            hash = "sha256-pTCcZ+295f/I/sLileXYKtTQ2m11lR4RYhYoplk8Ing=";
+          }
         ]
       );
      })
