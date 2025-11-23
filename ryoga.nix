@@ -112,6 +112,7 @@ fonts = {
     dejavu_fonts
     freefont_ttf
     # vistafonts
+    weston
   ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   fontconfig = {
@@ -391,6 +392,7 @@ fonts = {
     {"experimental": "enabled"}
   '';
 
+  virtualisation.waydroid.enable = true;
   virtualisation.lxd.enable = false;
   virtualisation.libvirtd = {
     enable = true;
