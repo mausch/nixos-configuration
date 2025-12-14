@@ -145,14 +145,14 @@ rec {
           {
             name = "claude-dev";
             publisher = "saoudrizwan";
-            version = "3.38.1";
-            hash = "sha256-j3hRW7l+PEq7DJbXENO5Plbg3SePZm1lX60Y4B5RvYs=";
+            version = "3.42.0";
+            hash = "sha256-QX+VDiCdN4Fm9uGVRN7ScBTA2n/xJvpfHxBzdfPCwyo=";
           }
           {
             name = "Kilo-Code";
             publisher = "kilocode";
-            version = "4.121.2";
-            hash = "sha256-pTCcZ+295f/I/sLileXYKtTQ2m11lR4RYhYoplk8Ing=";
+            version = "4.137.0";
+            hash = "sha256-grZJvmgwOpdBWJ1Dwq4G+4AuDfv7yesBvUE+KOJVxL4=";
           }
           {
             name = "gemini-cli-vscode-ide-companion";
