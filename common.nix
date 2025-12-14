@@ -154,6 +154,12 @@ rec {
             version = "4.121.2";
             hash = "sha256-pTCcZ+295f/I/sLileXYKtTQ2m11lR4RYhYoplk8Ing=";
           }
+          {
+            name = "gemini-cli-vscode-ide-companion";
+            publisher = "Google";
+            version = "0.20.0";
+            hash = "sha256-gJ7ghOOrk4kvzReqfB6ZRhFonOdpJXcPh7voBgCwqPg=";
+          }
         ]
       );
      })
