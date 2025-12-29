@@ -139,20 +139,20 @@ rec {
           {
             publisher = "RooVeterinaryInc";
             name = "roo-cline";
-            version = "3.34.1";
-            hash = "sha256-s3ZdCKBJuBxDHvhITfaIeywHroeuvWrJTPZBCGLAPWw=";
+            version = "3.38.0";
+            hash = "sha256-l4tKCqz7by4aN3UpsEdGvKcePzeXTfzHvaKrSy1uNhA=";
           }
           {
             name = "claude-dev";
             publisher = "saoudrizwan";
-            version = "3.42.0";
-            hash = "sha256-QX+VDiCdN4Fm9uGVRN7ScBTA2n/xJvpfHxBzdfPCwyo=";
+            version = "3.46.1";
+            hash = "sha256-jdDdKG6cMn6+FoIzvSWMalrLTzlWvxz9MYRE/tp72Z8=";
           }
           {
             name = "Kilo-Code";
             publisher = "kilocode";
-            version = "4.137.0";
-            hash = "sha256-grZJvmgwOpdBWJ1Dwq4G+4AuDfv7yesBvUE+KOJVxL4=";
+            version = "4.140.3";
+            hash = "sha256-kfCUYIE6GwTQqbY3EXc2YwUiqFxXba67xCRFUwDyOPc=";
           }
           {
             name = "gemini-cli-vscode-ide-companion";
