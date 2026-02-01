@@ -188,6 +188,8 @@ fonts = {
      # pkgsPersonal.ilspy
      moonlight-qt
      keepassxc
+
+     pkgs-unstable.antigravity
    ]);
 
    environment.variables = {
