@@ -175,12 +175,7 @@ fonts = {
     #      libretro.mame2003
     #    ];
     #  })
-     kodi
-     arduino
      pcmanfm
-     zoom-us
-     scrcpy
-     android-tools
 
      # pianoteq.stage_6
 
