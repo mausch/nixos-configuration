@@ -90,8 +90,6 @@ rec {
     #         --add-flags "-d -Q"
     #     '';
     #  }))
-     aichat
-     code-cursor
   ];
 
   packages-gui = with pkgs; [
