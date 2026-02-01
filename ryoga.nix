@@ -297,6 +297,8 @@ fonts = {
   xdg.portal.enable = true;
   # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
+  services.desktopManager.plasma6.enable = true;
+
   services.libinput = {
     enable = true;
     touchpad.naturalScrolling = false;
@@ -328,7 +330,6 @@ fonts = {
 
     desktopManager = {
       gnome.enable = false; # TLP conflicts (?)
-      plasma5.enable = true;
     };
 
     windowManager.i3 = {

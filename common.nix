@@ -104,7 +104,7 @@ rec {
      vlc
      krusader
      kdePackages.dolphin
-     # plasma5Packages.kio-extras
+     # plasma6Packages.kio-extras
      peek
      # shutter
      nomacs
