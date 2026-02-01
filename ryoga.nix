@@ -54,8 +54,6 @@ common.recursiveMerge [
 
   programs.nix-ld.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
-
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";

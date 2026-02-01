@@ -27,43 +27,49 @@
       nixosConfigurations = {
         RYOGA = lib.nixosSystem {
           modules = [
+            nixpkgs.nixosModules.readOnlyPkgs
             ./ryoga.nix
             hosts.nixosModule {
               networking.stevenBlackHosts.enable = true;
             }
+            {
+              nixpkgs.pkgs = systemPkgs "x86_64-linux" // nix-lang-server.packages;
+            }
           ];
-          specialArgs = rec {
+          specialArgs = {
             inherit private;
-            pkgs = systemPkgs system // nix-lang-server.packages;
-            pkgs-unstable = systemPkgsUnstable system;
+            pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             system = "x86_64-linux";
           };
-          system = "x86_64-linux";
         };
 
         buchu = lib.nixosSystem {
           modules = [
+            nixpkgs.nixosModules.readOnlyPkgs
             ./buchu.nix
+            {
+              nixpkgs.pkgs = systemPkgs "x86_64-linux";
+            }
           ];
-          specialArgs = rec {
+          specialArgs = {
             inherit private;
-            pkgs = systemPkgs system;
-            pkgs-unstable = systemPkgsUnstable system;
+            pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             system = "x86_64-linux";
           };
-          system = "x86_64-linux";
         };
 
         oracle = lib.nixosSystem {
           modules = [
+            nixpkgs.nixosModules.readOnlyPkgs
             ./oracle.nix
+            {
+              nixpkgs.pkgs = systemPkgs "aarch64-linux";
+            }
           ];
-          specialArgs = rec {
+          specialArgs = {
             inherit private;
-            pkgs = systemPkgs system;
             system = "aarch64-linux";
           };
-          system = "aarch64-linux";
         };
       };
       homeConfigurations = {

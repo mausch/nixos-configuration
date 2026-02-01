@@ -62,8 +62,6 @@ in
     enable = true;
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   services.tailscale.enable = true;
 
   services.transmission = {

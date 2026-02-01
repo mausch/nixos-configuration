@@ -139,8 +139,6 @@ common.recursiveMerge [
     ];
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   nix = common.nixConfig { inherit private; };
 
   environment.systemPackages = common-unstable.packages-cli ++ (with pkgs; [
