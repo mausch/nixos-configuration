@@ -69,30 +69,28 @@ common.recursiveMerge [
 #    };
   };
 
-  services.xserver.displayManager = {
-     defaultSession = "none+i3";
-      sessionCommands = ''
-        ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
-          UXTerm*selectToClipboard: true
-          UXTerm*background: black
-          UXTerm*foreground: white
-          UXTerm*renderFont: true
-          UXTerm*faceName: DejaVu Sans Mono
-          UXTerm*faceSize: 10
-        EOF
-      '';
+   services.displayManager = {
+      defaultSession = "none+i3";
   };
 
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.windowManager.i3 = {
-         enable = true;
-      configFile = "/etc/i3.conf";
-      extraSessionCommands = ''
-        ${pkgs.blueman}/bin/blueman-applet &
-        ${pkgs.udiskie}/bin/udiskie -t &
-        ${pkgs.pasystray}/bin/pasystray &
-        ${pkgs.ibus}/bin/ibus-daemon -d &
-      '';
+   services.xserver.desktopManager.gnome.enable = true;
+   services.xserver.windowManager.i3 = {
+          enable = true;
+       configFile = "/etc/i3.conf";
+       extraSessionCommands = ''
+         ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
+           UXTerm*selectToClipboard: true
+           UXTerm*background: black
+           UXTerm*foreground: white
+           UXTerm*renderFont: true
+           UXTerm*faceName: DejaVu Sans Mono
+           UXTerm*faceSize: 10
+         EOF
+         ${pkgs.blueman}/bin/blueman-applet &
+         ${pkgs.udiskie}/bin/udiskie -t &
+         ${pkgs.pasystray}/bin/pasystray &
+         ${pkgs.ibus}/bin/ibus-daemon -d &
+       '';
       extraPackages = with pkgs; [
         dmenu
         i3status
@@ -111,17 +109,19 @@ common.recursiveMerge [
     '';
   };
 
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
+    services.xserver = {
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+    };
 
   services.earlyoom.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  hardware.pulseaudio.enable = false;
+   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
