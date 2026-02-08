@@ -494,6 +494,8 @@ fonts = {
       ExecStart = ''
         ${pkgs-unstable.rclone}/bin/rclone mount \
           --config /root/.config/rclone/rclone.conf \
+          --vfs-cache-mode writes \
+          --umask 000 \
           --allow-other \
           gdrive:/ /mnt/gdrive
       '';
