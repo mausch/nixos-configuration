@@ -5,13 +5,14 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
     nix-lang-server.url = "github:oxalica/nil";
+    opencode.url = "github:anomalyco/opencode/v1.1.53";
     private = {
       url = "path:/home/mauricio/private";
       # flake = false;
     };
   };
 
-  outputs = { hosts, nixpkgs, nixpkgs-unstable, home-manager, nix-lang-server, private, self }:
+  outputs = { hosts, nixpkgs, nixpkgs-unstable, home-manager, nix-lang-server, opencode, private, self }:
     let
       systemPkgs = system: import nixpkgs {
         inherit system;
@@ -40,6 +41,7 @@
             inherit private;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             system = "x86_64-linux";
+            opencode = opencode;
           };
         };
 

@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, private, system, ... }:
+{ lib, config, pkgs, pkgs-unstable, opencode, private, system, ... }:
 
 let
   common = import ./common.nix {
@@ -414,6 +414,18 @@ fonts = {
 
   # services.automatic-timezoned.enable = true;
   time.timeZone = "Europe/London";
+
+   systemd.services.opencode-web = {
+     description = "opencode";
+     wantedBy = [ "multi-user.target" ];
+     serviceConfig = {
+       Restart = "always";
+       Type = "simple";
+       Environment = [ "PATH=/run/wrappers/bin:$PATH" ];
+     };
+     serviceConfig.ExecStart = ''${opencode.packages.${system}.default}/bin/opencode web --hostname 0.0.0.0 --port 4096'';
+   };
+
 
   systemd.services.sshfs-oracle = {
     description = "SSHFS oracle";
