@@ -213,6 +213,10 @@ common.recursiveMerge [
     enable = true;
   };
   services.prowlarr.enable = true;
+  services.immich = {
+    enable = true;
+    host = "0.0.0.0";
+  };
 
   virtualisation.oci-containers.backend = "docker";
 
