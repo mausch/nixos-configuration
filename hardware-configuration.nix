@@ -40,11 +40,11 @@
     enable = true;
     enable32Bit = true;
     package = (pkgs.mesa.override {
-      galliumDrivers = [ "i915" "virgl" "swrast" "iris" ];
+      galliumDrivers = [ "i915" "virgl" "iris" ];
     });
     extraPackages = with pkgs; [
-      vaapiIntel
-      vaapiVdpau
+      intel-vaapi-driver
+      libva-vdpau-driver
       libvdpau-va-gl
       intel-media-driver
     ];

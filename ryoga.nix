@@ -94,14 +94,14 @@ fonts = {
     corefonts
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     liberation_ttf
     fira-code
     fira-code-symbols
     # mplus-outline-fonts
     dina-font
     proggyfonts
-    ubuntu_font_family
+    ubuntu-classic
     jetbrains-mono
     powerline-fonts
     unifont
@@ -162,7 +162,7 @@ fonts = {
      exult
      scummvm
      steam
-     aws-workspaces
+     # aws-workspaces
      lutris
     #  (retroarch.override {
     #    cores = [
@@ -183,6 +183,7 @@ fonts = {
      keepassxc
 
      pkgs-unstable.antigravity
+     gh
    ]);
 
    environment.variables = {
@@ -389,11 +390,6 @@ fonts = {
   '';
 
   virtualisation.waydroid.enable = true;
-  virtualisation.lxd.enable = false;
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu.ovmf.enable = true;
-  };
 
   virtualisation.oci-containers.backend = "docker";
 
