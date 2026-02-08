@@ -409,16 +409,6 @@ fonts = {
   # services.automatic-timezoned.enable = true;
   time.timeZone = "Europe/London";
 
-   systemd.services.opencode-web = {
-     description = "opencode";
-     wantedBy = [ "multi-user.target" ];
-     serviceConfig = {
-       Restart = "always";
-       Type = "simple";
-       Environment = [ "PATH=/run/wrappers/bin:$PATH" ];
-     };
-     serviceConfig.ExecStart = ''${opencode.packages.${system}.default}/bin/opencode web --hostname 0.0.0.0 --port 4096'';
-   };
 
 
   systemd.services.sshfs-oracle = {
@@ -540,6 +530,8 @@ fonts = {
       ExecStop = "${pkgs.fuse}/bin/fusermount -uz /mnt/onedrive || true";
     };
   };
+
+  systemd.services.opencode = common.opencodeService { inherit opencode system; };
 
   services.avahi = {
     enable = true;

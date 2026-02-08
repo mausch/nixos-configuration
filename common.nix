@@ -230,4 +230,16 @@ rec {
       };
 
     synergy-server = "192.168.1.89";
+
+  opencodeService = { opencode, system }:
+    {
+      description = "opencode";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Restart = "always";
+        Type = "simple";
+        # Environment = [ "PATH=/run/wrappers/bin:$PATH" ];
+        ExecStart = ''${opencode.packages.${system}.default}/bin/opencode web --hostname 0.0.0.0 --port 4096'';
+      };
+    };
 }
