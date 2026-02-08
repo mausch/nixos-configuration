@@ -12,14 +12,9 @@ let
   homeassistant = import ./home-assistant.nix {
     inherit system;
   };
-  ollama = import ./ollama.nix {
-    pkgs = pkgs-unstable;
-    models-path = "/run/media/mauricio/12TB/models";
-  };
 in
 common.recursiveMerge [
   homeassistant
-  ollama
 {
   imports =
     [

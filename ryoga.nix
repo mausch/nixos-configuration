@@ -9,12 +9,8 @@ let
     pkgs = pkgs-unstable;
     inherit lib;
   };
-  ollama = import ./ollama.nix {
-    pkgs = pkgs-unstable;
-  };
 in
 common.recursiveMerge [
-  ollama
 {
   imports =
     [
@@ -130,8 +126,6 @@ fonts = {
   environment.systemPackages = common-unstable.packages ++ (with pkgs;
   [
      tailscale
-     # pkgs-unstable.ollama
-
      # gui tools
      # gmtp
      xorg.xhost
