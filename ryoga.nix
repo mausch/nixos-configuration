@@ -373,10 +373,9 @@ fonts = {
     enable = true;
     package = pkgs-unstable.docker;
     autoPrune.enable = false;
-#    extraOptions = "--host tcp://0.0.0.0:2375";
     listenOptions = [
-      "unix://var/run/docker.sock"
-      "tcp://0.0.0.0:2375"
+      "/var/run/docker.sock"
+      "0.0.0.0:2375"
     ];
   };
   environment.etc."docker/config.json".text = ''
