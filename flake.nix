@@ -3,7 +3,10 @@
     hosts.url = "github:StevenBlack/hosts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-lang-server.url = "github:oxalica/nil";
     opencode.url = "github:anomalyco/opencode/v1.1.53";
     private = {

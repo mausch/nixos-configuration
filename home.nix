@@ -16,7 +16,7 @@ in
 
 
   systemd.user = {
-    startServices = "legacy";
+    startServices = "sd-switch";
     services = {
       synergy-client =
         {
