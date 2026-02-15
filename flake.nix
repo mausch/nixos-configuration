@@ -8,7 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-lang-server.url = "github:oxalica/nil";
-    opencode.url = "github:anomalyco/opencode/v1.1.53";
+    opencode = {
+      url = "github:anomalyco/opencode/v1.2.4";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     private = {
       url = "path:/home/mauricio/private";
       # flake = false;
