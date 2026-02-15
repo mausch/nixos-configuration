@@ -79,10 +79,8 @@
       };
       homeConfigurations = {
         wsl = home-manager.lib.homeManagerConfiguration rec {
-          system = "x86_64-linux";
-          pkgs = systemPkgs system;
-          homeDirectory = "/home/mauricio";
-          username = "mauricio";
+          pkgs = systemPkgs "x86_64-linux";
+          extraSpecialArgs = { inherit opencode; system = "x86_64-linux"; };
           modules = [
             ./home.nix
           ];
@@ -92,6 +90,7 @@
           pkgs = systemPkgs "x86_64-linux";
           # homeDirectory = "/home/mauricio";
           # username = "mauricio";
+          extraSpecialArgs = { inherit opencode; system = "x86_64-linux"; };
           modules = [
             ./home.nix
           ];
