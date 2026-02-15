@@ -14,8 +14,25 @@ in
     longitude = "-0.07";
   };
 
-
   systemd.user.startServices = "sd-switch";
+
+  systemd.user.services.code-server = {
+    Unit = {
+      Description = "code-server";
+      After = [ "network-online.target" ];
+      Wants = [ "network-online.target" ];
+    };
+
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.code-server}/bin/code-server --bind-addr 0.0.0.0:4444 --auth none";
+      Restart = "always";
+    };
+  };
 
   systemd.user.services.opencode =
     let svc = common.opencodeService { inherit opencode system; };
