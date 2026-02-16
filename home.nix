@@ -43,6 +43,7 @@ in
         Type = svc.serviceConfig.Type;
         Restart = svc.serviceConfig.Restart;
         ExecStart = svc.serviceConfig.ExecStart;
+        Environment = "PATH=/home/mauricio/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
       };
       Install.WantedBy = svc.wantedBy;
     };
