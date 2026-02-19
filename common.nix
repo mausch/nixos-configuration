@@ -66,6 +66,7 @@ rec {
      # telepresence
      nil
      rclone
+     gh
 
      nnn
      # patch is broken

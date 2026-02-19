@@ -177,7 +177,6 @@ fonts = {
      keepassxc
 
      pkgs-unstable.antigravity
-     gh
    ]);
 
    environment.variables = {
