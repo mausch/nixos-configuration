@@ -2,6 +2,7 @@
 let common = import ./common.nix {
   inherit lib;
   inherit pkgs;
+  inherit opencode system;
 };
 in
 {

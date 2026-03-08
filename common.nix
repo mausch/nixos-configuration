@@ -1,4 +1,4 @@
-{ lib, pkgs }:
+{ lib, opencode, pkgs, system }:
 rec {
 
    # https://stackoverflow.com/a/54505212
@@ -67,6 +67,7 @@ rec {
      nil
      rclone
      gh
+     (opencode.packages.${system}.default)
 
      nnn
      # patch is broken
@@ -232,7 +233,7 @@ rec {
 
     synergy-server = "192.168.1.89";
 
-  opencodeService = { opencode, system }:
+  opencodeService =
     {
       description = "opencode";
       wantedBy = [ "multi-user.target" ];

@@ -3,11 +3,11 @@
 let
   common = import ./common.nix {
     inherit pkgs;
-    inherit lib;
+    inherit lib opencode system;
   };
   common-unstable = import ./common.nix {
     pkgs = pkgs-unstable;
-    inherit lib;
+    inherit lib opencode system;
   };
 in
 common.recursiveMerge [
@@ -529,7 +529,7 @@ fonts = {
     };
   };
 
-  systemd.services.opencode = common.opencodeService { inherit opencode system; };
+  systemd.services.opencode = common.opencodeService;
 
   services.avahi = {
     enable = true;

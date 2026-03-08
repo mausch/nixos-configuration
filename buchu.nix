@@ -1,12 +1,13 @@
-{ lib, config, pkgs, pkgs-unstable, private, system, ... }:
+{ lib, config, pkgs, pkgs-unstable, private, system, opencode, ... }:
 
 let
   common = import ./common.nix {
     inherit pkgs;
     inherit lib;
+    inherit opencode system;
   };
   common-unstable = import ./common.nix {
-    inherit lib;
+    inherit lib opencode system;
     pkgs = pkgs-unstable;
   };
   homeassistant = import ./home-assistant.nix {
