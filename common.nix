@@ -240,8 +240,9 @@ rec {
       serviceConfig = {
         Restart = "always";
         Type = "simple";
-        # Environment = [ "PATH=/run/wrappers/bin:$PATH" ];
+        Environment = [ "PATH=/run/current-system/sw/bin:/run/wrappers/bin:$PATH" ];
         ExecStart = ''${opencode.packages.${system}.default}/bin/opencode web --hostname 0.0.0.0 --port 4096'';
+        User = "mauricio";
       };
     };
 }
