@@ -3,10 +3,16 @@ let
   opencode-patched = (opencode.packages.${system}.default).overrideAttrs (old: {
     src = pkgs.applyPatches {
       src = old.src;
-      patches = [ (pkgs.fetchpatch {
-        url = "https://github.com/anomalyco/opencode/pull/18006.patch";
-        hash = "sha256-0wTXpphEBxC+GGGeb5BUIpOgsVlrVk0HQ0HXqaIyqvc=";
-      }) ];
+      patches = [
+        (pkgs.fetchpatch {
+          url = "https://github.com/anomalyco/opencode/pull/18006.patch";
+          hash = "sha256-A/Ayb9rdIeQZX7KxPYMMIMo4ERcI9XrEbLEkn7//Aq8=";
+        })
+        (pkgs.fetchpatch {
+          url = "https://github.com/anomalyco/opencode/pull/18126.patch";
+          hash = "sha256-Py2zpUoaRaNMwuU0D+wNH2RvlAnGsGmmfrqVpwHvUF8=";
+        })
+      ];
     };
   });
 in
