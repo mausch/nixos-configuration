@@ -1,4 +1,15 @@
 { lib, opencode, pkgs, system }:
+let
+  opencode-patched = (opencode.packages.${system}.default).overrideAttrs (old: {
+    src = pkgs.applyPatches {
+      src = old.src;
+      patches = [ (pkgs.fetchpatch {
+        url = "https://github.com/anomalyco/opencode/pull/18006.patch";
+        hash = "sha256-0wTXpphEBxC+GGGeb5BUIpOgsVlrVk0HQ0HXqaIyqvc=";
+      }) ];
+    };
+  });
+in
 rec {
 
    # https://stackoverflow.com/a/54505212
@@ -67,7 +78,7 @@ rec {
      nil
      rclone
      gh
-     (opencode.packages.${system}.default)
+     opencode-patched
 
      nnn
      # patch is broken
@@ -241,7 +252,7 @@ rec {
         Restart = "always";
         Type = "simple";
         Environment = [ "PATH=/run/current-system/sw/bin:/run/wrappers/bin:$PATH" ];
-        ExecStart = ''${opencode.packages.${system}.default}/bin/opencode web --hostname 0.0.0.0 --port 4096'';
+        ExecStart = ''${opencode-patched}/bin/opencode web --hostname 0.0.0.0 --port 4096'';
         User = "mauricio";
       };
     };
