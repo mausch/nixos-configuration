@@ -189,13 +189,6 @@ common.recursiveMerge [
     ];
   };
 
-  virtualisation.lxd.enable = false;
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu.ovmf.enable = true;
-  };
-
-
   services.transmission = {
     enable = true;
     settings = {
