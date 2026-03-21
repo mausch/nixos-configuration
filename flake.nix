@@ -60,7 +60,7 @@
             }
           ];
           specialArgs = {
-            inherit private;
+            inherit private opencode;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             system = "x86_64-linux";
           };
