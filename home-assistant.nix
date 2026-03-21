@@ -1,5 +1,7 @@
 { system }:
 {
+  users.users.zigbee2mqtt.extraGroups = [ "dialout" ];
+
   services.zigbee2mqtt = {
     enable = true;
     settings = {
@@ -23,10 +25,8 @@
 
         # Serial settings
         serial = {
-          # port = "/dev/ttyACM0";
           port = "/dev/ttyUSB0";
-          # disable LED of CC2531 USB sniffer
-          #disable_led = true;
+          adapter = "zstack";
         };
 
         # you own network key,
