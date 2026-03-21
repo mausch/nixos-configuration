@@ -191,6 +191,7 @@ common.recursiveMerge [
 
   services.transmission = {
     enable = true;
+    package = pkgs.transmission_4;
     settings = {
       download-dir = "/run/media/mauricio/12TB/downloads";
       incomplete-dir = "/run/media/mauricio/12TB/incomplete";
