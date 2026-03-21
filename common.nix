@@ -1,6 +1,18 @@
 { lib, opencode, pkgs, system }:
 let
-  opencode-patched = (opencode.packages.${system}.default).overrideAttrs (old: {
+  bun-baseline = pkgs.bun.overrideAttrs rec {
+    version = "1.3.10";
+    passthru.sources."x86_64-linux" = pkgs.fetchurl {
+      url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64-baseline.zip";
+      hash = "sha256-QSAajF7nSp3Lsc4loRBPH5KYOLV6hFqnjZg3mwznzeI=";
+    };
+    src = passthru.sources."x86_64-linux";
+  };
+  opencode-base = opencode.packages.${system}.default;
+  opencode-patched = (opencode-base.override {
+    bun = bun-baseline;
+    node_modules = opencode-base.node_modules.override { bun = bun-baseline; };
+  }).overrideAttrs (old: {
     src = pkgs.applyPatches {
       src = old.src;
       patches = [
