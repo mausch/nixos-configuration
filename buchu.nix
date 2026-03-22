@@ -212,7 +212,10 @@ common.recursiveMerge [
     host = "0.0.0.0";
   };
 
+  systemd.services.opencode = common.opencodeService;
+
   virtualisation.oci-containers.backend = "docker";
+
 
   virtualisation.oci-containers.containers.filebrowser = {
     image = "filebrowser/filebrowser:v2.32.0-s6";
