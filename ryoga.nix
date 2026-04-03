@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, opencode, private, system, ... }:
+{ lib, config, pkgs, pkgs-unstable, opencode, private, system, fprintd, ... }:
 
 let
   common = import ./common.nix {
@@ -388,7 +388,10 @@ fonts = {
   programs.virt-manager.enable = true;
 
   # does not work, see https://gitlab.freedesktop.org/libfprint/libfprint/issues/89
-#  services.fprintd.enable = true;
+  services.fprintd = {
+    enable = true;
+    package = fprintd.packages.${system}.default;
+  };
 #  security.pam.services.login.fprintAuth = true;
 #  security.pam.services.xscreensaver.fprintAuth = true;
 

@@ -16,9 +16,13 @@
       url = "path:/home/mauricio/private";
       # flake = false;
     };
+    fprintd = {
+      url = "path:/home/mauricio/prg/fprintd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { hosts, nixpkgs, nixpkgs-unstable, home-manager, nix-lang-server, opencode, private, self }:
+  outputs = { hosts, nixpkgs, nixpkgs-unstable, home-manager, nix-lang-server, opencode, private, fprintd, self }:
     let
       systemPkgs = system: import nixpkgs {
         inherit system;
@@ -44,7 +48,7 @@
             }
           ];
           specialArgs = {
-            inherit private;
+            inherit private fprintd;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             system = "x86_64-linux";
             opencode = opencode;
