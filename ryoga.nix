@@ -320,10 +320,6 @@ fonts = {
       '';
     };
 
-    desktopManager = {
-      gnome.enable = false; # TLP conflicts (?)
-    };
-
     windowManager.i3 = {
       enable = true;
       configFile = "/etc/i3.conf";
@@ -341,6 +337,8 @@ fonts = {
      ];
     };
   };
+
+  services.desktopManager.gnome.enable = false;
 
   services.compton = {
     enable = true;
