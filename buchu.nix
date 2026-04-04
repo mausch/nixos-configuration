@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, private, system, opencode, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, private, system, opencode, ... }:
 
 let
   common = import ./common.nix {
@@ -14,7 +14,7 @@ let
     inherit system;
   };
   ollama = import ./ollama.nix {
-    pkgs = pkgs-unstable;
+    pkgs = pkgs-ollama;
     models-path = "/run/media/mauricio/12TB/models";
   };
 in

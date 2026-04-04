@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, opencode, private, system, fprintd, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, opencode, private, system, fprintd, ... }:
 
 let
   common = import ./common.nix {
@@ -10,7 +10,7 @@ let
     inherit lib opencode system;
   };
   ollama = import ./ollama.nix {
-    pkgs = pkgs-unstable;
+    pkgs = pkgs-ollama;
   };
 in
 common.recursiveMerge [

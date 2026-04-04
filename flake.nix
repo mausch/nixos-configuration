@@ -3,6 +3,7 @@
     hosts.url = "github:StevenBlack/hosts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-ollama.url = "github:NixOS/nixpkgs/1266aa38aa83f9a7f266c205e2ea6db904525866";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,13 +23,17 @@
     };
   };
 
-  outputs = { hosts, nixpkgs, nixpkgs-unstable, home-manager, nix-lang-server, opencode, private, fprintd, self }:
+  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, home-manager, nix-lang-server, opencode, private, fprintd, self }:
     let
       systemPkgs = system: import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
       };
       systemPkgsUnstable = system: import nixpkgs-unstable {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      systemPkgsOllama = system: import nixpkgs-ollama {
         inherit system;
         config = { allowUnfree = true; };
       };
@@ -50,6 +55,7 @@
           specialArgs = {
             inherit private fprintd;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
+            pkgs-ollama = systemPkgsOllama "x86_64-linux";
             system = "x86_64-linux";
             opencode = opencode;
           };
@@ -66,6 +72,7 @@
           specialArgs = {
             inherit private opencode;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
+            pkgs-ollama = systemPkgsOllama "x86_64-linux";
             system = "x86_64-linux";
           };
         };
