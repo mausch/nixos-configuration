@@ -45,7 +45,9 @@ rec {
     in f [] attrList;
 
 
-  packages-cli = with pkgs; [
+   packages-cli = with pkgs; [
+     xclip
+     xsel
      rage
      # wol
      cifs-utils
