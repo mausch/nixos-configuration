@@ -1,10 +1,10 @@
 { lib, opencode, pkgs, system }:
 let
   bun-baseline = pkgs.bun.overrideAttrs rec {
-    version = "1.3.10";
+    version = "1.3.11";
     passthru.sources."x86_64-linux" = pkgs.fetchurl {
       url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64-baseline.zip";
-      hash = "sha256-QSAajF7nSp3Lsc4loRBPH5KYOLV6hFqnjZg3mwznzeI=";
+      hash = "sha256-q+NG9jQUVHzfazW3pkmkkMcouT0AYiYVaSORioTA5Zs=";
     };
     src = passthru.sources."x86_64-linux";
   };
@@ -18,11 +18,11 @@ let
       patches = [
         (pkgs.fetchpatch {
           url = "https://github.com/anomalyco/opencode/pull/18006.patch";
-          hash = "sha256-A/Ayb9rdIeQZX7KxPYMMIMo4ERcI9XrEbLEkn7//Aq8=";
+          hash = "sha256-PWEnSfiHJnkLv6sHkSDyl9GiS9iFxCQmFeu+stAvXJ8=";
         })
         (pkgs.fetchpatch {
-          url = "https://github.com/anomalyco/opencode/pull/18126.patch";
-          hash = "sha256-Py2zpUoaRaNMwuU0D+wNH2RvlAnGsGmmfrqVpwHvUF8=";
+          url = "https://github.com/mausch/opencode/compare/00fa68b3a70facfe942523d35e2ecbf8456f0d49...print-error.diff";
+          hash = "sha256-xqeWMnO61E23T9ZPhAGIxJm//nyRJmRX+YiL5XGCj2A=";
         })
       ];
     };
