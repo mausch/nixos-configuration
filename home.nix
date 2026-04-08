@@ -36,7 +36,7 @@ in
   };
 
   systemd.user.services.opencode =
-    let svc = common.opencodeService { inherit opencode system; };
+    let svc = common.opencodeService;
     in
     {
       Unit.Description = svc.description;
