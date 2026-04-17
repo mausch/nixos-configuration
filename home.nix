@@ -7,7 +7,12 @@ let common = import ./common.nix {
 in
 {
 
-  home.packages = common.packages ++ common.packages-gui;
+  home.packages = common.packages ++ (with pkgs; [
+    rootlesskit
+    slirp4netns
+    fuse-overlayfs
+  ]);
+  home.sessionVariables.KUBECONFIG = "$HOME/.kube/k3s.yaml";
 
   services.redshift = {
     enable = true;
@@ -48,6 +53,8 @@ in
       };
       Install.WantedBy = svc.wantedBy;
     };
+
+  systemd.user.services.k3s-rootless = common.k3sRootlessService;
 
   systemd.user.services.synergy-client = {
     Unit.Description = "Synergy client";

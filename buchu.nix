@@ -19,6 +19,7 @@ let
   };
 in
 common.recursiveMerge [
+  common.k3sNixos
   homeassistant
   ollama
 {
@@ -252,4 +253,3 @@ common.recursiveMerge [
 
 }
 ]
-

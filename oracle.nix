@@ -3,9 +3,13 @@ let
   common = import ./common.nix { 
     inherit pkgs; 
     inherit lib;
+    opencode = null;
+    system = system;
   };
 
 in
+common.recursiveMerge [
+  common.k3sNixos
 {
   disabledModules = [
   ];
@@ -86,3 +90,4 @@ in
   # services.nzbget.enable = true;
   # services.jackett.enable = true;
 }
+]

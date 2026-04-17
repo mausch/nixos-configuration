@@ -14,6 +14,7 @@ let
   };
 in
 common.recursiveMerge [
+  common.k3sNixos
   ollama
 {
   imports =

@@ -1,4 +1,4 @@
-{ lib, opencode, pkgs, system }:
+{ lib, opencode ? null, pkgs, system ? pkgs.system }:
 let
   bun-baseline = pkgs.bun.overrideAttrs rec {
     version = "1.3.11";
@@ -8,8 +8,8 @@ let
     };
     src = passthru.sources."x86_64-linux";
   };
-  opencode-base = opencode.packages.${system}.default;
-  opencode-patched = (opencode-base.override {
+  opencode-base = if opencode == null then null else opencode.packages.${system}.default;
+  opencode-patched = if opencode == null then null else (opencode-base.override {
     bun = bun-baseline;
     node_modules = opencode-base.node_modules.override { bun = bun-baseline; };
   }).overrideAttrs (old: {
@@ -85,8 +85,9 @@ rec {
      mc
      screen
      docker-compose
-     gitFull
-     lazygit
+      k3s
+      gitFull
+      lazygit
      jq
      cpulimit
      coreutils-full
@@ -97,10 +98,9 @@ rec {
      # telepresence
      nil
      rclone
-     gh
-     opencode-patched
+      gh
 
-     nnn
+      nnn
      # patch is broken
     #  ((nnn.override { withNerdIcons = true; }).overrideAttrs(oldAttrs: {
     #     nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.makeWrapper ];
@@ -123,7 +123,7 @@ rec {
     #         --add-flags "-d -Q"
     #     '';
     #  }))
-  ];
+   ] ++ lib.optional (opencode != null) opencode-patched;
 
   packages-gui = with pkgs; [
 
@@ -276,4 +276,38 @@ rec {
         User = "mauricio";
       };
     };
+
+  k3sNixos = {
+    services.k3s = {
+      enable = true;
+      role = "server";
+      extraFlags = "--write-kubeconfig-mode 644";
+      gracefulNodeShutdown.enable = true;
+    };
+    environment.sessionVariables.KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
+  };
+
+  k3sRootlessService = {
+    Unit.Description = "k3s (Rootless)";
+    Service = {
+      Environment = [
+        "PATH=/home/mauricio/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        "K3S_KUBECONFIG_MODE=600"
+      ];
+      ExecStart = "${pkgs.k3s}/bin/k3s server --rootless --snapshotter=fuse-overlayfs";
+      ExecReload = "${pkgs.coreutils}/bin/kill -s HUP $MAINPID";
+      TimeoutSec = 0;
+      Restart = "always";
+      RestartSec = 2;
+      LimitNOFILE = "infinity";
+      LimitNPROC = "infinity";
+      LimitCORE = "infinity";
+      TasksMax = "infinity";
+      Delegate = true;
+      Type = "simple";
+      KillMode = "mixed";
+      AppArmorProfile = "unconfined";
+    };
+    Install.WantedBy = [ "default.target" ];
+  };
 }
