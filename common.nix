@@ -18,11 +18,11 @@ let
       patches = [
         (pkgs.fetchpatch {
           url = "https://github.com/anomalyco/opencode/pull/18006.patch";
-          hash = "sha256-pUCkLp/LXpUrdzXTy5kcVjpfBNwU9g1CLqvlgQ0erDk=";
+          hash = "sha256-qlWWNr4kHo1h4UgCLFhGvA/7dJC6aAsu7sSZgD6IAVI=";
         })
         (pkgs.fetchpatch {
-          url = "https://github.com/mausch/opencode/compare/00fa68b3a70facfe942523d35e2ecbf8456f0d49...print-error.diff";
-          hash = "sha256-xqeWMnO61E23T9ZPhAGIxJm//nyRJmRX+YiL5XGCj2A=";
+          url = "https://github.com/mausch/opencode/compare/803d9eb7ad5f4dfd832d7506a7cad83ded52253e...print-error.diff";
+          hash = "sha256-dmDRMjvbpZIpTDxjK5Y15/xbxGmUqtMcbOh4ciJuAj0=";
         })
       ];
     };
