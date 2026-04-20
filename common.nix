@@ -272,6 +272,7 @@ rec {
         Restart = "always";
         Type = "simple";
         Environment = [ "PATH=/run/current-system/sw/bin:/run/wrappers/bin:$PATH" ];
+        WorkingDirectory = "/home/mauricio/.local/share/opencode/server";
         ExecStart = ''${opencode-patched}/bin/opencode web --hostname 0.0.0.0 --port 4096'';
         User = "mauricio";
       };
