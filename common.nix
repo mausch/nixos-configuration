@@ -271,7 +271,7 @@ rec {
       serviceConfig = {
         Restart = "always";
         Type = "simple";
-        Environment = [ "PATH=/run/current-system/sw/bin:/run/wrappers/bin:$PATH" ];
+        Environment = [ "PATH=/run/current-system/sw/bin:/run/wrappers/bin:$PATH" "OPENCODE_DISABLE_AUTOUPDATE=true" ];
         WorkingDirectory = "/home/mauricio/.local/share/opencode/server";
         ExecStart = ''${opencode-patched}/bin/opencode web --hostname 0.0.0.0 --port 4096'';
         User = "mauricio";
@@ -285,7 +285,11 @@ rec {
       extraFlags = "--write-kubeconfig-mode 644";
       gracefulNodeShutdown.enable = true;
     };
-    environment.sessionVariables.KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
+    environment.sessionVariables = {
+      KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
+      NIXPKGS_ALLOW_UNFREE = "1";
+      OPENCODE_DISABLE_AUTOUPDATE = "true";
+    };
   };
 
   k3sRootlessService = {
