@@ -94,7 +94,7 @@
       homeConfigurations = {
         wsl = home-manager.lib.homeManagerConfiguration rec {
           pkgs = systemPkgs "x86_64-linux";
-          extraSpecialArgs = { inherit opencode; system = "x86_64-linux"; };
+          extraSpecialArgs = { inherit opencode; system = "x86_64-linux"; hostName = "dell-tower"; };
           modules = [
             ./home.nix
           ];
@@ -104,7 +104,7 @@
           pkgs = systemPkgs "x86_64-linux";
           # homeDirectory = "/home/mauricio";
           # username = "mauricio";
-          extraSpecialArgs = { inherit opencode; system = "x86_64-linux"; };
+          extraSpecialArgs = { inherit opencode; system = "x86_64-linux"; hostName = "dell-tower"; };
           modules = [
             ./home.nix
           ];

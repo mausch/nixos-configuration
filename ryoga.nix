@@ -20,6 +20,7 @@ common.recursiveMerge [
   imports =
     [
       ./hardware-configuration.nix
+      ./claude.nix
       # ./wifi-access-point.nix
       # ./dhcp-server.nix
     ];
@@ -371,6 +372,15 @@ fonts = {
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
+  services.claude-remote = {
+    enable = true;
+    user = "mauricio";
+    projects = [
+      "/home/mauricio/prg/elevate/elevate-app"
+      "/home/mauricio/prg/elevate/elevate-candidate-scoring"
+    ];
+  };
+
   system.stateVersion = "19.03"; # Did you read the comment?
 
   virtualisation.docker = {

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, opencode, system, ... }:
+{ config, pkgs, lib, opencode, system, hostName, ... }:
 let common = import ./common.nix {
   inherit lib;
   inherit pkgs;
@@ -6,6 +6,17 @@ let common = import ./common.nix {
 };
 in
 {
+  imports = [ ./claude-home.nix ];
+
+  services.claude-remote = {
+    enable = true;
+    user = "mauricio";
+    machineName = hostName;
+    projects = [
+      "/home/mauricio/prg/elevate/elevate-app"
+      "/home/mauricio/prg/elevate/elevate-candidate-scoring"
+    ];
+  };
 
   home.packages = common.packages ++ (with pkgs; [
     rootlesskit
