@@ -99,6 +99,7 @@ rec {
      nil
      rclone
      gh
+     claude-code
      nnn
      # patch is broken
     #  ((nnn.override { withNerdIcons = true; }).overrideAttrs(oldAttrs: {
