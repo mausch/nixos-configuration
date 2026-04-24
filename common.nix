@@ -85,9 +85,9 @@ rec {
      mc
      screen
      docker-compose
-      k3s
-      gitFull
-      lazygit
+     k3s
+     gitFull
+     lazygit
      jq
      cpulimit
      coreutils-full
@@ -98,9 +98,8 @@ rec {
      # telepresence
      nil
      rclone
-      gh
-
-      nnn
+     gh
+     nnn
      # patch is broken
     #  ((nnn.override { withNerdIcons = true; }).overrideAttrs(oldAttrs: {
     #     nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.makeWrapper ];
