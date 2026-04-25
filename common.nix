@@ -1,10 +1,10 @@
 { lib, opencode ? null, pkgs, system ? pkgs.system }:
 let
   bun-baseline = pkgs.bun.overrideAttrs rec {
-    version = "1.3.11";
+    version = "1.3.13";
     passthru.sources."x86_64-linux" = pkgs.fetchurl {
       url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64-baseline.zip";
-      hash = "sha256-q+NG9jQUVHzfazW3pkmkkMcouT0AYiYVaSORioTA5Zs=";
+      hash = "sha256-nYokKSpwaAkCBdqsCloiP19pc29Sh+N7+I07QDHtx1A=";
     };
     src = passthru.sources."x86_64-linux";
   };
@@ -17,15 +17,21 @@ let
       src = old.src;
       patches = [
         (pkgs.fetchpatch {
-          url = "https://github.com/anomalyco/opencode/pull/18006.patch";
-          hash = "sha256-qlWWNr4kHo1h4UgCLFhGvA/7dJC6aAsu7sSZgD6IAVI=";
+          url = "https://github.com/mausch/opencode/compare/da6683fedcbb57a36c4ba54ba5ad00dd8bc2da65...model-lookup-v1.14.24.diff";
+          hash = "sha256-uQjcotqqhtIZ2X33u+fA1UlM9nRKSreWreruqwWw10k=";
         })
         (pkgs.fetchpatch {
-          url = "https://github.com/mausch/opencode/compare/803d9eb7ad5f4dfd832d7506a7cad83ded52253e...print-error.diff";
-          hash = "sha256-dmDRMjvbpZIpTDxjK5Y15/xbxGmUqtMcbOh4ciJuAj0=";
+          url = "https://github.com/mausch/opencode/compare/da6683fedcbb57a36c4ba54ba5ad00dd8bc2da65...print-error-v1.14.24.diff";
+          hash = "sha256-YktZdqozV9fiZ5vsw9eBp6ERL/bb3I4vDkkqEXbAUoU=";
         })
       ];
     };
+    preBuild = (old.preBuild or "") + ''
+      substituteInPlace packages/opencode/src/cli/cmd/generate.ts \
+        --replace-fail 'const prettier = await import("prettier")' 'const prettier: any = { format: async (s: string) => s }' \
+        --replace-fail 'const babel = await import("prettier/plugins/babel")' 'const babel = {}' \
+        --replace-fail 'const estree = await import("prettier/plugins/estree")' 'const estree = {}'
+    '';
   });
 in
 rec {
