@@ -18,11 +18,11 @@ let
       patches = [
         (pkgs.fetchpatch {
           url = "https://github.com/mausch/opencode/compare/da6683fedcbb57a36c4ba54ba5ad00dd8bc2da65...model-lookup-v1.14.24.diff";
-          hash = "sha256-uQjcotqqhtIZ2X33u+fA1UlM9nRKSreWreruqwWw10k=";
+          hash = "sha256-mZpeOYcDGk4qQtKFo6ytGPEa+T/M/Wv9KbFuGzvKz4Q=";
         })
         (pkgs.fetchpatch {
           url = "https://github.com/mausch/opencode/compare/da6683fedcbb57a36c4ba54ba5ad00dd8bc2da65...print-error-v1.14.24.diff";
-          hash = "sha256-YktZdqozV9fiZ5vsw9eBp6ERL/bb3I4vDkkqEXbAUoU=";
+          hash = "sha256-dmDRMjvbpZIpTDxjK5Y15/xbxGmUqtMcbOh4ciJuAj0=";
         })
       ];
     };
