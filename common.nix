@@ -239,6 +239,13 @@ rec {
         IdentityFile /home/mauricio/.ssh/id_rsa
         StrictHostKeyChecking no
         ServerAliveInterval 240
+
+      Host dell-tower
+        HostName 192.168.1.235
+        User mauricio
+        IdentityFile /home/mauricio/.ssh/id_ed25519
+        StrictHostKeyChecking no
+        ServerAliveInterval 240
     '';
 
     nixConfig = 

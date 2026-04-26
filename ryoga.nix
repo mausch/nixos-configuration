@@ -457,6 +457,22 @@ fonts = {
     '';
   };
 
+  systemd.services.sshfs-dell-tower = {
+    description = "SSHFS dell-tower";
+    requires = [ "wpa_supplicant.service" ];
+    after = [ "wpa_supplicant.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Restart = "always";
+    };
+    script = ''
+      mkdir -p /mnt/sshfs-dell-tower || true
+      ${pkgs.fuse}/bin/fusermount -uz /mnt/sshfs-dell-tower || true
+      ${pkgs.util-linux}/bin/umount -f /mnt/sshfs-dell-tower || true
+      ${pkgs.sshfs}/bin/sshfs -f -o allow_other dell-tower:/ /mnt/sshfs-dell-tower
+    '';
+  };
+
   systemd.services.ssh-oracle = {
     description = "SSH oracle";
     requires = [ "tailscaled.service" ];
