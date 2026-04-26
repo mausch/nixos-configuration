@@ -27,7 +27,7 @@ in {
         Service = {
           Type = "simple";
           WorkingDirectory = path;
-          ExecStart = "${pkgs.claude-code}/bin/claude remote-control --name ${cfg.machineName}-${baseNameOf path}";
+          ExecStart = "${pkgs.claude-code}/bin/claude remote-control --permission-mode auto --name ${cfg.machineName}-${baseNameOf path}";
           Restart = "on-failure";
           RestartSec = 10;
           Environment = "PATH=/home/${cfg.user}/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:/run/wrappers/bin";
