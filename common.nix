@@ -99,8 +99,7 @@ rec {
      coreutils-full
      nfs-utils
      # awscli2
-     kubernetes
-     uv
+      uv
      # telepresence
      nil
      rclone
