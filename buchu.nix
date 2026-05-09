@@ -216,6 +216,7 @@ common.recursiveMerge [
   services.immich = {
     enable = true;
     host = "0.0.0.0";
+    mediaLocation = "/run/media/mauricio/12TB/immich";
   };
 
   systemd.services.opencode = common.opencodeService;
