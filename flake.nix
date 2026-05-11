@@ -21,9 +21,12 @@
       url = "path:/home/mauricio/prg/fprintd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    handy = {
+      url = "github:cjpais/Handy/v0.8.3";
+    };
   };
 
-  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, home-manager, nix-lang-server, opencode, private, fprintd, self }:
+  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, home-manager, nix-lang-server, opencode, private, fprintd, handy, self }:
     let
       systemPkgs = system: import nixpkgs {
         inherit system;
@@ -53,7 +56,7 @@
             }
           ];
           specialArgs = {
-            inherit private fprintd;
+            inherit private fprintd handy;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             pkgs-ollama = systemPkgsOllama "x86_64-linux";
             system = "x86_64-linux";

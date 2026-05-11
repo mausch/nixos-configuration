@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, opencode, private, system, fprintd, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, opencode, private, system, fprintd, handy, ... }:
 
 let
   common = import ./common.nix {
@@ -131,6 +131,7 @@ fonts = {
 
   environment.systemPackages = common-unstable.packages ++ (with pkgs;
   [
+     handy.packages.${system}.default
      tailscale
      # pkgs-unstable.ollama
 
