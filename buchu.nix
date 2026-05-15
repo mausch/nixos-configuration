@@ -44,6 +44,12 @@ common.recursiveMerge [
   networking.hostName = "buchu"; # Define your hostname.
   networking.networkmanager.enable = true;
 
+  fileSystems."/run/media/mauricio/12TB" = {
+    device = "/dev/disk/by-uuid/2964ED933E295A2C";
+    fsType = "ntfs3";
+    options = [ "rw" "uid=1000" "gid=100" "umask=0022" "nofail" ];
+  };
+
   time.timeZone = "Europe/London";
 
   i18n.defaultLocale = "en_GB.UTF-8";
@@ -208,9 +214,34 @@ common.recursiveMerge [
     downloadDirPermissions = "777";
   };
 
+  systemd.services.transmission = {
+    requires = [ "run-media-mauricio-12TB.mount" ];
+    after = [ "run-media-mauricio-12TB.mount" ];
+  };
+
   services.sonarr.enable = true;
+  systemd.services.sonarr = {
+    requires = [ "run-media-mauricio-12TB.mount" ];
+    after = [ "run-media-mauricio-12TB.mount" ];
+  };
   services.radarr = {
     enable = true;
+  };
+  systemd.services.radarr = {
+    requires = [ "run-media-mauricio-12TB.mount" ];
+    after = [ "run-media-mauricio-12TB.mount" ];
+  };
+  systemd.services.plex = {
+    requires = [ "run-media-mauricio-12TB.mount" ];
+    after = [ "run-media-mauricio-12TB.mount" ];
+  };
+  systemd.services.immich-server = {
+    requires = [ "run-media-mauricio-12TB.mount" ];
+    after = [ "run-media-mauricio-12TB.mount" ];
+  };
+  systemd.services.immich-machine-learning = {
+    requires = [ "run-media-mauricio-12TB.mount" ];
+    after = [ "run-media-mauricio-12TB.mount" ];
   };
   services.prowlarr.enable = true;
   services.immich = {
