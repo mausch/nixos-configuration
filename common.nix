@@ -17,11 +17,11 @@ let
       src = old.src;
       patches = [
         (pkgs.fetchpatch {
-          url = "https://github.com/mausch/opencode/compare/da6683fedcbb57a36c4ba54ba5ad00dd8bc2da65...model-lookup-v1.14.24.diff";
+          url = "https://github.com/mausch/opencode/commit/c365e3c2b237198907283b38905000391f513b52.patch";
           hash = "sha256-mZpeOYcDGk4qQtKFo6ytGPEa+T/M/Wv9KbFuGzvKz4Q=";
         })
         (pkgs.fetchpatch {
-          url = "https://github.com/mausch/opencode/compare/da6683fedcbb57a36c4ba54ba5ad00dd8bc2da65...print-error-v1.14.24.diff";
+          url = "https://github.com/mausch/opencode/commit/245fc3b85d6904c496c23bdba7b8538bf1f044ea.patch";
           hash = "sha256-dmDRMjvbpZIpTDxjK5Y15/xbxGmUqtMcbOh4ciJuAj0=";
         })
       ];
