@@ -17,12 +17,12 @@ let
       src = old.src;
       patches = [
         (pkgs.fetchpatch {
-          url = "https://github.com/mausch/opencode/commit/c365e3c2b237198907283b38905000391f513b52.patch";
-          hash = "sha256-mZpeOYcDGk4qQtKFo6ytGPEa+T/M/Wv9KbFuGzvKz4Q=";
+          url = "https://github.com/mausch/opencode/commit/a90be848321a07d1e34e01b6601555344d6a539d.patch";
+          hash = "sha256-uDsMPJgqrMWpod6wv5sFFiTd4wzP+M2Vu3I26imYbWo=";
         })
         (pkgs.fetchpatch {
-          url = "https://github.com/mausch/opencode/commit/245fc3b85d6904c496c23bdba7b8538bf1f044ea.patch";
-          hash = "sha256-dmDRMjvbpZIpTDxjK5Y15/xbxGmUqtMcbOh4ciJuAj0=";
+          url = "https://github.com/mausch/opencode/commit/415f09754a403fe52e57d9f014f88dabfff9e692.patch";
+          hash = "sha256-V6os47dRoCB3a/rT8wXyOCf5eFAj8gcRmdB7MSOy6W8=";
         })
       ];
     };
