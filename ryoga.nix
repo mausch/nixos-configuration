@@ -49,6 +49,26 @@ common.recursiveMerge [
   networking.hostName = "RYOGA";
   networking.enableIPv6 = false;
   networking.networkmanager.enable = true;
+  networking.networkmanager.ensureProfiles.profiles.tatiana = {
+    connection = {
+      id = "tatiana-B5";
+      type = "wifi";
+      autoconnect = true;
+      "interface-name" = "wlp0s20f3";
+    };
+    wifi = {
+      bssid = "D8:EC:5E:85:04:B5";
+      mode = "infrastructure";
+      ssid = "tatiana";
+    };
+    wifi-security = {
+      "auth-alg" = "open";
+      "key-mgmt" = "wpa-psk";
+      psk = private.ssidPassword;
+    };
+    ipv4.method = "auto";
+    ipv6.method = "auto";
+  };
   networking.firewall.enable = false;
   programs.nm-applet.enable = true;
   programs.xss-lock.enable = true;
