@@ -43,8 +43,20 @@ common.recursiveMerge [
 
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
-    options thinkpad_acpi fan_control=1
+    options thinkpad_acpi experimental=1 fan_control=1
   '';
+
+  services.thinkfan = {
+    enable = true;
+    levels = [
+      [ 0 0 38 ]
+      [ 1 36 42 ]
+      [ 3 40 46 ]
+      [ 5 44 50 ]
+      [ 6 48 54 ]
+      [ 7 52 32767 ]
+    ];
+  };
 
   networking.hostName = "RYOGA";
   networking.enableIPv6 = false;
