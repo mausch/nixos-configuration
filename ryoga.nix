@@ -49,6 +49,7 @@ common.recursiveMerge [
   networking.hostName = "RYOGA";
   networking.enableIPv6 = false;
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.powersave = false;
   networking.networkmanager.ensureProfiles.profiles.tatiana = {
     connection = {
       id = "tatiana-B5";
