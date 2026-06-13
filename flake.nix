@@ -1,7 +1,7 @@
 {
   inputs = {
     hosts.url = "github:StevenBlack/hosts";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-ollama.url = "github:NixOS/nixpkgs/1266aa38aa83f9a7f266c205e2ea6db904525866";
     home-manager = {
