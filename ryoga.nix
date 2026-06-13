@@ -67,6 +67,7 @@ common.recursiveMerge [
       id = "tatiana-B5";
       type = "wifi";
       autoconnect = true;
+      permissions = "";
       "interface-name" = "wlp0s20f3";
     };
     wifi = {
@@ -82,6 +83,7 @@ common.recursiveMerge [
     ipv4.method = "auto";
     ipv6.method = "auto";
   };
+
   networking.firewall.enable = false;
   programs.nm-applet.enable = true;
   programs.xss-lock.enable = true;
