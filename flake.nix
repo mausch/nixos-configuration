@@ -52,7 +52,9 @@
               networking.stevenBlackHosts.enable = true;
             }
             {
-              nixpkgs.pkgs = systemPkgs "x86_64-linux" // nix-lang-server.packages;
+              nixpkgs.pkgs = (systemPkgs "x86_64-linux") // {
+                nil = nix-lang-server.packages."x86_64-linux".nil;
+              };
             }
           ];
           specialArgs = {

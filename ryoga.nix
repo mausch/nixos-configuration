@@ -173,7 +173,7 @@ fonts = {
 
      # gui tools
      # gmtp
-     xorg.xhost
+     xhost
      intel-gpu-tools
      pamixer
      pavucontrol
@@ -267,7 +267,7 @@ fonts = {
 
   services.udev.extraRules =
   let
-    xinput = "DISPLAY=:0 XAUTHORITY=/home/mauricio/.Xauthority ${pkgs.xorg.xinput}/bin/xinput";
+    xinput = "DISPLAY=:0 XAUTHORITY=/home/mauricio/.Xauthority ${pkgs.xinput}/bin/xinput";
     getBuiltinKeyboard = pkgs.writeScript "get-builtin-keyboard" ''
       #!/usr/bin/env ${pkgs.bash}/bin/sh
       ${xinput} | ${pkgs.ripgrep}/bin/rg 'AT Translated' | ${pkgs.ripgrep}/bin/rg keyboard | ${pkgs.gawk}/bin/awk '{print $7}' | ${pkgs.coreutils}/bin/cut -d'=' -f2
@@ -319,8 +319,8 @@ fonts = {
     bindings = [
       { keys = [ 225 ]; events = [ "key" ]; command = "${pkgs.brightnessctl}/bin/brightnessctl set 10%+"; }
       { keys = [ 224 ]; events = [ "key" ]; command = "${pkgs.brightnessctl}/bin/brightnessctl set 10%-"; }
-      { keys = [ 29 56 106 ]; events = [ "key" ]; command = "${pkgs.xorg.xrandr}/bin/xrandr -o right"; }
-      { keys = [ 29 56 103 ]; events = [ "key" ]; command = "${pkgs.xorg.xrandr}/bin/xrandr -o normal"; }
+      { keys = [ 29 56 106 ]; events = [ "key" ]; command = "${pkgs.xrandr}/bin/xrandr -o right"; }
+      { keys = [ 29 56 103 ]; events = [ "key" ]; command = "${pkgs.xrandr}/bin/xrandr -o normal"; }
     ];
   };
 
@@ -352,7 +352,7 @@ fonts = {
 
     displayManager = {
       sessionCommands = ''
-        ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
+        ${pkgs.xrdb}/bin/xrdb -merge <<EOF
           UXTerm*selectToClipboard: true
           UXTerm*background: black
           UXTerm*foreground: white
