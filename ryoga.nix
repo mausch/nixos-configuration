@@ -544,6 +544,8 @@ fonts = {
 
   systemd.services.rclone-gdrive = {
     description = "rclone google drive";
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Environment = [ "PATH=/run/wrappers/bin:$PATH"];
@@ -564,6 +566,8 @@ fonts = {
 
   systemd.services.dropbox = {
     description = "rclone dropbox";
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Environment = [ "PATH=/run/wrappers/bin:$PATH"];
@@ -582,6 +586,8 @@ fonts = {
 
   systemd.services.onedrive = {
     description = "rclone onedrive";
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Environment = [ "PATH=/run/wrappers/bin:$PATH"];
