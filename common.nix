@@ -11,7 +11,15 @@ let
   opencode-base = if opencode == null then null else opencode.packages.${system}.default;
   opencode-patched = if opencode == null then null else (opencode-base.override {
     bun = bun-baseline;
-    node_modules = opencode-base.node_modules.override { bun = bun-baseline; };
+    node_modules = (opencode-base.node_modules.override { bun = bun-baseline; }).overrideAttrs (old: {
+      postPatch = (old.postPatch or "") + ''
+        substituteInPlace bun.lock \
+          --replace-fail '"ghostty-web": ["ghostty-web@github:anomalyco/ghostty-web#20bd361", {}, "anomalyco-ghostty-web-20bd361", "sha512-dW0nwaiBBcun9y5WJSvm3HxDLe5o9V0xLCndQvWonRVubU8CS1PHxZpLffyPt1YujPWC13ez03aWxcuKBPYYGQ=="]' '"ghostty-web": ["ghostty-web@github:anomalyco/ghostty-web#513463a", {}, "anomalyco-ghostty-web-513463a", "sha512-GZR8LSmgGzViWnBJrqRI8MpAZRCJxhcr1Hi9Tyeh7YRooHZQjK9J97FQRD3tbBaM2wjq05gzGY2UEsG+JtZeBw=="]'
+        substituteInPlace packages/app/package.json \
+          --replace-fail '"ghostty-web": "github:anomalyco/ghostty-web#main"' '"ghostty-web": "github:anomalyco/ghostty-web#513463a"'
+      '';
+      outputHash = "sha256-U4tmzaqTI/yFFvSV/AgqMIPl6krq94aqPcovioGaoqg=";
+    });
   }).overrideAttrs (old: {
     src = pkgs.applyPatches {
       src = old.src;
