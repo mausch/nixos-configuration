@@ -274,7 +274,7 @@ rec {
         # ];
       };
 
-    synergy-server = "192.168.1.89";
+    synergy-server = "192.168.1.93";
 
   opencodeService =
     {
