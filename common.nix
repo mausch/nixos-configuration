@@ -18,7 +18,7 @@ let
         substituteInPlace packages/app/package.json \
           --replace-fail '"ghostty-web": "github:anomalyco/ghostty-web#main"' '"ghostty-web": "github:anomalyco/ghostty-web#513463a"'
       '';
-      outputHash = "sha256-U4tmzaqTI/yFFvSV/AgqMIPl6krq94aqPcovioGaoqg=";
+      outputHash = "sha256-oJxRdtGqXQwMo7f5QG5YmeJaPnzI7ZGycYtbLlapB8w=";
     });
   }).overrideAttrs (old: {
     src = pkgs.applyPatches {
@@ -27,10 +27,6 @@ let
         (pkgs.fetchpatch {
           url = "https://github.com/mausch/opencode/commit/a90be848321a07d1e34e01b6601555344d6a539d.patch";
           hash = "sha256-uDsMPJgqrMWpod6wv5sFFiTd4wzP+M2Vu3I26imYbWo=";
-        })
-        (pkgs.fetchpatch {
-          url = "https://github.com/mausch/opencode/commit/415f09754a403fe52e57d9f014f88dabfff9e692.patch";
-          hash = "sha256-V6os47dRoCB3a/rT8wXyOCf5eFAj8gcRmdB7MSOy6W8=";
         })
       ];
     };
