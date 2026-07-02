@@ -94,6 +94,7 @@ rec {
      imagemagick
      mc
      screen
+     ffmpeg
      docker-compose
      k3s
      gitFull
