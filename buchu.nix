@@ -47,7 +47,7 @@ common.recursiveMerge [
   fileSystems."/run/media/mauricio/12TB" = {
     device = "/dev/disk/by-uuid/2964ED933E295A2C";
     fsType = "ntfs3";
-    options = [ "rw" "uid=1000" "gid=100" "umask=0022" "nofail" ];
+    options = [ "rw" "uid=1000" "gid=100" "umask=0002" "nofail" ];
   };
 
   time.timeZone = "Europe/London";
@@ -210,16 +210,19 @@ common.recursiveMerge [
       rpc-bind-address = "0.0.0.0";
       rpc-host-whitelist-enabled = false;
       rpc-whitelist-enabled = false;
+      umask = 0;
     };
-    downloadDirPermissions = "777";
+    downloadDirPermissions = "775";
   };
-
   systemd.services.transmission = {
     requires = [ "run-media-mauricio-12TB.mount" ];
     after = [ "run-media-mauricio-12TB.mount" ];
+    serviceConfig.Group = lib.mkForce "users";
   };
+  users.users.transmission.extraGroups = [ "users" ];
 
   services.sonarr.enable = true;
+  users.users.sonarr.extraGroups = [ "users" ];
   systemd.services.sonarr = {
     requires = [ "run-media-mauricio-12TB.mount" ];
     after = [ "run-media-mauricio-12TB.mount" ];
@@ -227,10 +230,16 @@ common.recursiveMerge [
   services.radarr = {
     enable = true;
   };
+  users.users.radarr.extraGroups = [ "users" ];
   systemd.services.radarr = {
     requires = [ "run-media-mauricio-12TB.mount" ];
     after = [ "run-media-mauricio-12TB.mount" ];
   };
+  services.prowlarr.enable = true;
+  users.users.prowlarr.extraGroups = [ "users" ];
+  users.users.prowlarr.group = "prowlarr";
+  users.users.prowlarr.isSystemUser = true;
+  users.groups.prowlarr = { };
   systemd.services.plex = {
     requires = [ "run-media-mauricio-12TB.mount" ];
     after = [ "run-media-mauricio-12TB.mount" ];
@@ -243,7 +252,6 @@ common.recursiveMerge [
     requires = [ "run-media-mauricio-12TB.mount" ];
     after = [ "run-media-mauricio-12TB.mount" ];
   };
-  services.prowlarr.enable = true;
   services.immich = {
     enable = true;
     host = "0.0.0.0";
