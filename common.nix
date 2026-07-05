@@ -11,15 +11,7 @@ let
   opencode-base = if opencode == null then null else opencode.packages.${system}.default;
   opencode-patched = if opencode == null then null else (opencode-base.override {
     bun = bun-baseline;
-    node_modules = (opencode-base.node_modules.override { bun = bun-baseline; }).overrideAttrs (old: {
-      postPatch = (old.postPatch or "") + ''
-        substituteInPlace bun.lock \
-          --replace-fail '"ghostty-web": ["ghostty-web@github:anomalyco/ghostty-web#20bd361", {}, "anomalyco-ghostty-web-20bd361", "sha512-dW0nwaiBBcun9y5WJSvm3HxDLe5o9V0xLCndQvWonRVubU8CS1PHxZpLffyPt1YujPWC13ez03aWxcuKBPYYGQ=="]' '"ghostty-web": ["ghostty-web@github:anomalyco/ghostty-web#513463a", {}, "anomalyco-ghostty-web-513463a", "sha512-GZR8LSmgGzViWnBJrqRI8MpAZRCJxhcr1Hi9Tyeh7YRooHZQjK9J97FQRD3tbBaM2wjq05gzGY2UEsG+JtZeBw=="]'
-        substituteInPlace packages/app/package.json \
-          --replace-fail '"ghostty-web": "github:anomalyco/ghostty-web#main"' '"ghostty-web": "github:anomalyco/ghostty-web#513463a"'
-      '';
-      outputHash = "sha256-oJxRdtGqXQwMo7f5QG5YmeJaPnzI7ZGycYtbLlapB8w=";
-    });
+    node_modules = opencode-base.node_modules.override { bun = bun-baseline; };
   }).overrideAttrs (old: {
     src = pkgs.applyPatches {
       src = old.src;
@@ -30,12 +22,6 @@ let
         })
       ];
     };
-    preBuild = (old.preBuild or "") + ''
-      substituteInPlace packages/opencode/src/cli/cmd/generate.ts \
-        --replace-fail 'const prettier = await import("prettier")' 'const prettier: any = { format: async (s: string) => s }' \
-        --replace-fail 'const babel = await import("prettier/plugins/babel")' 'const babel = {}' \
-        --replace-fail 'const estree = await import("prettier/plugins/estree")' 'const estree = {}'
-    '';
   });
 in
 rec {
