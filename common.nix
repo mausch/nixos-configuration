@@ -11,7 +11,9 @@ let
   opencode-base = if opencode == null then null else opencode.packages.${system}.default;
   opencode-patched = if opencode == null then null else (opencode-base.override {
     bun = bun-baseline;
-    node_modules = opencode-base.node_modules.override { bun = bun-baseline; };
+    node_modules = opencode-base.node_modules.override ({ bun = bun-baseline; } // lib.optionalAttrs (system == "x86_64-linux") {
+      hash = "sha256-pk5JjO3RHjdOX1T9qX4UWOv7dST/i3DmHGhxTb5QJDA=";
+    });
   }).overrideAttrs (old: {
     src = pkgs.applyPatches {
       src = old.src;
