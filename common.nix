@@ -1,6 +1,6 @@
 { lib, opencode ? null, pkgs, system ? pkgs.system }:
 let
-  bun-baseline = pkgs.bun.overrideAttrs rec {
+  bun-baseline-runtime = pkgs.bun.overrideAttrs rec {
     version = "1.3.13";
     passthru.sources."x86_64-linux" = pkgs.fetchurl {
       url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64-baseline.zip";
@@ -8,13 +8,28 @@ let
     };
     src = passthru.sources."x86_64-linux";
   };
+  bun = pkgs.bun;
   opencode-base = if opencode == null then null else opencode.packages.${system}.default;
   opencode-patched = if opencode == null then null else (opencode-base.override {
-    bun = bun-baseline;
-    node_modules = opencode-base.node_modules.override ({ bun = bun-baseline; } // lib.optionalAttrs (system == "x86_64-linux") {
-      hash = "sha256-pk5JjO3RHjdOX1T9qX4UWOv7dST/i3DmHGhxTb5QJDA=";
+    inherit bun;
+    node_modules = opencode-base.node_modules.override ({ inherit bun; } // lib.optionalAttrs (system == "x86_64-linux") {
+      hash = "sha256-+8S8hOB+n7bovB97Y9N/hQiQ5SgLV6K+ESOLvRwOP/A=";
     });
   }).overrideAttrs (old: {
+    buildPhase = ''
+      runHook preBuild
+      cd ./packages/opencode
+      ln -s ${bun-baseline-runtime}/bin/bun bun-linux-x64-baseline-v${bun.version}
+      bun --bun ./script/build.ts -- --single --skip-install --baseline
+      bun --bun ./script/schema.ts schema.json
+      runHook postBuild
+    '';
+    postPatch = (old.postPatch or "") + ''
+      substituteInPlace packages/opencode/script/build.ts \
+        --replace-fail 'if (item.avx2 === false) {' 'if (baselineFlag && (item.avx2 !== false || item.abi !== undefined)) return false
+
+      if (item.avx2 === false) {'
+    '';
     src = pkgs.applyPatches {
       src = old.src;
       patches = [
