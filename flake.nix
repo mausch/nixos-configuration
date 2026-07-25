@@ -10,7 +10,7 @@
     };
     nix-lang-server.url = "github:oxalica/nil";
     opencode = {
-      url = "github:anomalyco/opencode/fe41e9d482f2f8982d608b1415befa6fb703133f";
+      url = "github:anomalyco/opencode/2b2aacc93975330f9fd045d4306f698b0c6a8f8f";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     private = {
