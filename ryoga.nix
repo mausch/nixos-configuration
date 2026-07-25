@@ -1,6 +1,7 @@
 { lib, config, pkgs, pkgs-unstable, pkgs-ollama, opencode, private, system, fprintd, handy, ... }:
 
 let
+  privateData = import (private + "/private.nix") {};
   common = import ./common.nix {
     inherit pkgs;
     inherit lib opencode system;
@@ -78,7 +79,7 @@ common.recursiveMerge [
     wifi-security = {
       "auth-alg" = "open";
       "key-mgmt" = "wpa-psk";
-      psk = private.ssidPassword;
+      psk = privateData.ssidPassword;
     };
     ipv4.method = "auto";
     ipv6.method = "auto";
@@ -107,7 +108,7 @@ common.recursiveMerge [
     };
   };
 
-  nix = (common.nixConfig { inherit private; }) // {
+  nix = (common.nixConfig { private = privateData; }) // {
     buildMachines = [
       {
         hostName = "dell-tower";
@@ -127,7 +128,7 @@ common.recursiveMerge [
   users = {
     mutableUsers = false;
     users.mauricio = {
-      hashedPassword = private.mauricioHashedPassword;
+      hashedPassword = privateData.mauricioHashedPassword;
       isNormalUser = true;
       home = "/home/mauricio";
       extraGroups = [ "wheel" "audio" "docker" "networkmanager" "libvirtd" "vboxusers" "video" "i2c" ];
@@ -260,7 +261,7 @@ fonts = {
     };
   };
 
-  programs.ssh.extraConfig = common.sshExtraConfig { inherit private; };
+  programs.ssh.extraConfig = common.sshExtraConfig { private = privateData; };
 
   services.dbus = {
     enable = true; # https://github.com/NixOS/nixpkgs/issues/408662
@@ -464,7 +465,7 @@ fonts = {
   services.autorandr.enable = true;
 
   networking.extraHosts = builtins.readFile ./extraHosts;
-  security.pki.certificates = private.certificates;
+  security.pki.certificates = privateData.certificates;
 
   # services.automatic-timezoned.enable = true;
   time.timeZone = "Europe/London";

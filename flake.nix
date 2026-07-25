@@ -15,7 +15,7 @@
     };
     private = {
       url = "path:/home/mauricio/private";
-      # flake = false;
+      flake = false;
     };
     fprintd = {
       url = "path:/home/mauricio/prg/fprintd";
