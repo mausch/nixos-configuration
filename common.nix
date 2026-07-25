@@ -1,6 +1,6 @@
 { lib, opencode ? null, pkgs, system ? pkgs.system }:
 let
-  bun-baseline-runtime = pkgs.bun.overrideAttrs rec {
+  bun-baseline = pkgs.bun.overrideAttrs rec {
     version = "1.3.13";
     passthru.sources."x86_64-linux" = pkgs.fetchurl {
       url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64-baseline.zip";
@@ -8,7 +8,7 @@ let
     };
     src = passthru.sources."x86_64-linux";
   };
-  bun = pkgs.bun;
+  bun = bun-baseline;
   opencode-base = if opencode == null then null else opencode.packages.${system}.default;
   opencode-patched = if opencode == null then null else (opencode-base.override {
     inherit bun;
@@ -16,20 +16,6 @@ let
       hash = "sha256-0kcwV34P2C3yKg2eG9W2nW+OedrSBb+1TdpuUeYtauY=";
     });
   }).overrideAttrs (old: {
-    buildPhase = ''
-      runHook preBuild
-      cd ./packages/opencode
-      ln -s ${bun-baseline-runtime}/bin/bun bun-linux-x64-baseline-v${bun.version}
-      bun --bun ./script/build.ts -- --single --skip-install --baseline
-      bun --bun ./script/schema.ts schema.json
-      runHook postBuild
-    '';
-    postPatch = (old.postPatch or "") + ''
-      substituteInPlace packages/opencode/script/build.ts \
-        --replace-fail 'if (item.avx2 === false) {' 'if (baselineFlag && (item.avx2 !== false || item.abi !== undefined)) return false
-
-      if (item.avx2 === false) {'
-    '';
     src = pkgs.applyPatches {
       src = old.src;
       patches = [
