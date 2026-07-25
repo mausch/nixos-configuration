@@ -336,8 +336,8 @@
     "private": {
       "flake": false,
       "locked": {
-        "lastModified": 1781347804,
-        "narHash": "sha256-vpY15EPB0WZ9Gd/YJptHmKV+V8/fBSTue3N7pso8ekk=",
+        "lastModified": 1700174005,
+        "narHash": "sha256-8heUy9luh0x2oQ3vZNrYy3yCW5Kd/UgQ6tbmgEE7Sjc=",
         "path": "/home/mauricio/private",
         "type": "path"
       },
