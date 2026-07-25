@@ -30,7 +30,7 @@ common.recursiveMerge [
 
   # Bootloader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sdb";
+  boot.loader.grub.device = "/dev/disk/by-id/wwn-0x5002538d419341b7";
   boot.loader.grub.useOSProber = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
