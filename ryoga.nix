@@ -108,14 +108,15 @@ common.recursiveMerge [
   };
 
   nix = (common.nixConfig { inherit private; }) // {
-    buildMachines = [
-      {
-        hostName = "dell-tower";
-        system = "x86_64-linux";
-        maxJobs = 4;
-        protocol = "ssh-ng";
-      }
-    ];
+    distributedBuilds = false;
+    # buildMachines = [
+    #   {
+    #     hostName = "dell-tower";
+    #     system = "x86_64-linux";
+    #     maxJobs = 4;
+    #     protocol = "ssh-ng";
+    #   }
+    # ];
   };
 
   documentation = {
