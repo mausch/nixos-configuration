@@ -13,6 +13,16 @@ let
   ollama = import ./ollama.nix {
     pkgs = pkgs-ollama;
   };
+  exult-snapshot = pkgs.exult.overrideAttrs (old: {
+    version = "1.13.1git-20260819";
+    src = pkgs.fetchFromGitHub {
+      owner = "exult";
+      repo = "exult";
+      rev = "6baa6d252fdbc9212b09e59b95c4838b7e3e63c3";
+      hash = "sha256-QQWmuEHgoEwWbdnzYnOBIwm75Bmcg5SqzOuYoD7t/B0=";
+    };
+    buildInputs = (lib.filter (dep: dep != pkgs.SDL2) old.buildInputs) ++ [ pkgs.sdl3 pkgs.libpng ];
+  });
 in
 common.recursiveMerge [
   common.k3sNixos
@@ -208,7 +218,7 @@ fonts = {
      firefox
      meld
      gimp
-     exult
+      exult-snapshot
      scummvm
      steam
      # aws-workspaces
