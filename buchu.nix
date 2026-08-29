@@ -252,6 +252,7 @@ common.recursiveMerge [
     requires = [ "run-media-mauricio-12TB.mount" ];
     after = [ "run-media-mauricio-12TB.mount" ];
   };
+  users.users.immich.extraGroups = [ "users" ];
   services.immich = {
     enable = true;
     host = "0.0.0.0";
