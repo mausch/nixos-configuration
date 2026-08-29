@@ -110,20 +110,22 @@
     "handy": {
       "inputs": {
         "bun2nix": "bun2nix",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1784119684,
-        "narHash": "sha256-esoVyD4i9SfmwwKUGLjvXzgfDDLtKFdK8VySPfCoD/U=",
+        "lastModified": 1787554887,
+        "narHash": "sha256-6eNa9iNjwKgLL8t72GeMHTxjyHaeVl+9VF/QWjlHzts=",
         "owner": "cjpais",
         "repo": "Handy",
-        "rev": "b9925d01972a933544d0344a2e62360580368f18",
+        "rev": "af48dd68a64d58aad128fdbb920492a03da53c79",
         "type": "github"
       },
       "original": {
         "owner": "cjpais",
+        "ref": "v0.9.6",
         "repo": "Handy",
-        "rev": "b9925d01972a933544d0344a2e62360580368f18",
         "type": "github"
       }
     },
@@ -150,7 +152,7 @@
     "hosts": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1680143115,
@@ -184,7 +186,7 @@
     "nix-lang-server": {
       "inputs": {
         "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_3",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
@@ -266,22 +268,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1774386573,
-        "narHash": "sha256-4hAV26quOxdC6iyG7kYaZcM3VOskcPUrdCQd/nx8obc=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "46db2e09e1d3f113a13c0d7b81e2f221c63b8ce9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1680242334,
         "narHash": "sha256-HlCbTg1oj6cWLtdQ9Gi8p27t4bde9cSWgtmWrBXdh8w=",
         "owner": "NixOS",
@@ -294,7 +280,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1678298120,
         "narHash": "sha256-iaV5xqgn29xy765Js3EoZePQyZIlLZA3pTYtTnKkejg=",
@@ -310,7 +296,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1787848966,
         "narHash": "sha256-7gDpu5hpq0rOYnYMcOWqSzquK4HA/xU8Xf3CjUBOOJA=",
@@ -367,7 +353,7 @@
         "home-manager": "home-manager",
         "hosts": "hosts",
         "nix-lang-server": "nix-lang-server",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_4",
         "nixpkgs-ollama": "nixpkgs-ollama",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "opencode": "opencode",
