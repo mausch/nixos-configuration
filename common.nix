@@ -169,24 +169,6 @@ rec {
             sha256 = "sha256-se39Zcy7WsTafe3m5QcWJkfRPXresNPLNiI8Oyx0G5I=";
           }
           {
-            publisher = "RooVeterinaryInc";
-            name = "roo-cline";
-            version = "3.38.0";
-            hash = "sha256-l4tKCqz7by4aN3UpsEdGvKcePzeXTfzHvaKrSy1uNhA=";
-          }
-          {
-            name = "claude-dev";
-            publisher = "saoudrizwan";
-            version = "3.46.1";
-            hash = "sha256-jdDdKG6cMn6+FoIzvSWMalrLTzlWvxz9MYRE/tp72Z8=";
-          }
-          {
-            name = "Kilo-Code";
-            publisher = "kilocode";
-            version = "4.140.3";
-            hash = "sha256-kfCUYIE6GwTQqbY3EXc2YwUiqFxXba67xCRFUwDyOPc=";
-          }
-          {
             name = "gemini-cli-vscode-ide-companion";
             publisher = "Google";
             version = "0.20.0";
