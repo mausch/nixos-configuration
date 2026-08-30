@@ -262,20 +262,6 @@ common.recursiveMerge [
   systemd.services.opencode = common.opencodeService;
 
   virtualisation.oci-containers.backend = "docker";
-
-
-  virtualisation.oci-containers.containers.filebrowser = {
-    image = "filebrowser/filebrowser:v2.32.0-s6";
-    volumes = [
-      "/:/srv"
-      "/var/run/filebrowser.db:/database.db"
-      "/var/run/filebrowser.json:/.filebrowser.json"
-    ];
-    ports = [
-      "0.0.0.0:8181:80"
-    ];
-  };
-
   security.polkit.extraConfig =
   ''
     polkit.addRule(function(action, subject) {
