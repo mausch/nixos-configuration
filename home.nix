@@ -86,7 +86,7 @@ in
 #!/usr/bin/env sh
 modprobe zram
 echo zstd > /sys/block/zram0/comp_algorithm
-echo 8G > /sys/block/zram0/disksize
+echo 12G > /sys/block/zram0/disksize
 mkswap /dev/zram0
 swapon /dev/zram0
     '';
