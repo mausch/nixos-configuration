@@ -1,0 +1,11 @@
+keys:
+  - &admin age13he4a090kdf0h8f9kvgwnkemrxdwnm0yxzy2qvgtp2jxepxzmskstpfmlx
+  - &ryoga age1d53a8yxj7xq7ldahxwahpeyaz5ss5kzcj27q448mgk9g6h8sdevq2tlw6g
+  - &buchu age1xsp963u0ct7dglam2qfw95lgmwhxtldjaex5k880aqe5aev95czshshmah
+creation_rules:
+  - path_regex: ^secrets/claude-.*\.env$
+    key_groups:
+      - age:
+          - *admin
+          - *ryoga
+          - *buchu

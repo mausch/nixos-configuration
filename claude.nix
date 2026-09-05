@@ -4,6 +4,9 @@ with lib;
 
 let
   cfg = config.services.claude-remote;
+  secretName = path: "claude-${strings.sanitizeDerivationName path}";
+  secretFile = path: ./secrets + "/${secretName path}.env";
+  secretProjects = filter (path: builtins.pathExists (secretFile path)) cfg.projects;
 in {
   options.services.claude-remote = {
     enable = mkEnableOption "Claude Code remote control service";
@@ -19,8 +22,22 @@ in {
   };
 
   config = mkIf cfg.enable {
+    sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+
+    sops.secrets = listToAttrs (map (path: {
+      name = secretName path;
+      value = {
+        sopsFile = secretFile path;
+        format = "dotenv";
+        key = "";
+        owner = cfg.user;
+        mode = "0400";
+        restartUnits = [ "${secretName path}.service" ];
+      };
+    }) secretProjects);
+
     systemd.services = listToAttrs (map (path: {
-      name = "claude-${strings.sanitizeDerivationName path}";
+      name = secretName path;
       value = {
         description = "Claude Remote for ${path}";
         after = [ "network.target" ];
@@ -36,6 +53,7 @@ in {
             "HOME=/home/${cfg.user}"
             "PATH=/run/current-system/sw/bin:/run/wrappers/bin"
           ];
+          EnvironmentFile = optional (builtins.elem path secretProjects) config.sops.secrets.${secretName path}.path;
         };
       };
     }) cfg.projects);

@@ -25,9 +25,13 @@
       url = "github:cjpais/Handy/v0.9.6";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, home-manager, nix-lang-server, opencode, private, fprintd, handy, self }:
+  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, home-manager, nix-lang-server, opencode, private, fprintd, handy, sops-nix, self }:
     let
       systemPkgs = system: import nixpkgs {
         inherit system;
@@ -41,6 +45,10 @@
         inherit system;
         config = { allowUnfree = true; };
       };
+      sopsModule = { pkgs, ... }: {
+        imports = [ sops-nix.nixosModules.sops ];
+        environment.systemPackages = [ pkgs.sops pkgs.ssh-to-age ];
+      };
       lib = nixpkgs.lib;
     in
     {
@@ -48,6 +56,7 @@
         RYOGA = lib.nixosSystem {
           modules = [
             nixpkgs.nixosModules.readOnlyPkgs
+            sopsModule
             ./ryoga.nix
             hosts.nixosModule {
               networking.stevenBlackHosts.enable = true;
@@ -70,6 +79,7 @@
         buchu = lib.nixosSystem {
           modules = [
             nixpkgs.nixosModules.readOnlyPkgs
+            sopsModule
             ./buchu.nix
             {
               nixpkgs.pkgs = systemPkgs "x86_64-linux";
@@ -86,6 +96,7 @@
         oracle = lib.nixosSystem {
           modules = [
             nixpkgs.nixosModules.readOnlyPkgs
+            sopsModule
             ./oracle.nix
             {
               nixpkgs.pkgs = systemPkgs "aarch64-linux";
