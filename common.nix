@@ -257,6 +257,8 @@ rec {
     {
       description = "opencode";
       wantedBy = [ "multi-user.target" ];
+      wants = [ "network-online.target" ];
+      after = [ "network-online.target" ];
       serviceConfig = {
         Restart = "always";
         Type = "simple";
