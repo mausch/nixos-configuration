@@ -431,8 +431,7 @@ fonts = {
     enable = true;
     user = "mauricio";
     projects = [
-      "/home/mauricio/prg/elevate/elevate-app"
-      "/home/mauricio/prg/elevate/elevate-candidate-scoring"
+      "/home/mauricio/prg/elevate"
     ];
   };
 
