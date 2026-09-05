@@ -7,5 +7,3 @@ Coding practices:
 - Never switch the current config without explicit authorization from the user.
 - Do not make unnecessary newline / indentation changes. Keep diffs clean.
 - Don't add any comments at all, ever, anywhere, for any reason.
-
-Before building, run `nix flake lock --update-input private`.

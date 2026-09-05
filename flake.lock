@@ -333,19 +333,6 @@
         "type": "github"
       }
     },
-    "private": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1781347804,
-        "narHash": "sha256-vpY15EPB0WZ9Gd/YJptHmKV+V8/fBSTue3N7pso8ekk=",
-        "path": "/home/mauricio/private",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/mauricio/private",
-        "type": "path"
-      }
-    },
     "root": {
       "inputs": {
         "fprintd": "fprintd",
@@ -357,7 +344,6 @@
         "nixpkgs-ollama": "nixpkgs-ollama",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "opencode": "opencode",
-        "private": "private",
         "sops-nix": "sops-nix"
       }
     },

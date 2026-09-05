@@ -13,10 +13,6 @@
       url = "github:anomalyco/opencode/3a31c4ea801915c0b050df4b3842997ea62b6e93";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    private = {
-      url = "path:/home/mauricio/private";
-      flake = false;
-    };
     fprintd = {
       url = "path:/home/mauricio/prg/fprintd";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,7 +27,7 @@
     };
   };
 
-  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, home-manager, nix-lang-server, opencode, private, fprintd, handy, sops-nix, self }:
+  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, home-manager, nix-lang-server, opencode, fprintd, handy, sops-nix, self }:
     let
       systemPkgs = system: import nixpkgs {
         inherit system;
@@ -68,7 +64,7 @@
             }
           ];
           specialArgs = {
-            inherit private fprintd handy;
+            inherit fprintd handy;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             pkgs-ollama = systemPkgsOllama "x86_64-linux";
             system = "x86_64-linux";
@@ -86,7 +82,7 @@
             }
           ];
           specialArgs = {
-            inherit private opencode;
+            inherit opencode;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             pkgs-ollama = systemPkgsOllama "x86_64-linux";
             system = "x86_64-linux";
@@ -103,7 +99,6 @@
             }
           ];
           specialArgs = {
-            inherit private;
             system = "aarch64-linux";
           };
         };

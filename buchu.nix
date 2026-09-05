@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, private, system, opencode, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, system, opencode, ... }:
 
 let
   common = import ./common.nix {
@@ -147,7 +147,7 @@ common.recursiveMerge [
     ];
   };
 
-  nix = common.nixConfig { inherit private; };
+  nix = common.nixConfig;
 
   environment.systemPackages = common-unstable.packages-cli ++ (with pkgs; [
     kodi
@@ -187,7 +187,7 @@ common.recursiveMerge [
 
   programs.nix-ld.enable = true;
 
-  programs.ssh.extraConfig = common.sshExtraConfig { inherit private; };
+  programs.ssh.extraConfig = common.sshExtraConfig;
 
 
   virtualisation.docker = {

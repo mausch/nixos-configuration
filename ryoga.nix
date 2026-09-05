@@ -1,7 +1,6 @@
-{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, opencode, private, system, fprintd, handy, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, opencode, system, fprintd, handy, ... }:
 
 let
-  privateData = import (private + "/private.nix") {};
   common = import ./common.nix {
     inherit pkgs;
     inherit lib opencode system;
@@ -73,26 +72,64 @@ common.recursiveMerge [
   networking.enableIPv6 = false;
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
-  networking.networkmanager.ensureProfiles.profiles.tatiana = {
-    connection = {
-      id = "tatiana-B5";
-      type = "wifi";
-      autoconnect = true;
-      permissions = "";
-      "interface-name" = "wlp0s20f3";
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops.secrets = {
+    ryoga-wifi-psk = {
+      sopsFile = ./secrets/ryoga.json;
+      format = "json";
+      key = "ryoga-wifi-psk";
     };
-    wifi = {
-      bssid = "D8:EC:5E:85:04:B5";
-      mode = "infrastructure";
-      ssid = "tatiana";
+    mauricio-hashed-password = {
+      sopsFile = ./secrets/ryoga.json;
+      format = "json";
+      key = "mauricio-hashed-password";
+      neededForUsers = true;
     };
-    wifi-security = {
-      "auth-alg" = "open";
-      "key-mgmt" = "wpa-psk";
-      psk = privateData.ssidPassword;
+    nix-modartt-username = {
+      sopsFile = ./secrets/ryoga.json;
+      format = "json";
+      key = "nix-modartt-username";
     };
-    ipv4.method = "auto";
-    ipv6.method = "auto";
+    nix-modartt-password = {
+      sopsFile = ./secrets/ryoga.json;
+      format = "json";
+      key = "nix-modartt-password";
+    };
+  };
+  sops.templates.nix-env = {
+    content = ''
+      NIX_MODARTT_USERNAME=${config.sops.placeholder.nix-modartt-username}
+      NIX_MODARTT_PASSWORD=${config.sops.placeholder.nix-modartt-password}
+    '';
+    restartUnits = [ "nix-daemon.service" ];
+  };
+  sops.templates.tatiana-nmconnection = {
+    content = ''
+      [connection]
+      id=tatiana-B5
+      type=wifi
+      autoconnect=true
+      interface-name=wlp0s20f3
+
+      [wifi]
+      bssid=D8:EC:5E:85:04:B5
+      mode=infrastructure
+      ssid=tatiana
+
+      [wifi-security]
+      auth-alg=open
+      key-mgmt=wpa-psk
+      psk=${config.sops.placeholder.ryoga-wifi-psk}
+
+      [ipv4]
+      method=auto
+
+      [ipv6]
+      method=auto
+    '';
+    path = "/etc/NetworkManager/system-connections/tatiana.nmconnection";
+    mode = "0600";
+    restartUnits = [ "NetworkManager.service" ];
   };
 
   networking.firewall.enable = false;
@@ -118,7 +155,7 @@ common.recursiveMerge [
     };
   };
 
-  nix = (common.nixConfig { private = privateData; }) // {
+  nix = common.nixConfig // {
     buildMachines = [
       {
         hostName = "dell-tower";
@@ -138,7 +175,7 @@ common.recursiveMerge [
   users = {
     mutableUsers = false;
     users.mauricio = {
-      hashedPassword = privateData.mauricioHashedPassword;
+      hashedPasswordFile = config.sops.secrets.mauricio-hashed-password.path;
       isNormalUser = true;
       home = "/home/mauricio";
       extraGroups = [ "wheel" "audio" "docker" "networkmanager" "libvirtd" "vboxusers" "video" "i2c" ];
@@ -271,7 +308,7 @@ fonts = {
     };
   };
 
-  programs.ssh.extraConfig = common.sshExtraConfig { private = privateData; };
+  programs.ssh.extraConfig = common.sshExtraConfig;
 
   services.dbus = {
     enable = true; # https://github.com/NixOS/nixpkgs/issues/408662
@@ -474,7 +511,8 @@ fonts = {
   services.autorandr.enable = true;
 
   networking.extraHosts = builtins.readFile ./extraHosts;
-  security.pki.certificates = privateData.certificates;
+
+  systemd.services.nix-daemon.serviceConfig.EnvironmentFile = config.sops.templates.nix-env.path;
 
   # services.automatic-timezoned.enable = true;
   time.timeZone = "Europe/London";

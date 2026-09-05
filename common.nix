@@ -182,18 +182,7 @@ rec {
 
   packages = packages-cli ++ packages-gui;
 
-  sshExtraConfig = 
-    { private ? {} }:
-    ''
-      ${if (builtins.hasAttr "oracleIP" private) then ''
-      Host oracle
-        HostName ${private.oracleIP}
-        User root
-        IdentityFile /home/mauricio/.ssh/ssh-key-2021-12-11.key
-        StrictHostKeyChecking no
-        ServerAliveInterval 240
-      '' else ""}
-
+  sshExtraConfig = ''
       Host oracle-tailscale
         HostName 100.73.76.12
         User root
@@ -224,34 +213,31 @@ rec {
         ServerAliveInterval 240
     '';
 
-    nixConfig = 
-      { private ? {} }:
-      {
-        package = pkgs.nixVersions.nix_2_28;
-        extraOptions = ''
-          experimental-features = nix-command flakes
-        '';
-        envVars = private.nixEnvVars or {};
-        settings = {
-          cores = 0;
-          max-jobs = "auto";
-          trusted-users = [ "mauricio" ];
-          trusted-public-keys = [
-            "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-            "ryoga-builder:MWuu+bCxIMHHDypYJ/XndRi4c5ewCT9sacXfne2k1ls="
-          ];
-        };
-        distributedBuilds = true;
-        # buildMachines = [
-        #   {
-        #     hostName = "oracle";
-        #     system = "aarch64-linux";
-        #     maxJobs = 100;
-        #   }
-        # ];
-      };
+  nixConfig = {
+    package = pkgs.nixVersions.nix_2_28;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+    settings = {
+      cores = 0;
+      max-jobs = "auto";
+      trusted-users = [ "mauricio" ];
+      trusted-public-keys = [
+        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+        "ryoga-builder:MWuu+bCxIMHHDypYJ/XndRi4c5ewCT9sacXfne2k1ls="
+      ];
+    };
+    distributedBuilds = true;
+    # buildMachines = [
+    #   {
+    #     hostName = "oracle";
+    #     system = "aarch64-linux";
+    #     maxJobs = 100;
+    #   }
+    # ];
+  };
 
-    synergy-server = "192.168.1.93";
+  synergy-server = "192.168.1.93";
 
   opencodeService =
     {

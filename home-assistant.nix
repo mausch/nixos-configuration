@@ -20,7 +20,6 @@
           server = "mqtt://127.0.0.1:1883";
           # MQTT server authentication, uncomment if required:
           # user = "zigbee";
-          # password = private.mqttPassword;
         };
 
         # Serial settings
@@ -69,7 +68,6 @@
         # https://community.home-assistant.io/t/mqtt-after-upgrading-to-home-assistant-version-2023-4-3-mosquito-broker-stopped-working/559664/7
         # broker = "localhost";
         # username = "homeassistant";
-        # password = private.mqttPassword;
       };
       config = {};
       mobile_app = {};

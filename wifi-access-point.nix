@@ -1,22 +1,22 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
-  private = import ./private.nix {};
   interface = "wlan-ap0";
   device = "wlp0s20f3";
 in
 {
   services.hostapd = {
     enable = true;
-    interface = interface;
-    hwMode = "g";
-    # channel = 5;
-    ssid = "ryoga";
-    wpaPassphrase = private.ssidPassword;
-    extraConfig = ''
-      # ieee80211n=1
-      # ieee80211ac=1
-      wmm_enabled=1
-    '';
+    radios."${interface}" = {
+      band = "2g";
+      networks."${interface}" = {
+        ssid = "ryoga";
+        authentication = {
+          mode = "wpa2-sha256";
+          wpaPasswordFile = config.sops.secrets.ryoga-wifi-psk.path;
+        };
+        settings.wmm_enabled = 1;
+      };
+    };
   };
 
   services.dnsmasq = {
