@@ -245,7 +245,7 @@ fonts = {
    ]);
 
    environment.variables = {
-     EDITOR = "gvim";
+     EDITOR = "gvim -f";
      MESA_LOADER_DRIVER_OVERRIDE = "iris";
    };
 
