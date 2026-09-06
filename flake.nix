@@ -95,6 +95,7 @@
           pkgs = systemPkgs "x86_64-linux";
           extraSpecialArgs = { inherit opencode; system = "x86_64-linux"; hostName = "dell-tower"; };
           modules = [
+            sops-nix.homeManagerModules.sops
             ./home.nix
           ];
         };
@@ -105,6 +106,7 @@
           # username = "mauricio";
           extraSpecialArgs = { inherit opencode; system = "x86_64-linux"; hostName = "dell-tower"; };
           modules = [
+            sops-nix.homeManagerModules.sops
             ./home.nix
           ];
         };
