@@ -89,19 +89,6 @@
           };
         };
 
-        oracle = lib.nixosSystem {
-          modules = [
-            nixpkgs.nixosModules.readOnlyPkgs
-            sopsModule
-            ./oracle.nix
-            {
-              nixpkgs.pkgs = systemPkgs "aarch64-linux";
-            }
-          ];
-          specialArgs = {
-            system = "aarch64-linux";
-          };
-        };
       };
       homeConfigurations = {
         wsl = home-manager.lib.homeManagerConfiguration rec {

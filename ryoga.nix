@@ -520,20 +520,6 @@ fonts = {
 
 
 
-  systemd.services.sshfs-oracle = {
-    description = "SSHFS oracle";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Restart = "always";
-    };
-    script = ''
-      mkdir -p /mnt/sshfs-oracle || true
-      ${pkgs.fuse}/bin/fusermount -uz /mnt/sshfs-oracle || true
-      ${pkgs.util-linux}/bin/umount -f /mnt/sshfs-oracle || true
-      ${pkgs.sshfs}/bin/sshfs -f -o allow_other oracle:/ /mnt/sshfs-oracle
-    '';
-  };
-
   systemd.services.sshfs-buchu = {
     description = "SSHFS buchu";
     requires = [ "wpa_supplicant.service" ];
@@ -563,23 +549,6 @@ fonts = {
       ${pkgs.fuse}/bin/fusermount -uz /mnt/sshfs-dell-tower || true
       ${pkgs.util-linux}/bin/umount -f /mnt/sshfs-dell-tower || true
       ${pkgs.sshfs}/bin/sshfs -f -o allow_other dell-tower:/ /mnt/sshfs-dell-tower
-    '';
-  };
-
-  systemd.services.ssh-oracle = {
-    description = "SSH oracle";
-    requires = [ "tailscaled.service" ];
-    after = [ "tailscaled.service" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Restart = "always";
-      StartLimitIntervalSec = 0;
-    };
-    script = ''
-      ${pkgs.openssh}/bin/ssh -vNT \
-        -L 0.0.0.0:32402:localhost:32400 \
-        -i /home/nixos/ssh-oracle.key \
-        root@oracle
     '';
   };
 

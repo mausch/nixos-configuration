@@ -183,13 +183,6 @@ rec {
   packages = packages-cli ++ packages-gui;
 
   sshExtraConfig = ''
-      Host oracle-tailscale
-        HostName 100.73.76.12
-        User root
-        IdentityFile /home/mauricio/.ssh/ssh-key-2021-12-11.key
-        StrictHostKeyChecking no
-        ServerAliveInterval 240
-
       Host buchu
         HostName 192.168.1.190
         User root
@@ -228,13 +221,6 @@ rec {
       ];
     };
     distributedBuilds = true;
-    # buildMachines = [
-    #   {
-    #     hostName = "oracle";
-    #     system = "aarch64-linux";
-    #     maxJobs = 100;
-    #   }
-    # ];
   };
 
   synergy-server = "192.168.1.93";
