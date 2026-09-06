@@ -49,6 +49,7 @@ common.recursiveMerge [
     "net.ipv6.conf.forwarding" = true;
     "vm.max_map_count" = 262144;
   };
+  boot.kernelParams = [ "ipv6.disable=1" ];
 
 
   boot.extraModprobeConfig = ''
