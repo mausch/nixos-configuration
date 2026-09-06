@@ -241,6 +241,23 @@ rec {
       };
     };
 
+  codexService =
+    {
+      description = "Codex app-server with ChatGPT remote control";
+      wantedBy = [ "multi-user.target" ];
+      wants = [ "network-online.target" ];
+      after = [ "network-online.target" ];
+      serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = 10;
+        Type = "simple";
+        Environment = [ "PATH=/run/current-system/sw/bin:/run/wrappers/bin:$PATH" ];
+        WorkingDirectory = "/home/mauricio";
+        ExecStart = ''${pkgs.codex}/bin/codex app-server --remote-control --listen unix://'';
+        User = "mauricio";
+      };
+    };
+
   k3sNixos = {
     services.k3s = {
       enable = true;

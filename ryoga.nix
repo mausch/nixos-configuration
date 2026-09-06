@@ -227,6 +227,7 @@ fonts = {
   [
      handy.packages.${system}.default
      tailscale
+     pkgs-unstable.codex
      # pkgs-unstable.ollama
 
      # gui tools
@@ -632,6 +633,8 @@ fonts = {
   };
 
   systemd.services.opencode = common.opencodeService;
+
+  systemd.services.codex = common-unstable.codexService;
 
   services.avahi = {
     enable = true;
