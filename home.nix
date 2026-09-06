@@ -13,7 +13,7 @@ in
     user = "mauricio";
     machineName = hostName;
     projects = [
-      "/home/mauricio/prg/elevate/elevate"
+      "/home/mauricio/prg/elevate"
     ];
   };
 
