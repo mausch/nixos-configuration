@@ -1,10 +1,10 @@
 { lib, opencode ? null, pkgs, system ? pkgs.system }:
 let
   bun-baseline = pkgs.bun.overrideAttrs rec {
-    version = "1.3.13";
+    version = "1.3.11";
     passthru.sources."x86_64-linux" = pkgs.fetchurl {
       url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64-baseline.zip";
-      hash = "sha256-nYokKSpwaAkCBdqsCloiP19pc29Sh+N7+I07QDHtx1A=";
+      hash = "sha256-q+NG9jQUVHzfazW3pkmkkMcouT0AYiYVaSORioTA5Zs=";
     };
     src = passthru.sources."x86_64-linux";
   };
