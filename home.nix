@@ -1,4 +1,4 @@
-{ config, pkgs, lib, opencode, system, hostName, ... }:
+{ config, pkgs, pkgs-unstable, lib, opencode, system, hostName, ... }:
 let common = import ./common.nix {
   inherit lib;
   inherit pkgs;
@@ -17,7 +17,7 @@ in
     ];
   };
 
-  home.packages = common.packages ++ (with pkgs; [
+  home.packages = (lib.remove pkgs.claude-code common.packages) ++ [ pkgs-unstable.claude-code ] ++ (with pkgs; [
     rootlesskit
     slirp4netns
     fuse-overlayfs
