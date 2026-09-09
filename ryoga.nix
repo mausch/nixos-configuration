@@ -323,6 +323,9 @@ fonts = {
   services.udisks2.enable = true;
 
   services.tailscale.enable = true;
+  powerManagement.resumeCommands = ''
+    ${pkgs.systemd}/bin/systemctl try-restart tailscaled.service
+  '';
 
   services.udev.extraRules =
   let
