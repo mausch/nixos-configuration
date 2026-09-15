@@ -16,3 +16,8 @@ creation_rules:
       - age:
           - *admin
           - *ryoga
+  - path_regex: ^secrets/buchu\.json$
+    key_groups:
+      - age:
+          - *admin
+          - *buchu

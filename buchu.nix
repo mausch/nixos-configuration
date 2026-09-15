@@ -43,6 +43,41 @@ common.recursiveMerge [
 
   networking.hostName = "buchu"; # Define your hostname.
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.powersave = false;
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops.secrets.tatiana-wifi-psk = {
+    sopsFile = ./secrets/buchu.json;
+    format = "json";
+    key = "tatiana-wifi-psk";
+  };
+  sops.templates.tatiana-nmconnection = {
+    content = ''
+       [connection]
+       id=tatiana-B5
+       type=wifi
+       autoconnect=true
+       interface-name=wlp1s0
+
+       [wifi]
+       bssid=D8:EC:5E:85:04:B5
+       mode=infrastructure
+       ssid=tatiana
+
+       [wifi-security]
+       auth-alg=open
+       key-mgmt=wpa-psk
+       psk=${config.sops.placeholder.tatiana-wifi-psk}
+
+       [ipv4]
+       method=auto
+
+       [ipv6]
+       method=auto
+    '';
+    path = "/etc/NetworkManager/system-connections/tatiana.nmconnection";
+    mode = "0600";
+    restartUnits = [ "NetworkManager.service" ];
+  };
 
   fileSystems."/run/media/mauricio/12TB" = {
     device = "/dev/disk/by-uuid/2964ED933E295A2C";
