@@ -1,21 +1,51 @@
 { lib, opencode ? null, pkgs, system ? pkgs.system }:
 let
   bun-baseline = pkgs.bun.overrideAttrs rec {
-    version = "1.3.11";
+    version = "1.3.13";
     passthru.sources."x86_64-linux" = pkgs.fetchurl {
       url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64-baseline.zip";
-      hash = "sha256-q+NG9jQUVHzfazW3pkmkkMcouT0AYiYVaSORioTA5Zs=";
+      hash = "sha256-nYokKSpwaAkCBdqsCloiP19pc29Sh+N7+I07QDHtx1A=";
     };
     src = passthru.sources."x86_64-linux";
   };
   bun = bun-baseline;
+  opencode-scheduled-patch = ''
+    substituteInPlace packages/opencode/package.json \
+      --replace-fail '"@solid-primitives/scheduled": "1.5.2"' '"@solid-primitives/scheduled": "1.5.3"'
+    substituteInPlace package.json \
+      --replace-fail '"packageManager": "bun@1.3.14"' '"packageManager": "bun@1.3.13"'
+    substituteInPlace bun.lock \
+      --replace-fail '"@solid-primitives/scheduled": "1.5.2"' '"@solid-primitives/scheduled": "1.5.3"' \
+      --replace-fail '"opencode/@solid-primitives/scheduled": ["@solid-primitives/scheduled@1.5.2", "", { "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-/j2igE0xyNaHhj6kMfcUQn5rAVSTLbAX+CDEBm25hSNBmNiHLu2lM7Usj2kJJ5j36D67bE8wR1hBNA8hjtvsQA=="]' '"opencode/@solid-primitives/scheduled": ["@solid-primitives/scheduled@1.5.3", "", { "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-oNwLE6E6lxJAWrc8QXuwM0k2oU1BnANnkChwMw82aK1j3+mWGJkG1IFe5gCwbV+afYmjI76t9JJV3md/8tLw+g=="]'
+    substituteInPlace packages/opencode/script/build.ts \
+      --replace-fail 'if (item.avx2 === false) {' 'if (baselineFlag) { return item.avx2 === false && item.abi === undefined }
+      if (item.avx2 === false) {' \
+      --replace-fail 'return baselineFlag' 'return false'
+  '';
   opencode-base = if opencode == null then null else opencode.packages.${system}.default;
   opencode-patched = if opencode == null then null else (opencode-base.override {
     inherit bun;
-    node_modules = opencode-base.node_modules.override ({ inherit bun; } // lib.optionalAttrs (system == "x86_64-linux") {
-      hash = "sha256-Be1I6OG6UitofhcGu2BeNzevmoQXc4Or5r/NPzwtft4=";
+    node_modules = (opencode-base.node_modules.override { inherit bun; }).overrideAttrs (old: {
+      buildPhase = ''
+        runHook preBuild
+        export BUN_INSTALL_CACHE_DIR=$(mktemp -d)
+        bun install --cpu="x64" --os="linux" --filter '!./' --filter './packages/opencode' --filter './packages/desktop' --filter './packages/app' --ignore-scripts --no-progress
+        bun --bun ${opencode.outPath}/nix/scripts/canonicalize-node-modules.ts
+        bun --bun ${opencode.outPath}/nix/scripts/normalize-bun-binaries.ts
+        runHook postBuild
+      '';
+      postPatch = (old.postPatch or "") + opencode-scheduled-patch;
+      outputHash = "sha256-MAsY0L8koyzUr7+WIdEYbXtroGgBaDJvWO4QfnhiH5I=";
     });
   }).overrideAttrs (old: {
+    postPatch = (old.postPatch or "") + opencode-scheduled-patch;
+    buildPhase = ''
+      runHook preBuild
+      cd ./packages/opencode
+      bun --bun ./script/build.ts --single --baseline --skip-install
+      bun --bun ./script/schema.ts schema.json
+      runHook postBuild
+    '';
     src = pkgs.applyPatches {
       src = old.src;
       patches = [
@@ -234,7 +264,7 @@ rec {
       serviceConfig = {
         Restart = "always";
         Type = "simple";
-        Environment = [ "PATH=/run/current-system/sw/bin:/run/wrappers/bin:$PATH" "OPENCODE_DISABLE_AUTOUPDATE=true" ];
+        Environment = [ "PATH=/run/current-system/sw/bin:/run/wrappers/bin:$PATH" "OPENCODE_DISABLE_AUTOUPDATE=true" "XDG_DATA_HOME=/home/mauricio/.local/share/opencode-1.16" ];
         WorkingDirectory = "/home/mauricio/.local/share/opencode/server";
         ExecStart = ''${opencode-patched}/bin/opencode web --hostname 0.0.0.0 --port 4096'';
         User = "mauricio";
