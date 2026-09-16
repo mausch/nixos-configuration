@@ -70,9 +70,13 @@ common.recursiveMerge [
 
        [ipv4]
        method=auto
+       ignore-auto-dns=true
+       dns=1.1.1.1;1.0.0.1;
 
        [ipv6]
        method=auto
+       ignore-auto-dns=true
+       dns=2606:4700:4700::1111;2606:4700:4700::1001;
     '';
     path = "/etc/NetworkManager/system-connections/tatiana.nmconnection";
     mode = "0600";
