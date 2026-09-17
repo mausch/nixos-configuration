@@ -127,8 +127,9 @@ rec {
      # telepresence
      nil
      rclone
-     gh
-     claude-code
+      gh
+      codex
+      claude-code
      nnn
      # patch is broken
     #  ((nnn.override { withNerdIcons = true; }).overrideAttrs(oldAttrs: {

@@ -226,9 +226,8 @@ fonts = {
   environment.systemPackages = common-unstable.packages ++ (with pkgs;
   [
      handy.packages.${system}.default
-     tailscale
-     pkgs-unstable.codex
-     # pkgs-unstable.ollama
+      tailscale
+      # pkgs-unstable.ollama
 
      # gui tools
      # gmtp
