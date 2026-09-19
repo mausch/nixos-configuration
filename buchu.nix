@@ -19,9 +19,9 @@ let
   };
 in
 common.recursiveMerge [
-  common.k3sNixos
+  # common.k3sNixos
   homeassistant
-  ollama
+  # ollama
 {
   imports =
     [
