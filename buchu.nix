@@ -33,6 +33,7 @@ common.recursiveMerge [
   boot.loader.grub.device = "/dev/disk/by-id/wwn-0x5002538d419341b7";
   boot.loader.grub.useOSProber = true;
   boot.supportedFilesystems = [ "ntfs" ];
+  boot.kernelParams = [ "ipv6.disable=1" ];
 
   zramSwap = {
    enable = true;
@@ -42,6 +43,7 @@ common.recursiveMerge [
 
 
   networking.hostName = "buchu"; # Define your hostname.
+  networking.enableIPv6 = false;
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
