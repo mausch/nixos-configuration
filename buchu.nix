@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, system, opencode, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, system, opencode, terminal-web, ... }:
 
 let
   common = import ./common.nix {
@@ -193,6 +193,7 @@ common.recursiveMerge [
   environment.systemPackages = common-unstable.packages-cli ++ (with pkgs; [
     kodi
     ntfs3g
+    terminal-web.packages.${system}.default
   ]);
 
 
@@ -213,6 +214,19 @@ common.recursiveMerge [
   services.jellyfin.enable = true;
 
   services.tailscale.enable = true;
+  systemd.services.terminal-web = {
+    wantedBy = [ "multi-user.target" ];
+    wants = [ "tailscaled.service" ];
+    after = [ "tailscaled.service" ];
+    path = [ pkgs.tailscale pkgs.tmux ];
+    serviceConfig = {
+      User = "mauricio";
+      Environment = "HOST=0.0.0.0";
+      ExecStart = "${terminal-web.packages.${system}.default}/bin/terminal-web";
+      Restart = "on-failure";
+      RestartSec = 10;
+    };
+  };
 
   networking.firewall.enable = false;
 

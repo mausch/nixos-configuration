@@ -25,9 +25,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    terminal-web.url = "git+https://gist.github.com/mausch/17017563f83da65e1260c6f24fae70f6.git";
   };
 
-  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, home-manager, nix-lang-server, opencode, fprintd, handy, sops-nix, self }:
+  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, home-manager, nix-lang-server, opencode, fprintd, handy, sops-nix, terminal-web, self }:
     let
       systemPkgs = system: import nixpkgs {
         inherit system;
@@ -64,7 +65,7 @@
             }
           ];
           specialArgs = {
-            inherit fprintd handy;
+            inherit fprintd handy terminal-web;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             pkgs-ollama = systemPkgsOllama "x86_64-linux";
             system = "x86_64-linux";
@@ -82,7 +83,7 @@
             }
           ];
           specialArgs = {
-            inherit opencode;
+            inherit opencode terminal-web;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             pkgs-ollama = systemPkgsOllama "x86_64-linux";
             system = "x86_64-linux";

@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, opencode, system, fprintd, handy, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, opencode, system, fprintd, handy, terminal-web, ... }:
 
 let
   common = import ./common.nix {
@@ -226,8 +226,9 @@ fonts = {
 
   environment.systemPackages = common-unstable.packages ++ (with pkgs;
   [
-     handy.packages.${system}.default
-      tailscale
+      handy.packages.${system}.default
+       terminal-web.packages.${system}.default
+       tailscale
       # pkgs-unstable.ollama
 
      # gui tools
@@ -323,6 +324,19 @@ fonts = {
   services.udisks2.enable = true;
 
   services.tailscale.enable = true;
+  systemd.services.terminal-web = {
+    wantedBy = [ "multi-user.target" ];
+    wants = [ "tailscaled.service" ];
+    after = [ "tailscaled.service" ];
+    path = [ pkgs.tailscale pkgs.tmux ];
+    serviceConfig = {
+      User = "mauricio";
+      Environment = "HOST=0.0.0.0";
+      ExecStart = "${terminal-web.packages.${system}.default}/bin/terminal-web";
+      Restart = "on-failure";
+      RestartSec = 10;
+    };
+  };
   powerManagement.resumeCommands = ''
     ${pkgs.systemd}/bin/systemctl try-restart tailscaled.service
   '';

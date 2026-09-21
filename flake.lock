@@ -312,6 +312,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1789921291,
+        "narHash": "sha256-Ft/BRnIqw1MywFoXydKobjjWmDFgDdYtSpJliE8+yUw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "44a91898084f46797b5fac650c7e8c9ac38c43d4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "opencode": {
       "inputs": {
         "nixpkgs": [
@@ -344,7 +360,8 @@
         "nixpkgs-ollama": "nixpkgs-ollama",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "opencode": "opencode",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "terminal-web": "terminal-web"
       }
     },
     "rust-overlay": {
@@ -404,6 +421,41 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "terminal-web": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5",
+        "terminalWeb": "terminalWeb"
+      },
+      "locked": {
+        "lastModified": 1790009766,
+        "narHash": "sha256-zItbA1shec6aHRVFr3OsqMMFR/2GvoT/cv2IYV/SzZ8=",
+        "ref": "refs/heads/main",
+        "rev": "9921c87b9e1447cbc8732485c236a26ced206fe2",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://gist.github.com/mausch/17017563f83da65e1260c6f24fae70f6.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gist.github.com/mausch/17017563f83da65e1260c6f24fae70f6.git"
+      }
+    },
+    "terminalWeb": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789804639,
+        "narHash": "sha256-/Sj5kbH88Wtsm7bo4uYu1j8yeOu3QGmb6YSdi9YKIGc=",
+        "owner": "AaronFei",
+        "repo": "terminal-web",
+        "rev": "9918fcb6f6f0a5baef417da880bcd9863002531c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AaronFei",
+        "repo": "terminal-web",
         "type": "github"
       }
     },
