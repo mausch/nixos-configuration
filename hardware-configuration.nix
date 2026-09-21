@@ -51,6 +51,7 @@
     extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
   };
 
+  hardware.cpu.intel.updateMicrocode = true;
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
 
