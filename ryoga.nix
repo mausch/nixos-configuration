@@ -55,6 +55,7 @@ common.recursiveMerge [
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
     options thinkpad_acpi experimental=1 fan_control=1
+    options iwlmvm power_scheme=1
   '';
 
   services.thinkfan = {
