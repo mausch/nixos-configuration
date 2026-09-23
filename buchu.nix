@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, system, opencode, terminal-web, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, pkgs-claude, system, opencode, terminal-web, ... }:
 
 let
   common = import ./common.nix {
@@ -207,7 +207,7 @@ common.recursiveMerge [
     ];
   };
 
-  environment.systemPackages = common-unstable.packages-cli ++ (with pkgs; [
+  environment.systemPackages = common-unstable.packages-cli ++ [ pkgs-claude.claude-code ] ++ (with pkgs; [
     kodi
     ntfs3g
     terminal-web.packages.${system}.default

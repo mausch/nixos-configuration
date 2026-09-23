@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, opencode, system, fprintd, handy, terminal-web, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, pkgs-claude, opencode, system, fprintd, handy, terminal-web, ... }:
 
 let
   common = import ./common.nix {
@@ -230,7 +230,7 @@ fonts = {
     longitude = 0.0;
   };
 
-  environment.systemPackages = common-unstable.packages ++ (with pkgs;
+  environment.systemPackages = common-unstable.packages ++ [ pkgs-claude.claude-code ] ++ (with pkgs;
   [
       handy.packages.${system}.default
        terminal-web.packages.${system}.default

@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, lib, opencode, system, hostName, ... }:
+{ config, pkgs, lib, opencode, system, hostName, pkgs-claude, ... }:
 let common = import ./common.nix {
   inherit lib;
   inherit pkgs;
@@ -17,7 +17,7 @@ in
     ];
   };
 
-  home.packages = (lib.remove pkgs.claude-code common.packages) ++ [ pkgs-unstable.claude-code ];
+  home.packages = common.packages ++ [ pkgs-claude.claude-code ];
 
   services.redshift = {
     enable = true;

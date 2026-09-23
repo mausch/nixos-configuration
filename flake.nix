@@ -4,6 +4,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-ollama.url = "github:NixOS/nixpkgs/1266aa38aa83f9a7f266c205e2ea6db904525866";
+    nixpkgs-claude.url = "github:NixOS/nixpkgs/5ee9f0ecf9ea4ef788544118d184a5d37baf5eee";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +29,7 @@
     terminal-web.url = "git+https://gist.github.com/mausch/17017563f83da65e1260c6f24fae70f6.git";
   };
 
-  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, home-manager, nix-lang-server, opencode, fprintd, handy, sops-nix, terminal-web, self }:
+  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, nixpkgs-claude, home-manager, nix-lang-server, opencode, fprintd, handy, sops-nix, terminal-web, self }:
     let
       systemPkgs = system: import nixpkgs {
         inherit system;
@@ -39,6 +40,10 @@
         config = { allowUnfree = true; };
       };
       systemPkgsOllama = system: import nixpkgs-ollama {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      systemPkgsClaude = system: import nixpkgs-claude {
         inherit system;
         config = { allowUnfree = true; };
       };
@@ -68,6 +73,7 @@
             inherit fprintd handy terminal-web;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             pkgs-ollama = systemPkgsOllama "x86_64-linux";
+            pkgs-claude = systemPkgsClaude "x86_64-linux";
             system = "x86_64-linux";
             opencode = opencode;
           };
@@ -86,6 +92,7 @@
             inherit opencode terminal-web;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             pkgs-ollama = systemPkgsOllama "x86_64-linux";
+            pkgs-claude = systemPkgsClaude "x86_64-linux";
             system = "x86_64-linux";
           };
         };
@@ -94,7 +101,7 @@
       homeConfigurations = {
         wsl = home-manager.lib.homeManagerConfiguration rec {
           pkgs = systemPkgs "x86_64-linux";
-          extraSpecialArgs = { inherit opencode; pkgs-unstable = systemPkgsUnstable "x86_64-linux"; system = "x86_64-linux"; hostName = "dell-tower"; };
+          extraSpecialArgs = { inherit opencode; pkgs-unstable = systemPkgsUnstable "x86_64-linux"; pkgs-claude = systemPkgsClaude "x86_64-linux"; system = "x86_64-linux"; hostName = "dell-tower"; };
           modules = [
             sops-nix.homeManagerModules.sops
             ./home.nix
@@ -105,7 +112,7 @@
           pkgs = systemPkgs "x86_64-linux";
           # homeDirectory = "/home/mauricio";
           # username = "mauricio";
-          extraSpecialArgs = { inherit opencode; pkgs-unstable = systemPkgsUnstable "x86_64-linux"; system = "x86_64-linux"; hostName = "dell-tower"; };
+          extraSpecialArgs = { inherit opencode; pkgs-unstable = systemPkgsUnstable "x86_64-linux"; pkgs-claude = systemPkgsClaude "x86_64-linux"; system = "x86_64-linux"; hostName = "dell-tower"; };
           modules = [
             sops-nix.homeManagerModules.sops
             ./home.nix

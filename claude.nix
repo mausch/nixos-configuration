@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-unstable ? pkgs, ... }:
+{ config, lib, pkgs-claude, ... }:
 
 with lib;
 
@@ -46,7 +46,7 @@ in {
           Type = "simple";
           User = cfg.user;
           WorkingDirectory = path;
-          ExecStart = "${pkgs-unstable.claude-code}/bin/claude remote-control --permission-mode auto --name ${strings.toLower config.networking.hostName}-${baseNameOf path}";
+          ExecStart = "${pkgs-claude.claude-code}/bin/claude remote-control --permission-mode auto --name ${strings.toLower config.networking.hostName}-${baseNameOf path}";
           Restart = "on-failure";
           RestartSec = 10;
           Environment = [
