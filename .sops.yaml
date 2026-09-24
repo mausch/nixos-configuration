@@ -21,3 +21,10 @@ creation_rules:
       - age:
           - *admin
           - *buchu
+  - path_regex: ^secrets/.*$
+    key_groups:
+      - age:
+          - *admin
+          - *ryoga
+          - *buchu
+          - *dell-tower

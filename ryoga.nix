@@ -97,6 +97,13 @@ common.recursiveMerge [
       format = "json";
       key = "nix-modartt-password";
     };
+    gemini-api-key = {
+      sopsFile = ./secrets/gemini.env;
+      format = "dotenv";
+      key = "";
+      mode = "0400";
+      restartUnits = [ "opencode.service" ];
+    };
   };
   sops.templates.nix-env = {
     content = ''
@@ -649,7 +656,9 @@ fonts = {
     };
   };
 
-  systemd.services.opencode = common.opencodeService;
+  systemd.services.opencode = lib.recursiveUpdate common.opencodeService {
+    serviceConfig.EnvironmentFile = config.sops.secrets.gemini-api-key.path;
+  };
 
   systemd.services.codex = common-unstable.codexService;
 
