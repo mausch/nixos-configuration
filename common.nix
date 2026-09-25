@@ -13,7 +13,7 @@ let
   opencode-patched = if opencode == null then null else (opencode-base.override {
     inherit bun;
     node_modules = opencode-base.node_modules.override ({ inherit bun; } // lib.optionalAttrs (system == "x86_64-linux") {
-      hash = "sha256-Be1I6OG6UitofhcGu2BeNzevmoQXc4Or5r/NPzwtft4=";
+      hash = "sha256-5u7uXnkg2bDPgkYubLCE4tNMwO9jGjmA2Gh1Qtaq/Us=";
     });
   }).overrideAttrs (old: {
     src = pkgs.applyPatches {
