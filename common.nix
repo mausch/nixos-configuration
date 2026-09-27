@@ -207,7 +207,7 @@ rec {
     '';
 
   nixConfig = {
-    package = pkgs.nixVersions.nix_2_28;
+    package = pkgs.nixVersions.nix_2_34;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
