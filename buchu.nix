@@ -318,6 +318,7 @@ common.recursiveMerge [
   users.users.immich.extraGroups = [ "users" ];
   services.immich = {
     enable = true;
+    package = pkgs-unstable.immich;
     host = "0.0.0.0";
     mediaLocation = "/run/media/mauricio/12TB/immich";
   };
