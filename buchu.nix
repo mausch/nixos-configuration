@@ -188,6 +188,15 @@ common.recursiveMerge [
   };
 
   nix = common.nixConfig // {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
+    settings = common.nixConfig.settings // {
+      max-jobs = 1;
+      cores = 1;
+    };
     buildMachines = [
       {
         hostName = "dell-tower";
