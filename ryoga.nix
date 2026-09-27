@@ -24,7 +24,6 @@ let
   });
 in
 common.recursiveMerge [
-  common.k3sNixos
   ollama
 {
   imports =
@@ -294,6 +293,11 @@ fonts = {
    environment.variables = {
      EDITOR = "gvim -f";
      MESA_LOADER_DRIVER_OVERRIDE = "iris";
+   };
+
+   environment.sessionVariables = {
+     NIXPKGS_ALLOW_UNFREE = "1";
+     OPENCODE_DISABLE_AUTOUPDATE = "true";
    };
 
 

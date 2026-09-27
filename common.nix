@@ -85,7 +85,6 @@ rec {
      screen
      ffmpeg
      docker-compose
-     k3s
      gitFull
      lazygit
      jq
@@ -259,41 +258,4 @@ rec {
       };
     };
 
-  k3sNixos = {
-    services.k3s = {
-      enable = true;
-      role = "server";
-      extraFlags = "--write-kubeconfig-mode 644";
-      gracefulNodeShutdown.enable = true;
-    };
-    environment.sessionVariables = {
-      KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
-      NIXPKGS_ALLOW_UNFREE = "1";
-      OPENCODE_DISABLE_AUTOUPDATE = "true";
-    };
-  };
-
-  k3sRootlessService = {
-    Unit.Description = "k3s (Rootless)";
-    Service = {
-      Environment = [
-        "PATH=/home/mauricio/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-        "K3S_KUBECONFIG_MODE=600"
-      ];
-      ExecStart = "${pkgs.k3s}/bin/k3s server --rootless --snapshotter=fuse-overlayfs";
-      ExecReload = "${pkgs.coreutils}/bin/kill -s HUP $MAINPID";
-      TimeoutSec = 0;
-      Restart = "always";
-      RestartSec = 2;
-      LimitNOFILE = "infinity";
-      LimitNPROC = "infinity";
-      LimitCORE = "infinity";
-      TasksMax = "infinity";
-      Delegate = true;
-      Type = "simple";
-      KillMode = "mixed";
-      AppArmorProfile = "unconfined";
-    };
-    Install.WantedBy = [ "default.target" ];
-  };
 }

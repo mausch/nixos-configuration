@@ -17,12 +17,7 @@ in
     ];
   };
 
-  home.packages = (lib.remove pkgs.claude-code common.packages) ++ [ pkgs-unstable.claude-code ] ++ (with pkgs; [
-    rootlesskit
-    slirp4netns
-    fuse-overlayfs
-  ]);
-  home.sessionVariables.KUBECONFIG = "$HOME/.kube/k3s.yaml";
+  home.packages = (lib.remove pkgs.claude-code common.packages) ++ [ pkgs-unstable.claude-code ];
 
   services.redshift = {
     enable = true;
@@ -63,8 +58,6 @@ in
       };
       Install.WantedBy = svc.wantedBy;
     };
-
-  systemd.user.services.k3s-rootless = common.k3sRootlessService;
 
   systemd.user.services.synergy-client = {
     Unit.Description = "Synergy client";
