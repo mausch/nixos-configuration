@@ -187,7 +187,16 @@ common.recursiveMerge [
     ];
   };
 
-  nix = common.nixConfig;
+  nix = common.nixConfig // {
+    buildMachines = [
+      {
+        hostName = "dell-tower";
+        system = "x86_64-linux";
+        maxJobs = 4;
+        protocol = "ssh-ng";
+      }
+    ];
+  };
 
   environment.systemPackages = common-unstable.packages-cli ++ (with pkgs; [
     kodi
