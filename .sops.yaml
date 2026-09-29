@@ -3,6 +3,7 @@ keys:
   - &ryoga age1d53a8yxj7xq7ldahxwahpeyaz5ss5kzcj27q448mgk9g6h8sdevq2tlw6g
   - &buchu age1xsp963u0ct7dglam2qfw95lgmwhxtldjaex5k880aqe5aev95czshshmah
   - &dell-tower age1yd4tzzf5t2k25nhgdjzx4k59ppqgrrx94dj6x2hcecw305dsqqpq95crc8
+  - &wsl age1uc5cc9gplhw5zgvucydxkalyneu6wl7k62p9dueth9fy5hty850sxzqxqc
 creation_rules:
   - path_regex: ^secrets/claude-.*\.env$
     key_groups:
@@ -11,6 +12,7 @@ creation_rules:
           - *ryoga
           - *buchu
           - *dell-tower
+          - *wsl
   - path_regex: ^secrets/ryoga\.json$
     key_groups:
       - age:
@@ -28,3 +30,4 @@ creation_rules:
           - *ryoga
           - *buchu
           - *dell-tower
+          - *wsl
