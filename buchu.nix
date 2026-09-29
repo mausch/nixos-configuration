@@ -75,9 +75,7 @@ common.recursiveMerge [
        dns=1.1.1.1;1.0.0.1;
 
        [ipv6]
-       method=auto
-       ignore-auto-dns=true
-       dns=2606:4700:4700::1111;2606:4700:4700::1001;
+       method=disabled
     '';
     path = "/etc/NetworkManager/system-connections/tatiana.nmconnection";
     mode = "0600";
@@ -231,6 +229,7 @@ common.recursiveMerge [
   services.jellyfin.enable = true;
 
   services.tailscale.enable = true;
+  services.tailscale.extraSetFlags = [ "--accept-dns=false" ];
   systemd.services.terminal-web = {
     wantedBy = [ "multi-user.target" ];
     wants = [ "tailscaled.service" ];
