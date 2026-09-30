@@ -528,6 +528,7 @@ fonts = {
     enable = true;
     package = fprintd.packages.${system}.default;
   };
+  security.pam.services.i3lock.fprintAuth = false;
 #  security.pam.services.login.fprintAuth = true;
 #  security.pam.services.xscreensaver.fprintAuth = true;
 
