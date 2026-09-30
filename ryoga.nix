@@ -25,6 +25,7 @@ let
 in
 common.recursiveMerge [
   ollama
+  (import ./jevk5-gguf.nix { inherit pkgs; })
 {
   imports =
     [
