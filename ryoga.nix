@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, pkgs-claude, opencode, system, fprintd, handy, terminal-web, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, pkgs-claude, opencode, opencode-cli-wrapper, system, fprintd, handy, terminal-web, ... }:
 
 let
   common = import ./common.nix {
@@ -102,7 +102,7 @@ common.recursiveMerge [
       format = "dotenv";
       key = "";
       mode = "0400";
-      restartUnits = [ "opencode.service" ];
+      restartUnits = [ "opencode.service" "opencode-cli-wrapper.service" ];
     };
   };
   sops.templates.nix-env = {
@@ -664,6 +664,28 @@ fonts = {
 
   systemd.services.opencode = lib.recursiveUpdate common.opencodeService {
     serviceConfig.EnvironmentFile = config.sops.secrets.gemini-api-key.path;
+  };
+
+  systemd.services.opencode-cli-wrapper = {
+    description = "OpenAI-compatible API for OpenCode";
+    wantedBy = [ "multi-user.target" ];
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+    environment = {
+      API_KEY = "123";
+      HOST = "127.0.0.1";
+      PORT = "3000";
+      HOME = "/home/mauricio";
+      OPENCODE_BIN = "${common.opencodePackage}/bin/opencode";
+      OPENCODE_DISABLE_AUTOUPDATE = "true";
+    };
+    serviceConfig = {
+      inherit (config.systemd.services.opencode.serviceConfig) User WorkingDirectory Environment;
+      EnvironmentFile = config.sops.secrets.gemini-api-key.path;
+      ExecStart = "${opencode-cli-wrapper.packages.${system}.default}/bin/opencode-cli-wrapper";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
   };
 
   systemd.services.codex = common-unstable.codexService;

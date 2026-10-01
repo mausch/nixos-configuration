@@ -14,6 +14,11 @@
       url = "github:anomalyco/opencode/545f51d26cc39a907d2867492d498d9607ea5fa4";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    opencode-cli-wrapper = {
+      url = "github:mausch/opencode-cli-wrapper/combined";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.opencode.follows = "opencode";
+    };
     fprintd = {
       url = "path:/home/mauricio/prg/fprintd";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,7 +34,7 @@
     terminal-web.url = "git+https://gist.github.com/mausch/17017563f83da65e1260c6f24fae70f6.git";
   };
 
-  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, nixpkgs-claude, home-manager, nix-lang-server, opencode, fprintd, handy, sops-nix, terminal-web, self }:
+  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, nixpkgs-claude, home-manager, nix-lang-server, opencode, opencode-cli-wrapper, fprintd, handy, sops-nix, terminal-web, self }:
     let
       systemPkgs = system: import nixpkgs {
         inherit system;
@@ -70,7 +75,7 @@
             }
           ];
           specialArgs = {
-            inherit fprintd handy terminal-web;
+            inherit fprintd handy terminal-web opencode-cli-wrapper;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             pkgs-ollama = systemPkgsOllama "x86_64-linux";
             pkgs-claude = systemPkgsClaude "x86_64-linux";

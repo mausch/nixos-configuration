@@ -224,6 +224,8 @@ rec {
 
   synergy-server = "192.168.1.93";
 
+  opencodePackage = opencode-patched;
+
   opencodeService =
     {
       description = "opencode";

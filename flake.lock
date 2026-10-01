@@ -365,6 +365,30 @@
         "type": "github"
       }
     },
+    "opencode-cli-wrapper": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ],
+        "opencode": [
+          "opencode"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790872375,
+        "narHash": "sha256-pcEP0PjAimKmnvd2LQ3hIYE+n7djEHD3puFVkt4zUjY=",
+        "owner": "mausch",
+        "repo": "opencode-cli-wrapper",
+        "rev": "e9e89dcc87d561f2bf387a93c32221570927ae6e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mausch",
+        "ref": "combined",
+        "repo": "opencode-cli-wrapper",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "fprintd": "fprintd",
@@ -377,6 +401,7 @@
         "nixpkgs-ollama": "nixpkgs-ollama",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "opencode": "opencode",
+        "opencode-cli-wrapper": "opencode-cli-wrapper",
         "sops-nix": "sops-nix",
         "terminal-web": "terminal-web"
       }
