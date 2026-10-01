@@ -3,7 +3,7 @@
     hosts.url = "github:StevenBlack/hosts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-ollama.url = "github:NixOS/nixpkgs/f45c6f04c2f013f004bf94e284e95d72898d9393";
+    nixpkgs-ollama.url = "github:NixOS/nixpkgs/3a5a267772cbec253a22224968d5e8e6bdf9f733";
     nixpkgs-claude.url = "github:NixOS/nixpkgs/5ee9f0ecf9ea4ef788544118d184a5d37baf5eee";
     home-manager = {
       url = "github:nix-community/home-manager";
