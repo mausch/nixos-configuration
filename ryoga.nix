@@ -622,6 +622,29 @@ fonts = {
     };
   };
 
+  systemd.services.rclone-gdrive-shared = {
+    description = "rclone google drive shared with me";
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Environment = [ "PATH=/run/wrappers/bin:$PATH"];
+      Type = "notify";
+      Restart = "always";
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /mnt/gdrive-shared || true";
+      ExecStart = ''
+        ${pkgs-unstable.rclone}/bin/rclone mount \
+          --config /root/.config/rclone/rclone.conf \
+          --drive-shared-with-me \
+          --vfs-cache-mode writes \
+          --umask 000 \
+          --allow-other \
+          gdrive:/ /mnt/gdrive-shared
+      '';
+      ExecStop = "${pkgs.fuse}/bin/fusermount -uz /mnt/gdrive-shared || true";
+    };
+  };
+
   systemd.services.dropbox = {
     description = "rclone dropbox";
     wants = [ "network-online.target" ];
