@@ -1,4 +1,4 @@
-{ config, pkgs, lib, opencode, system, hostName, pkgs-claude, ... }:
+{ config, pkgs, lib, opencode, system, hostName, pkgs-claude, pkgs-ollama, ... }:
 let common = import ./common.nix {
   inherit lib;
   inherit pkgs;
@@ -18,6 +18,15 @@ in
   };
 
   home.packages = common.packages ++ [ pkgs-claude.claude-code ];
+
+  services.ollama = {
+    enable = true;
+    package = pkgs-ollama.ollama;
+    host = "127.0.0.1";
+    port = 11434;
+  };
+
+  systemd.user.services.ollama.Service.Restart = "on-failure";
 
   services.redshift = {
     enable = true;

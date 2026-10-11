@@ -106,7 +106,7 @@
       homeConfigurations = {
         wsl = home-manager.lib.homeManagerConfiguration rec {
           pkgs = systemPkgs "x86_64-linux";
-          extraSpecialArgs = { inherit opencode; pkgs-unstable = systemPkgsUnstable "x86_64-linux"; pkgs-claude = systemPkgsClaude "x86_64-linux"; system = "x86_64-linux"; hostName = "dell-tower"; };
+          extraSpecialArgs = { inherit opencode; pkgs-unstable = systemPkgsUnstable "x86_64-linux"; pkgs-ollama = systemPkgsOllama "x86_64-linux"; pkgs-claude = systemPkgsClaude "x86_64-linux"; system = "x86_64-linux"; hostName = "dell-tower"; };
           modules = [
             sops-nix.homeManagerModules.sops
             ./home.nix
@@ -117,7 +117,7 @@
           pkgs = systemPkgs "x86_64-linux";
           # homeDirectory = "/home/mauricio";
           # username = "mauricio";
-          extraSpecialArgs = { inherit opencode; pkgs-unstable = systemPkgsUnstable "x86_64-linux"; pkgs-claude = systemPkgsClaude "x86_64-linux"; system = "x86_64-linux"; hostName = "dell-tower"; };
+          extraSpecialArgs = { inherit opencode; pkgs-unstable = systemPkgsUnstable "x86_64-linux"; pkgs-ollama = systemPkgsOllama "x86_64-linux"; pkgs-claude = systemPkgsClaude "x86_64-linux"; system = "x86_64-linux"; hostName = "dell-tower"; };
           modules = [
             sops-nix.homeManagerModules.sops
             ./home.nix
