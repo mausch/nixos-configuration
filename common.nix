@@ -1,31 +1,6 @@
 { lib, opencode ? null, pkgs, system ? pkgs.system }:
 let
-  bun-baseline = pkgs.bun.overrideAttrs rec {
-    version = "1.3.11";
-    passthru.sources."x86_64-linux" = pkgs.fetchurl {
-      url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64-baseline.zip";
-      hash = "sha256-q+NG9jQUVHzfazW3pkmkkMcouT0AYiYVaSORioTA5Zs=";
-    };
-    src = passthru.sources."x86_64-linux";
-  };
-  bun = bun-baseline;
   opencode-base = if opencode == null then null else opencode.packages.${system}.default;
-  opencode-patched = if opencode == null then null else (opencode-base.override {
-    inherit bun;
-    node_modules = opencode-base.node_modules.override ({ inherit bun; } // lib.optionalAttrs (system == "x86_64-linux") {
-      hash = "sha256-5u7uXnkg2bDPgkYubLCE4tNMwO9jGjmA2Gh1Qtaq/Us=";
-    });
-  }).overrideAttrs (old: {
-    src = pkgs.applyPatches {
-      src = old.src;
-      patches = [
-        (pkgs.fetchpatch {
-          url = "https://github.com/mausch/opencode/commit/a90be848321a07d1e34e01b6601555344d6a539d.patch";
-          hash = "sha256-uDsMPJgqrMWpod6wv5sFFiTd4wzP+M2Vu3I26imYbWo=";
-        })
-      ];
-    };
-  });
 in
 rec {
 
@@ -121,7 +96,7 @@ rec {
     #         --add-flags "-d -Q"
     #     '';
     #  }))
-   ] ++ lib.optional (opencode != null) opencode-patched;
+    ] ++ lib.optional (opencode != null) opencode-base;
 
   packages-gui = with pkgs; [
 
@@ -224,7 +199,7 @@ rec {
 
   synergy-server = "192.168.1.93";
 
-  opencodePackage = opencode-patched;
+  opencodePackage = opencode-base;
 
   opencodeService =
     {
@@ -235,9 +210,9 @@ rec {
       serviceConfig = {
         Restart = "always";
         Type = "simple";
-        Environment = [ "PATH=/run/current-system/sw/bin:/run/wrappers/bin:$PATH" "OPENCODE_DISABLE_AUTOUPDATE=true" ];
+        Environment = [ "PATH=/run/current-system/sw/bin:/run/wrappers/bin:$PATH" "OPENCODE_DISABLE_AUTOUPDATE=true" "OPENCODE_SERVER_PASSWORD=123456" ];
         WorkingDirectory = "/home/mauricio/.local/share/opencode/server";
-        ExecStart = ''${opencode-patched}/bin/opencode web --hostname 0.0.0.0 --port 4096'';
+        ExecStart = ''${opencode-base}/bin/opencode serve --hostname 0.0.0.0 --port 4096'';
         User = "mauricio";
       };
     };

@@ -11,7 +11,7 @@
     };
     nix-lang-server.url = "github:oxalica/nil";
     opencode = {
-      url = "github:anomalyco/opencode/545f51d26cc39a907d2867492d498d9607ea5fa4";
+      url = "github:anomalyco/opencode/v2.0.24";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     opencode-cli-wrapper = {

@@ -54,7 +54,7 @@ in
         Type = svc.serviceConfig.Type;
         Restart = svc.serviceConfig.Restart;
         ExecStart = svc.serviceConfig.ExecStart;
-        Environment = "PATH=/home/mauricio/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
+        Environment = [ "PATH=/home/mauricio/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" "OPENCODE_SERVER_PASSWORD=123456" ];
       };
       Install.WantedBy = svc.wantedBy;
     };
