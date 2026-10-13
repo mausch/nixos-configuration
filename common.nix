@@ -1,6 +1,16 @@
 { lib, opencode ? null, pkgs, system ? pkgs.system }:
 let
-  opencode-base = if opencode == null then null else opencode.packages.${system}.default;
+  opencode-base = if opencode == null then null else
+    opencode.packages.${system}.default.overrideAttrs (old: lib.optionalAttrs (system == "x86_64-linux") {
+      postPatch = (old.postPatch or "") + ''
+        substituteInPlace packages/cli/script/build.ts \
+          --replace-fail '...(executablePath ? { executablePath } : {}),' 'executablePath: executablePath ?? process.execPath,'
+      '';
+      buildPhase = builtins.replaceStrings
+        [ "--single --skip-install" ]
+        [ "--target=opencode-linux-x64-baseline --skip-install" ]
+        old.buildPhase;
+    });
 in
 rec {
 
