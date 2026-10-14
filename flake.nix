@@ -102,6 +102,27 @@
           };
         };
 
+        nixos-myn = lib.nixosSystem {
+          modules = [
+            nixpkgs.nixosModules.readOnlyPkgs
+            sopsModule
+            ./nixos-myn.nix
+            hosts.nixosModule {
+              networking.stevenBlackHosts.enable = true;
+            }
+            {
+              nixpkgs.pkgs = (systemPkgs "x86_64-linux") // {
+                nil = nix-lang-server.packages."x86_64-linux".nil;
+              };
+            }
+          ];
+          specialArgs = {
+            pkgs-unstable = systemPkgsUnstable "x86_64-linux";
+            pkgs-claude = systemPkgsClaude "x86_64-linux";
+            system = "x86_64-linux";
+          };
+        };
+
       };
       homeConfigurations = {
         wsl = home-manager.lib.homeManagerConfiguration rec {
