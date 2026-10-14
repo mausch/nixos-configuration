@@ -24,6 +24,36 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/mnt/data" = {
+    device = "/dev/disk/by-uuid/245E48805E484D2C";
+    fsType = "ntfs-3g";
+    options = [ "uid=1000" "gid=100" "nofail" ];
+  };
+
+  fileSystems."/mnt/windows" = {
+    device = "/dev/disk/by-uuid/1614251D142500FB";
+    fsType = "ntfs-3g";
+    options = [ "uid=1000" "gid=100" "nofail" ];
+  };
+
+  fileSystems."/mnt/windows-re-tools" = {
+    device = "/dev/disk/by-uuid/1AFC1457FC14300D";
+    fsType = "ntfs-3g";
+    options = [ "uid=1000" "gid=100" "nofail" ];
+  };
+
+  fileSystems."/mnt/windows-recovery" = {
+    device = "/dev/disk/by-uuid/1266AB5A66AB3D7B";
+    fsType = "ntfs-3g";
+    options = [ "uid=1000" "gid=100" "nofail" ];
+  };
+
+  fileSystems."/mnt/recovery-image" = {
+    device = "/dev/disk/by-uuid/208C93068C92D59E";
+    fsType = "ntfs-3g";
+    options = [ "uid=1000" "gid=100" "nofail" ];
+  };
+
   swapDevices = [ ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

@@ -117,6 +117,7 @@
             }
           ];
           specialArgs = {
+            inherit handy opencode;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             pkgs-claude = systemPkgsClaude "x86_64-linux";
             system = "x86_64-linux";

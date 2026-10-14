@@ -1,13 +1,13 @@
-{ lib, config, pkgs, pkgs-unstable, pkgs-claude, system, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-claude, opencode, system, handy, ... }:
 
 let
   common = import ./common.nix {
     inherit pkgs;
-    inherit lib system;
+    inherit lib opencode system;
   };
   common-unstable = import ./common.nix {
     pkgs = pkgs-unstable;
-    inherit lib system;
+    inherit lib opencode system;
   };
 in
 {
@@ -61,7 +61,20 @@ in
     };
   };
 
-  nix = common.nixConfig;
+  nix = common.nixConfig // {
+    settings = common.nixConfig.settings // {
+      max-jobs = 0;
+      builders-use-substitutes = true;
+    };
+    buildMachines = [
+      {
+        hostName = "dell-tower";
+        system = "x86_64-linux";
+        maxJobs = 4;
+        protocol = "ssh-ng";
+      }
+    ];
+  };
 
   documentation = {
     enable = true;
@@ -117,6 +130,7 @@ in
 
   environment.systemPackages = common-unstable.packages-cli ++ [ pkgs-claude.claude-code ] ++ (with pkgs;
   [
+    handy.packages.${system}.default
     tailscale
 
     xhost
@@ -142,14 +156,26 @@ in
     meld
     pcmanfm
     keepassxc
+    kitty
+  ]) ++ (with pkgs-unstable; [
+    (chromium.override { commandLineArgs = "--enable-features=VaapiVideoDecoder"; })
+    spotify
+    dbeaver-bin
+    (dotnetCorePackages.combinePackages [
+      dotnetCorePackages.sdk_8_0
+      dotnetCorePackages.sdk_9_0
+      dotnetCorePackages.sdk_10_0
+    ])
   ]);
 
   environment.variables = {
     EDITOR = "gvim -f";
+    TERMINAL = "kitty";
   };
 
   environment.sessionVariables = {
     NIXPKGS_ALLOW_UNFREE = "1";
+    OPENCODE_DISABLE_AUTOUPDATE = "true";
   };
 
   environment.etc = {
@@ -159,6 +185,8 @@ in
 
     "i3status-rs.toml".text = builtins.readFile ./i3status-rs.toml;
   };
+
+  systemd.services.opencode = common.opencodeService;
 
   services.journald.extraConfig = ''
       SystemMaxUse=1G
@@ -306,8 +334,11 @@ in
     section: links
       nixos-myn:
         right = RYOGA
+        left = mauricio-Precision-Tower-5810
       RYOGA:
         left = nixos-myn
+      mauricio-Precision-Tower-5810:
+        right = nixos-myn
     end
   '';
 
