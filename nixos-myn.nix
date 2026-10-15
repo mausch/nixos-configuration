@@ -31,6 +31,12 @@ in
   boot.kernelParams = [ "ipv6.disable=1" "nmi_watchdog=panic" "softlockup_panic=1" "panic=10" ];
   systemd.settings.Manager.RuntimeWatchdogSec = "30s";
 
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
+
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
