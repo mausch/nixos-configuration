@@ -28,7 +28,8 @@ in
     "net.ipv6.conf.forwarding" = true;
     "vm.max_map_count" = 262144;
   };
-  boot.kernelParams = [ "ipv6.disable=1" ];
+  boot.kernelParams = [ "ipv6.disable=1" "nmi_watchdog=panic" "softlockup_panic=1" "panic=10" ];
+  systemd.settings.Manager.RuntimeWatchdogSec = "30s";
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
