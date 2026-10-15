@@ -159,7 +159,7 @@ in
     keepassxc
     kitty
   ]) ++ (with pkgs-unstable; [
-    (chromium.override { commandLineArgs = "--enable-features=VaapiVideoDecoder --disable-gpu"; })
+    (chromium.override { commandLineArgs = "--enable-features=VaapiVideoDecoder --use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader"; })
     spotify
     dbeaver-bin
     (dotnetCorePackages.combinePackages [
