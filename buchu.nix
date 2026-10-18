@@ -194,6 +194,7 @@ common.recursiveMerge [
     settings = common.nixConfig.settings // {
       max-jobs = 1;
       cores = 1;
+      builders-use-substitutes = true;
     };
     buildMachines = [
       {
