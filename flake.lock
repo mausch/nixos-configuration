@@ -330,6 +330,22 @@
     },
     "nixpkgs_5": {
       "locked": {
+        "lastModified": 1791487292,
+        "narHash": "sha256-tqM7xDEsaeK1p6VvRygeZ9LkQRpUUkbRT02BHv6hnTM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8edc0c72e3a38faf5434e40d1f19431125fe4b30",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8edc0c72e3a38faf5434e40d1f19431125fe4b30",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1789921291,
         "narHash": "sha256-Ft/BRnIqw1MywFoXydKobjjWmDFgDdYtSpJliE8+yUw=",
         "owner": "NixOS",
@@ -389,6 +405,42 @@
         "type": "github"
       }
     },
+    "pi-web": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5",
+        "pi-web-src": "pi-web-src"
+      },
+      "locked": {
+        "lastModified": 1792432515,
+        "narHash": "sha256-YxCQvraeeIqipDy7qIucImMwF9XMCamM+MD3hOmjTjE=",
+        "ref": "refs/heads/main",
+        "rev": "f19f2f15256c812b0433d7b01ac1ed92ec47f193",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://gist.github.com/mausch/9a9acfbafb5944b7ab97ab4ca3befcd3.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gist.github.com/mausch/9a9acfbafb5944b7ab97ab4ca3befcd3.git"
+      }
+    },
+    "pi-web-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792328400,
+        "narHash": "sha256-1NWR9/c6aTPezrWuGAZoT1jGCnny+ApfWerJVvUKAyM=",
+        "owner": "agegr",
+        "repo": "pi-web",
+        "rev": "df163cdb422f3c3c3c50e7357e8bc7c7354a5f64",
+        "type": "github"
+      },
+      "original": {
+        "owner": "agegr",
+        "repo": "pi-web",
+        "rev": "df163cdb422f3c3c3c50e7357e8bc7c7354a5f64",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "fprintd": "fprintd",
@@ -402,6 +454,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "opencode": "opencode",
         "opencode-cli-wrapper": "opencode-cli-wrapper",
+        "pi-web": "pi-web",
         "sops-nix": "sops-nix",
         "terminal-web": "terminal-web"
       }
@@ -468,7 +521,7 @@
     },
     "terminal-web": {
       "inputs": {
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "terminalWeb": "terminalWeb"
       },
       "locked": {

@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, pkgs-claude, opencode, opencode-cli-wrapper, system, fprintd, handy, terminal-web, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, pkgs-claude, opencode, opencode-cli-wrapper, system, fprintd, handy, terminal-web, pi-web, ... }:
 
 let
   common = import ./common.nix {
@@ -688,6 +688,24 @@ fonts = {
 
   systemd.services.opencode = lib.recursiveUpdate common.opencodeService {
     serviceConfig.EnvironmentFile = config.sops.secrets.gemini-api-key.path;
+  };
+
+  systemd.services.pi-web = {
+    description = "Pi coding agent web UI";
+    wantedBy = [ "multi-user.target" ];
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+    environment = {
+      HOME = "/home/mauricio";
+      PATH = lib.mkForce "/run/current-system/sw/bin:/run/wrappers/bin";
+    };
+    serviceConfig = {
+      User = "mauricio";
+      WorkingDirectory = "/home/mauricio";
+      ExecStart = "${pi-web.packages.${system}.default}/bin/pi-web --no-open --hostname 0.0.0.0 --port 30141";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
   };
 
   systemd.services.opencode-cli-wrapper = {
