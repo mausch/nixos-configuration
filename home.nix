@@ -34,6 +34,10 @@ in
     longitude = "-0.07";
   };
 
+  home.file.".xprofile".text = ''
+    ${pkgs.xset}/bin/xset s off
+  '';
+
   systemd.user.startServices = "sd-switch";
 
   systemd.user.services.code-server = {
