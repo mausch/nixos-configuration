@@ -289,6 +289,7 @@ fonts = {
      keepassxc
 
      pkgs-unstable.antigravity
+     pkgs-unstable.zed-editor
    ]);
 
    environment.variables = {

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, opencode, system, hostName, pkgs-claude, pkgs-ollama, ... }:
+{ config, pkgs, lib, opencode, system, hostName, pkgs-claude, pkgs-ollama, pkgs-unstable, ... }:
 let common = import ./common.nix {
   inherit lib;
   inherit pkgs;
@@ -17,7 +17,7 @@ in
     ];
   };
 
-  home.packages = common.packages ++ [ pkgs-claude.claude-code ];
+  home.packages = common.packages ++ [ pkgs-claude.claude-code pkgs-unstable.zed-editor ];
 
   services.ollama = {
     enable = true;

@@ -175,6 +175,7 @@ in
     (chromium.override { commandLineArgs = "--enable-features=VaapiVideoDecoder"; })
     spotify
     dbeaver-bin
+    zed-editor
     (dotnetCorePackages.combinePackages [
       dotnetCorePackages.sdk_8_0
       dotnetCorePackages.sdk_9_0

@@ -210,6 +210,7 @@ common.recursiveMerge [
     kodi
     ntfs3g
     terminal-web.packages.${system}.default
+    pkgs-unstable.zed-editor
   ]);
 
 
