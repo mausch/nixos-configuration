@@ -254,6 +254,7 @@ in
   services.xserver = {
     enable = true;
     videoDrivers = [ "nvidia" ];
+    dpi = 96;
     xkb.layout = "us";
 
     displayManager = {
