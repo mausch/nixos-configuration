@@ -37,6 +37,13 @@ in
     memoryPercent = 50;
   };
 
+  hardware.graphics.enable = true;
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+    open = false;
+    modesetting.enable = true;
+  };
+
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
@@ -165,7 +172,7 @@ in
     keepassxc
     kitty
   ]) ++ (with pkgs-unstable; [
-    (chromium.override { commandLineArgs = "--disable-gpu-rasterization"; })
+    (chromium.override { commandLineArgs = "--enable-features=VaapiVideoDecoder"; })
     spotify
     dbeaver-bin
     (dotnetCorePackages.combinePackages [
@@ -246,6 +253,7 @@ in
 
   services.xserver = {
     enable = true;
+    videoDrivers = [ "nvidia" ];
     xkb.layout = "us";
 
     displayManager = {

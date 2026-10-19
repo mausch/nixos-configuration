@@ -38,7 +38,7 @@
     let
       systemPkgs = system: import nixpkgs {
         inherit system;
-        config = { allowUnfree = true; };
+        config = { allowUnfree = true; nvidia.acceptLicense = true; };
       };
       systemPkgsUnstable = system: import nixpkgs-unstable {
         inherit system;
