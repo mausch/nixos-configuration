@@ -411,11 +411,11 @@
         "pi-web-src": "pi-web-src"
       },
       "locked": {
-        "lastModified": 1792836998,
-        "narHash": "sha256-miT/peLOWAyW+1VQi+cxCp+QaIakIcJr7ETyDkdO+Dg=",
+        "lastModified": 1792839019,
+        "narHash": "sha256-AZeIhxNRNDegAucdTgf76QDa1eDXIJILKbC4qt4JrpA=",
         "ref": "refs/heads/main",
-        "rev": "4d76b8cc6cf0196ec6e259b1aca1902462c0a357",
-        "revCount": 2,
+        "rev": "b8264da72baccf85eec3afef909317bf5b4e7409",
+        "revCount": 3,
         "type": "git",
         "url": "https://gist.github.com/mausch/9a9acfbafb5944b7ab97ab4ca3befcd3.git"
       },
@@ -427,17 +427,17 @@
     "pi-web-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1792510822,
-        "narHash": "sha256-hftwf+BN1p+437BBsqI7oprmowIqBDwc4E908YovkOY=",
-        "owner": "agegr",
+        "lastModified": 1792513627,
+        "narHash": "sha256-lP4AycMGgkjHhJIDDSDFiT8tt7bIB27SeG+pJ5GRc6I=",
+        "owner": "wujunchuan",
         "repo": "pi-web",
-        "rev": "e533d9b3975f8a74b378d5007c92fdf4d15d3fba",
+        "rev": "96e7baa70947b643d289016708f37689aa7b5dd1",
         "type": "github"
       },
       "original": {
-        "owner": "agegr",
+        "owner": "wujunchuan",
         "repo": "pi-web",
-        "rev": "e533d9b3975f8a74b378d5007c92fdf4d15d3fba",
+        "rev": "96e7baa70947b643d289016708f37689aa7b5dd1",
         "type": "github"
       }
     },
