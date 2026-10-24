@@ -411,11 +411,11 @@
         "pi-web-src": "pi-web-src"
       },
       "locked": {
-        "lastModified": 1792432515,
-        "narHash": "sha256-YxCQvraeeIqipDy7qIucImMwF9XMCamM+MD3hOmjTjE=",
+        "lastModified": 1792836998,
+        "narHash": "sha256-miT/peLOWAyW+1VQi+cxCp+QaIakIcJr7ETyDkdO+Dg=",
         "ref": "refs/heads/main",
-        "rev": "f19f2f15256c812b0433d7b01ac1ed92ec47f193",
-        "revCount": 1,
+        "rev": "4d76b8cc6cf0196ec6e259b1aca1902462c0a357",
+        "revCount": 2,
         "type": "git",
         "url": "https://gist.github.com/mausch/9a9acfbafb5944b7ab97ab4ca3befcd3.git"
       },
@@ -427,17 +427,17 @@
     "pi-web-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1792328400,
-        "narHash": "sha256-1NWR9/c6aTPezrWuGAZoT1jGCnny+ApfWerJVvUKAyM=",
+        "lastModified": 1792510822,
+        "narHash": "sha256-hftwf+BN1p+437BBsqI7oprmowIqBDwc4E908YovkOY=",
         "owner": "agegr",
         "repo": "pi-web",
-        "rev": "df163cdb422f3c3c3c50e7357e8bc7c7354a5f64",
+        "rev": "e533d9b3975f8a74b378d5007c92fdf4d15d3fba",
         "type": "github"
       },
       "original": {
         "owner": "agegr",
         "repo": "pi-web",
-        "rev": "df163cdb422f3c3c3c50e7357e8bc7c7354a5f64",
+        "rev": "e533d9b3975f8a74b378d5007c92fdf4d15d3fba",
         "type": "github"
       }
     },
