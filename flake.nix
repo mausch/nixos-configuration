@@ -24,7 +24,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     handy = {
-      url = "github:cjpais/Handy/v0.9.6";
+      url = "github:cjpais/Handy/v0.9.8";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
