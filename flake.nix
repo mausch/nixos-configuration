@@ -31,11 +31,12 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    secretspec.url = "github:mausch/secretspec/nix-cache/v0.21.1";
     terminal-web.url = "git+https://gist.github.com/mausch/17017563f83da65e1260c6f24fae70f6.git";
     pi-web.url = "git+https://gist.github.com/mausch/9a9acfbafb5944b7ab97ab4ca3befcd3.git";
   };
 
-  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, nixpkgs-claude, home-manager, nix-lang-server, opencode, opencode-cli-wrapper, fprintd, handy, sops-nix, terminal-web, pi-web, self }:
+  outputs = { hosts, nixpkgs, nixpkgs-unstable, nixpkgs-ollama, nixpkgs-claude, home-manager, nix-lang-server, opencode, opencode-cli-wrapper, fprintd, handy, secretspec, sops-nix, terminal-web, pi-web, self }:
     let
       systemPkgs = system: import nixpkgs {
         inherit system;
@@ -76,7 +77,7 @@
             }
           ];
           specialArgs = {
-            inherit fprintd handy terminal-web opencode-cli-wrapper pi-web;
+            inherit fprintd handy secretspec terminal-web opencode-cli-wrapper pi-web;
             pkgs-unstable = systemPkgsUnstable "x86_64-linux";
             pkgs-ollama = systemPkgsOllama "x86_64-linux";
             pkgs-claude = systemPkgsClaude "x86_64-linux";

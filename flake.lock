@@ -26,6 +26,21 @@
         "type": "github"
       }
     },
+    "crane": {
+      "locked": {
+        "lastModified": 1792350552,
+        "narHash": "sha256-292lvpvxTGKryKxh3/3tcIVi85CwYGdl4oOi113Sob8=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "e675a36b7377bebe41d548388a2501cbb16d380d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "fingerprint": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -346,6 +361,22 @@
     },
     "nixpkgs_6": {
       "locked": {
+        "lastModified": 1793225069,
+        "narHash": "sha256-sx1f99WGrDfJ83KKuQrqGPmot0rnDgmpLJDzpU2oHQQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e62746b0b472753ef019baceab6f1e2e52014980",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_7": {
+      "locked": {
         "lastModified": 1789921291,
         "narHash": "sha256-Ft/BRnIqw1MywFoXydKobjjWmDFgDdYtSpJliE8+yUw=",
         "owner": "NixOS",
@@ -455,6 +486,7 @@
         "opencode": "opencode",
         "opencode-cli-wrapper": "opencode-cli-wrapper",
         "pi-web": "pi-web",
+        "secretspec": "secretspec",
         "sops-nix": "sops-nix",
         "terminal-web": "terminal-web"
       }
@@ -481,6 +513,26 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "secretspec": {
+      "inputs": {
+        "crane": "crane",
+        "nixpkgs": "nixpkgs_6"
+      },
+      "locked": {
+        "lastModified": 1793384860,
+        "narHash": "sha256-nX/GmHbjeyOpEZdtqpwUMD0MWQ9GDtc/4P5F4rNPFBU=",
+        "owner": "mausch",
+        "repo": "secretspec",
+        "rev": "9c795258a1a9e6c06af845e09aca711984701338",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mausch",
+        "ref": "nix-cache/v0.21.1",
+        "repo": "secretspec",
         "type": "github"
       }
     },
@@ -521,7 +573,7 @@
     },
     "terminal-web": {
       "inputs": {
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_7",
         "terminalWeb": "terminalWeb"
       },
       "locked": {

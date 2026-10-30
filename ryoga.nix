@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, pkgs-claude, opencode, opencode-cli-wrapper, system, fprintd, handy, terminal-web, pi-web, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-ollama, pkgs-claude, opencode, opencode-cli-wrapper, system, fprintd, handy, secretspec, terminal-web, pi-web, ... }:
 
 let
   common = import ./common.nix {
@@ -165,6 +165,13 @@ common.recursiveMerge [
   };
 
   nix = common.nixConfig // {
+    settings = common.nixConfig.settings // {
+      accept-flake-config = true;
+      extra-substituters = [ "https://mausch.github.io/secretspec/cache" ];
+      extra-trusted-public-keys = [
+        "mausch-secretspec-1:9RPSefpJCeOFiK0P1g28zfuG1r3p9QgNsIM4G+qU5fI="
+      ];
+    };
     buildMachines = [
       {
         hostName = "dell-tower";
@@ -235,6 +242,7 @@ fonts = {
   [
       handy.packages.${system}.default
        terminal-web.packages.${system}.default
+       secretspec.packages.${system}.default
        tailscale
       # pkgs-unstable.ollama
 
