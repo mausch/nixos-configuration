@@ -199,7 +199,9 @@ rec {
       cores = 0;
       max-jobs = "auto";
       trusted-users = [ "mauricio" ];
+      extra-substituters = [ "https://handy-computer.cachix.org" ];
       trusted-public-keys = [
+        "handy-computer.cachix.org-1:Sihzctn6DC0CJM5QeL+9nBEL3CL8c33m777C+eIv748="
         "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
         "ryoga-builder:MWuu+bCxIMHHDypYJ/XndRi4c5ewCT9sacXfne2k1ls="
       ];

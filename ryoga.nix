@@ -167,7 +167,7 @@ common.recursiveMerge [
   nix = common.nixConfig // {
     settings = common.nixConfig.settings // {
       accept-flake-config = true;
-      extra-substituters = [ "https://mausch.github.io/secretspec/cache" ];
+      extra-substituters = common.nixConfig.settings.extra-substituters ++ [ "https://mausch.github.io/secretspec/cache" ];
       extra-trusted-public-keys = [
         "mausch-secretspec-1:9RPSefpJCeOFiK0P1g28zfuG1r3p9QgNsIM4G+qU5fI="
       ];
