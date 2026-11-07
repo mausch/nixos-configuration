@@ -2,14 +2,16 @@
 let
   opencode-base = if opencode == null then null else
     opencode.packages.${system}.default.overrideAttrs (old: lib.optionalAttrs (system == "x86_64-linux") {
+      node_modules = old.node_modules.overrideAttrs {
+        outputHash = "sha256-s8XswivimwgzG0wMleHee5zliDKd+UC84eAvBvzr6cI=";
+      };
       postPatch = (old.postPatch or "") + ''
         substituteInPlace packages/cli/script/build.ts \
           --replace-fail '...(executablePath ? { executablePath } : {}),' 'executablePath: executablePath ?? process.execPath,'
+        substituteInPlace packages/cli/script/build.ts \
+          --replace-fail 'createWebSocketStream, extension, Receiver, Sender, subprotocol, WebSocket, WebSocketServer' 'createWebSocketStream, Receiver, Sender, WebSocket, WebSocketServer'
       '';
-      buildPhase = builtins.replaceStrings
-        [ "--single --skip-install" ]
-        [ "--target=opencode-linux-x64-baseline --skip-install" ]
-        old.buildPhase;
+      env = (old.env or { }) // { OPENCODE_TARGET = "linux-x64-baseline"; };
     });
 in
 rec {

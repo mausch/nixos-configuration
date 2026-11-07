@@ -732,7 +732,15 @@ fonts = {
     serviceConfig = {
       inherit (config.systemd.services.opencode.serviceConfig) User WorkingDirectory Environment;
       EnvironmentFile = config.sops.secrets.gemini-api-key.path;
-      ExecStart = "${opencode-cli-wrapper.packages.${system}.default}/bin/opencode-cli-wrapper";
+      ExecStart = "${opencode-cli-wrapper.packages.${system}.default.overrideAttrs (old: {
+        installPhase = builtins.replaceStrings
+          [ "${opencode.packages.${system}.default}" ]
+          [ "${common.opencodePackage}" ]
+          (builtins.appendContext (builtins.unsafeDiscardStringContext old.installPhase)
+            (builtins.removeAttrs (builtins.getContext old.installPhase)
+              (map builtins.unsafeDiscardStringContext
+                [ opencode.packages.${system}.default.drvPath (toString opencode.packages.${system}.default) ])));
+      })}/bin/opencode-cli-wrapper";
       Restart = "on-failure";
       RestartSec = 5;
     };
