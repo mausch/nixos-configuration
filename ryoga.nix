@@ -562,11 +562,15 @@ fonts = {
 
   systemd.services.sshfs-buchu = {
     description = "SSHFS buchu";
-    requires = [ "wpa_supplicant.service" ];
-    after = [ "wpa_supplicant.service" ];
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
+    unitConfig = {
+      StartLimitIntervalSec = 0;
+    };
     serviceConfig = {
       Restart = "always";
+      RestartSec = 10;
     };
     script = ''
       mkdir -p /mnt/sshfs-buchu || true
@@ -578,11 +582,15 @@ fonts = {
 
   systemd.services.sshfs-dell-tower = {
     description = "SSHFS dell-tower";
-    requires = [ "wpa_supplicant.service" ];
-    after = [ "wpa_supplicant.service" ];
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
+    unitConfig = {
+      StartLimitIntervalSec = 0;
+    };
     serviceConfig = {
       Restart = "always";
+      RestartSec = 10;
     };
     script = ''
       mkdir -p /mnt/sshfs-dell-tower || true
@@ -597,9 +605,11 @@ fonts = {
     requires = [ "tailscaled.service" ];
     after = [ "tailscaled.service" ];
     wantedBy = [ "multi-user.target" ];
+    unitConfig = {
+      StartLimitIntervalSec = 0;
+    };
     serviceConfig = {
       Restart = "always";
-      StartLimitIntervalSec = 0;
     };
     script = ''
       ${pkgs.openssh}/bin/ssh -vNT \
