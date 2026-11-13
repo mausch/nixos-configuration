@@ -72,6 +72,26 @@
       config = {};
       mobile_app = {};
       wake_on_lan = {};
+      switch = [
+        {
+          platform = "wake_on_lan";
+          name = "Dell Tower";
+          mac = "3c:78:95:84:49:29";
+          host = "192.168.1.235";
+        }
+        {
+          platform = "wake_on_lan";
+          name = "Synergy Server";
+          mac = "f8:16:54:e1:fd:48";
+          host = "192.168.1.93";
+        }
+        {
+          platform = "wake_on_lan";
+          name = "Ryoga";
+          mac = "24:ee:9a:1a:40:d7";
+          host = "192.168.1.216";
+        }
+      ];
       intent = {};
       light = [
         {
