@@ -17,6 +17,10 @@ let
     pkgs = pkgs-ollama;
     models-path = "/run/media/mauricio/12TB/models";
   };
+  smartdNotify = pkgs.writeShellScript "smartd-mqtt" ''
+    test -n "$SMARTD_FULLMESSAGE" || exit 0
+    exec ${pkgs.mosquitto}/bin/mosquitto_pub -h 127.0.0.1 -t smartd/buchu -q 1 -m "$SMARTD_FULLMESSAGE"
+  '';
 in
 common.recursiveMerge [
   homeassistant
@@ -86,6 +90,16 @@ common.recursiveMerge [
     device = "/dev/disk/by-uuid/2964ED933E295A2C";
     fsType = "ntfs3";
     options = [ "rw" "uid=1000" "gid=100" "umask=0002" "nofail" ];
+  };
+
+  services.smartd = {
+    enable = true;
+    defaults.autodetected = "-a -W 4,48,55 -s (S/../.././02|L/../../7/04) -m <nomailer> -M exec ${smartdNotify} -M daily";
+    notifications = {
+      mail.enable = false;
+      wall.enable = false;
+      x11.enable = false;
+    };
   };
 
   time.timeZone = "Europe/London";

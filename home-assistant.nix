@@ -136,6 +136,32 @@
         time_zone = "UTC";
       };
       "automation ui" = "!include automations.yaml";
+      "automation smartd" = [
+        {
+          id = "smartd-mqtt";
+          alias = "smartd disk alert";
+          triggers = [
+            {
+              trigger = "mqtt";
+              topic = "smartd/buchu";
+            }
+          ];
+          actions = [
+            {
+              action = "notify.mobile_app_sm_s911u";
+              data = {
+                title = "Disk problem on buchu";
+                message = "{{ trigger.payload }}";
+                data = {
+                  ttl = 0;
+                  priority = "high";
+                  group = "smartd";
+                };
+              };
+            }
+          ];
+        }
+      ];
     };
   };
 }
